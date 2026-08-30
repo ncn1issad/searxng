@@ -21,9 +21,14 @@
 {% macro result_header(result, favicons, image_proxify) -%}
 <article class="result {% if result['template'] %}result-{{ result.template|replace('.html', '') }}{% else %}result-default{% endif %} {% if result['category'] %}category-{{ result['category'] }}{% endif %}">
   {{- result_open_link(result.url, "url_header") -}}
-  {%- if favicon_resolver != "" %}
-  <div class="favicon"><img loading="lazy" src="{{ favicon_url(result.parsed_url.netloc) }}"></div>
-  {%- endif -%}
+  {%- set source_name = result.parsed_url.netloc | replace('www.', '') -%}
+  <span class="source_mark" aria-hidden="true">
+    {%- if favicon_resolver != "" -%}
+      <img loading="lazy" src="{{ favicon_url(result.parsed_url.netloc) }}" alt="">
+    {%- else -%}
+      {{- source_name[:1] | upper -}}
+    {%- endif -%}
+  </span>
   <div class="url_wrapper">
     {%- for part in get_pretty_url(result.parsed_url) -%}
     <span class="url_o{{loop.index}}"><span class="url_i{{loop.index}}">{{- part -}}</span></span>

@@ -1,7 +1,14 @@
 <aside class="infobox" aria-label="{{ infobox.infobox }}">
-  <h2 class="title"><bdi>{{ infobox.infobox }}</bdi></h2>
   {%- if infobox.img_src -%}<img src="{{ image_proxify(infobox.img_src) }}" title="{{ infobox.infobox|striptags }}" alt="{{ infobox.infobox|striptags }}">{%- endif -%}
-  <p><bdi>{{ infobox.content | safe }}</bdi></p>
+  <div class="infobox_body">
+  <div class="infobox_heading">
+    <div>
+      {%- if infobox.urls -%}<p class="infobox_eyebrow"><bdi>{{ infobox.urls[0].title }}</bdi></p>{%- endif -%}
+      <h2 class="title"><bdi>{{ infobox.infobox }}</bdi></h2>
+    </div>
+    {%- if infobox.urls -%}<a class="infobox_open" href="{{ infobox.urls[0].url }}" aria-label="{{ _('Open') }} {{ infobox.infobox|striptags }}" rel="noreferrer">↗</a>{%- endif -%}
+  </div>
+  <p class="infobox_content"><bdi>{{ infobox.content | safe }}</bdi></p>
   {%- if infobox.attributes -%}
     <div class="attributes">
       {%- for attribute in infobox.attributes -%}
@@ -45,4 +52,5 @@
       {%- endfor -%}
     </div>
   {%- endif -%}
+  </div>
 </aside>

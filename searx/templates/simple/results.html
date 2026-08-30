@@ -59,6 +59,27 @@
     {%- endif -%}
 
     <div id="urls" role="main">
+    {% if results %}
+      <div id="result_summary" aria-label="{{ _('Search results') }}">
+        <strong>{{ _('Search results') }}</strong>
+        <span>{{ results | count }} {{ _('results') }}</span>
+        {% if max_response_time %}
+          <span aria-hidden="true">·</span>
+          <span>{{ max_response_time | round(1) }} {{ _('seconds') }}</span>
+        {% endif %}
+        <div class="search_filters" id="search_filters">
+          <label class="summary_select">
+            {% include 'simple/filters/time_range.html' %}
+            <span aria-hidden="true">⌄</span>
+          </label>
+          <label class="summary_select">
+            {% include 'simple/filters/languages.html' %}
+            <span aria-hidden="true">⌄</span>
+          </label>
+          <input type="hidden" name="safesearch" value="{{ safesearch }}" form="search">
+        </div>
+      </div>
+    {% endif %}
     {% for result in results %}
         {% if result.open_group and not only_template %}<div class="template_group_{{ result['template']|replace('.html', '') }}">{% endif %}
         {% set index = loop.index %}
