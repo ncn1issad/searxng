@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en" data-theme="mocha">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Soft Catppuccin search results concept for SearXNG">
+  <title>Elephant — SearXNG soft surfaces concept</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#results">Skip to results</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#" aria-label="SearXNG home">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <circle cx="14" cy="14" r="8.5"></circle>
+          <path d="m20.5 20.5 7 7"></path>
+        </svg>
+        <span>searxng</span>
+      </a>
+
+      <form class="search-form" role="search">
+        <label class="visually-hidden" for="search-input">Search</label>
+        <input id="search-input" name="q" type="search" value="elephant" autocomplete="off">
+        <button class="clear-button" type="button" aria-label="Clear search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"></path></svg>
+        </button>
+        <button class="search-button" type="submit" aria-label="Search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.5"></circle><path d="m16 16 4.2 4.2"></path></svg>
+        </button>
+      </form>
+
+      <nav class="utility-nav" aria-label="Utility navigation">
+        <button class="icon-button" id="theme-toggle" type="button" aria-label="Switch to light theme" title="Switch theme">
+          <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.1A8.5 8.5 0 0 1 8.9 3.8 8.5 8.5 0 1 0 20.2 15.1Z"></path></svg>
+          <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+        </button>
+        <a class="icon-button" href="#" aria-label="Preferences" title="Preferences">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10M8 14v6M16 4v6"></path></svg>
+        </a>
+      </nav>
+    </div>
+
+    <div class="category-scroll">
+      <nav class="categories" aria-label="Search categories">
+        <a class="active" href="#" aria-current="page">general</a>
+        <a href="#">images</a>
+        <a href="#">videos</a>
+        <a href="#">news</a>
+        <a href="#">map</a>
+        <a href="#">music</a>
+        <a href="#">science</a>
+        <a href="#">files</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <div class="toolbar" aria-label="Search filters">
+      <p>about 91 results <span>·</span> 3.8 seconds</p>
+      <div class="filters">
+        <button type="button">any language <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4"></path></svg></button>
+        <button type="button">any time <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4"></path></svg></button>
+        <button type="button">safe search: moderate <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4"></path></svg></button>
+      </div>
+    </div>
+
+    <div class="content-grid">
+      <section class="results-panel" id="results" aria-labelledby="results-heading">
+        <h1 class="visually-hidden" id="results-heading">Search results for elephant</h1>
+
+        <article class="result">
+          <a class="result-source" href="https://en.wikipedia.org/wiki/Elephant">
+            <span class="favicon wiki">W</span>
+            <span><b>Wikipedia</b><small>en.wikipedia.org › wiki › Elephant</small></span>
+          </a>
+          <h2><a href="https://en.wikipedia.org/wiki/Elephant">Elephant — Wikipedia</a></h2>
+          <p>Elephants are the largest living land animals. Three living species are currently recognised: the African bush elephant, the African forest elephant, and the Asian elephant.</p>
+          <footer><span>brave</span><span>qwant</span><span>startpage</span><a href="#">cached</a></footer>
+        </article>
+
+        <article class="result result-with-image">
+          <div>
+            <a class="result-source" href="https://www.worldwildlife.org/species/elephant/">
+              <span class="favicon wwf">WWF</span>
+              <span><b>World Wildlife Fund</b><small>worldwildlife.org › species › elephant</small></span>
+            </a>
+            <h2><a href="https://www.worldwildlife.org/species/elephant/">Elephant | WWF</a></h2>
+            <p>Elephants are the largest land mammals on earth and have distinctly massive bodies, large ears, and long trunks. Learn about the threats facing them and conservation efforts.</p>
+            <footer><span>brave</span><span>google cse</span><a href="#">cached</a></footer>
+          </div>
+          <a class="thumbnail" href="https://www.worldwildlife.org/species/elephant/" aria-label="Open Elephant at WWF">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/African_Bush_Elephant.jpg/330px-African_Bush_Elephant.jpg" alt="African bush elephant walking on grass">
+          </a>
+        </article>
+
+        <article class="result result-with-image">
+          <div>
+            <a class="result-source" href="https://kids.nationalgeographic.com/animals/mammals/facts/african-elephant">
+              <span class="favicon natgeo">N</span>
+              <span><b>National Geographic Kids</b><small>kids.nationalgeographic.com › animals › mammals</small></span>
+            </a>
+            <h2><a href="https://kids.nationalgeographic.com/animals/mammals/facts/african-elephant">African Elephant | National Geographic Kids</a></h2>
+            <div class="date">Mar 14, 2023</div>
+            <p>African elephants are the largest animals walking the Earth. Their herds wander through 37 countries in Africa.</p>
+            <footer><span>brave</span><span>google cse</span><a href="#">cached</a></footer>
+          </div>
+          <a class="thumbnail" href="https://kids.nationalgeographic.com/animals/mammals/facts/african-elephant" aria-label="Open African Elephant at National Geographic Kids">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/African_Bush_Elephant.jpg/330px-African_Bush_Elephant.jpg" alt="African elephant feeding near a tree" loading="lazy">
+          </a>
+        </article>
+
+        <article class="result video-result">
+          <a class="result-source" href="https://www.youtube.com/watch?v=5Mn9UkKwQZI">
+            <span class="favicon youtube">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8.2a2.8 2.8 0 0 0-2-2C17.3 5.7 12 5.7 12 5.7s-5.3 0-7 .5a2.8 2.8 0 0 0-2 2A29 29 0 0 0 2.5 12 29 29 0 0 0 3 15.8a2.8 2.8 0 0 0 2 2c1.7.5 7 .5 7 .5s5.3 0 7-.5a2.8 2.8 0 0 0 2-2 29 29 0 0 0 .5-3.8 29 29 0 0 0-.5-3.8Z"></path><path class="play-fill" d="m10 14.8 5-2.8-5-2.8Z"></path></svg>
+            </span>
+            <span><b>YouTube</b><small>youtube.com › watch</small></span>
+          </a>
+          <h2><a href="https://www.youtube.com/watch?v=5Mn9UkKwQZI">Giants of the Earth: The Majestic World of Elephants | Full Documentary</a></h2>
+          <a class="video-preview" href="https://www.youtube.com/watch?v=5Mn9UkKwQZI" aria-label="Play elephant documentary on YouTube">
+            <img src="https://i.ytimg.com/vi/5Mn9UkKwQZI/hqdefault.jpg" alt="Elephants from the documentary" loading="lazy">
+            <span class="play-button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 7 8 5-8 5Z"></path></svg></span>
+            <span class="duration">52:17</span>
+          </a>
+          <p>Out of six and a half million terrestrial species, elephants are the largest land animals on Earth. Explore their social lives, intelligence, and natural habitats.</p>
+          <footer><span>brave</span><a href="#">cached</a></footer>
+        </article>
+
+        <article class="result book-result">
+          <a class="book-cover" href="https://openlibrary.org/works/OL5813796W" aria-label="Open Water for Elephants on Open Library">
+            <img src="https://archive.org/services/img/daxiangdeyanlei0000grue" alt="Water for Elephants book cover" loading="lazy">
+          </a>
+          <div>
+            <a class="result-source" href="https://openlibrary.org/works/OL5813796W">
+              <span class="favicon library">OL</span>
+              <span><b>Open Library</b><small>openlibrary.org › works › OL5813796W</small></span>
+            </a>
+            <h2><a href="https://openlibrary.org/works/OL5813796W">Water for Elephants</a></h2>
+            <div class="book-meta"><span>by Sara Gruen</span><span>published May 22, 2006</span></div>
+            <p>Only three people were left under the red and white awning of the grease joint: Grady, me and the fry cook.</p>
+            <footer><span>openlibrary</span><span>ISBN 978-1-4434-0628-4</span><a href="#">cached</a></footer>
+          </div>
+        </article>
+
+        <article class="result result-with-image">
+          <div>
+            <a class="result-source" href="https://www.livescience.com/27320-elephants.html">
+              <span class="favicon livescience">LS</span>
+              <span><b>Live Science</b><small>livescience.com › 27320-elephants.html</small></span>
+            </a>
+            <h2><a href="https://www.livescience.com/27320-elephants.html">Elephants: Facts about Earth's largest living land animals</a></h2>
+            <div class="date">Feb 18, 2025</div>
+            <p>Elephants are the largest land animals on Earth, and they're also one of the most unique-looking animals, with long trunks, floppy ears and thick legs.</p>
+            <footer><span>brave</span><span>qwant</span><a href="#">cached</a></footer>
+          </div>
+          <a class="thumbnail" href="https://www.livescience.com/27320-elephants.html" aria-label="Open elephant facts at Live Science">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/African_Bush_Elephant.jpg/330px-African_Bush_Elephant.jpg" alt="Close-up of an African elephant" loading="lazy">
+          </a>
+        </article>
+
+        <nav class="pagination" aria-label="Search result pages">
+          <a class="disabled" href="#" aria-disabled="true">previous</a>
+          <a class="current" href="#" aria-current="page">1</a>
+          <a href="#">2</a>
+          <a href="#">3</a>
+          <a class="next" href="#">next <span aria-hidden="true">→</span></a>
+        </nav>
+      </section>
+
+      <aside class="sidebar" aria-label="About elephant">
+        <section class="knowledge-panel">
+          <img class="hero-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/African_Bush_Elephant.jpg/330px-African_Bush_Elephant.jpg" alt="African bush elephant in savanna">
+          <div class="knowledge-body">
+            <div class="knowledge-heading">
+              <div><p>animal</p><h2>Elephant</h2></div>
+              <a href="https://en.wikipedia.org/wiki/Elephant" aria-label="Read Elephant on Wikipedia">↗</a>
+            </div>
+            <p>Elephants are the largest living land animals. Three living species are currently recognised: the African bush elephant, African forest elephant, and Asian elephant.</p>
+            <dl>
+              <div><dt>Family</dt><dd>Elephantidae</dd></div>
+              <div><dt>Order</dt><dd>Proboscidea</dd></div>
+              <div><dt>Class</dt><dd>Mammalia</dd></div>
+              <div><dt>Diet</dt><dd>Herbivore</dd></div>
+            </dl>
+            <a class="source-link" href="https://en.wikipedia.org/wiki/Elephant"><span class="favicon wiki">W</span> Wikipedia</a>
+          </div>
+        </section>
+
+        <section class="suggestions-panel">
+          <h2>Related searches</h2>
+          <div class="suggestions">
+            <a href="#"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"></circle><path d="m13 13 4 4"></path></svg>elephant habitat</a>
+            <a href="#"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"></circle><path d="m13 13 4 4"></path></svg>african elephants</a>
+            <a href="#"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"></circle><path d="m13 13 4 4"></path></svg>elephant facts</a>
+            <a href="#"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"></circle><path d="m13 13 4 4"></path></svg>asian elephant</a>
+            <a href="#"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"></circle><path d="m13 13 4 4"></path></svg>elephant drawing</a>
+          </div>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <span>SearXNG</span>
+    <nav aria-label="Footer navigation"><a href="#">about</a><a href="#">preferences</a><a href="#">stats</a></nav>
+  </footer>
+</body>
+</html>

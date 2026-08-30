@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en" data-theme="mocha">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>SearXNG search design concepts</title>
+  <link rel="stylesheet" href="shared/gallery.css">
+  <script src="shared/gallery.js" defer></script>
+</head>
+<body>
+  <header class="gallery-header">
+    <div>
+      <p class="eyebrow">SearXNG redesign</p>
+      <h1>Search interface concepts</h1>
+      <p class="intro">Three visual treatments using the same elephant search fixture. The search flow stays familiar so the comparison is mostly about spacing, surfaces, and density.</p>
+    </div>
+    <button class="theme-toggle" type="button" aria-label="Switch to light theme" title="Switch theme">
+      <span aria-hidden="true">Latte</span>
+    </button>
+  </header>
+
+  <main class="concept-grid">
+    <article class="concept concept-flat">
+      <div class="concept-number">01</div>
+      <div class="mini-search" aria-hidden="true"><span></span><i></i></div>
+      <div class="mini-layout" aria-hidden="true">
+        <div class="mini-results"><span></span><span></span><span></span></div>
+        <div class="mini-side"></div>
+      </div>
+      <div class="concept-copy">
+        <p class="concept-kind">Restrained</p>
+        <h2>Familiar flat</h2>
+        <p>Closest to a conventional Google or DuckDuckGo results page. Mostly flat surfaces, comfortable spacing, and a quiet sidebar.</p>
+      </div>
+      <a class="open-concept" href="concepts/01-familiar-flat/index.html">Open concept <span aria-hidden="true">→</span></a>
+    </article>
+
+    <article class="concept concept-soft">
+      <div class="concept-number">02</div>
+      <div class="mini-search" aria-hidden="true"><span></span><i></i></div>
+      <div class="mini-layout" aria-hidden="true">
+        <div class="mini-results"><span></span><span></span><span></span></div>
+        <div class="mini-side"></div>
+      </div>
+      <div class="concept-copy">
+        <p class="concept-kind">Soft</p>
+        <h2>Grouped surfaces</h2>
+        <p>A stronger Catppuccin treatment. Results share one rounded surface while the knowledge panel and related searches sit in matching panels.</p>
+      </div>
+      <a class="open-concept" href="concepts/02-soft-surfaces/index.html">Open concept <span aria-hidden="true">→</span></a>
+    </article>
+
+    <article class="concept concept-compact">
+      <div class="concept-number">03</div>
+      <div class="mini-search" aria-hidden="true"><span></span><i></i></div>
+      <div class="mini-layout" aria-hidden="true">
+        <div class="mini-results"><span></span><span></span><span></span><span></span></div>
+        <div class="mini-side"></div>
+      </div>
+      <div class="concept-copy">
+        <p class="concept-kind">Dense</p>
+        <h2>Compact focus</h2>
+        <p>Fits more information on screen with tighter rows, stronger metadata, and keyboard shortcuts. It stays calm rather than turning into a terminal.</p>
+      </div>
+      <a class="open-concept" href="concepts/03-compact-focus/index.html">Open concept <span aria-hidden="true">→</span></a>
+    </article>
+
+    <article class="concept concept-comfortable">
+      <div class="concept-number">04</div>
+      <div class="mini-search" aria-hidden="true"><span></span><i></i></div>
+      <div class="mini-layout" aria-hidden="true">
+        <div class="mini-results"><span></span><span></span><span></span></div>
+        <div class="mini-side"></div>
+      </div>
+      <div class="concept-copy">
+        <p class="concept-kind">Refined</p>
+        <h2>Comfortable compact</h2>
+        <p>Concept 03 without result numbering. It keeps the compact top bar and result structure, but uses larger type, more breathing room, subtle cards, and plain Catppuccin surfaces.</p>
+      </div>
+      <a class="open-concept" href="concepts/04-comfortable-compact/index.html">Open concept <span aria-hidden="true">→</span></a>
+    </article>
+  </main>
+
+  <footer>
+    <p>Fixture: <code>elephants</code> · Catppuccin Latte and Mocha · JetBrains Mono</p>
+  </footer>
+</body>
+</html>
