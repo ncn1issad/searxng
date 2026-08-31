@@ -212,6 +212,11 @@ h1 {
   border-radius: 0.35rem;
 }
 .concept-comfortable .mini-results span::before { background: var(--mauve); }
+.mini-layout-ddg { grid-template-columns: 1fr; }
+.concept-ddg .mini-results { gap: 0.42rem; border-color: transparent; }
+.concept-ddg .mini-results span { height: 2.35rem; border-bottom-color: var(--border); }
+.concept-ddg .mini-results span:first-child { height: 4.1rem; border: 1px solid var(--border); border-radius: 0.55rem; background: var(--surface); }
+.concept-ddg .mini-results span::before { background: var(--mauve); }
 
 .concept-copy { padding: 1.7rem 0.35rem 1.25rem; }
 

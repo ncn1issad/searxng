@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en" data-theme="mocha">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>elephants | SearXNG DDG results concept</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#results">Skip to results</a>
+
+  <header class="site-header">
+    <div class="header-row">
+      <a class="brand" href="#" aria-label="SearXNG home">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="13" cy="13" r="8.5"/><path d="m19.5 19.5 7 7"/></svg>
+        <span>searxng</span>
+      </a>
+
+      <form class="search-form" role="search">
+        <label class="sr-only" for="search-input">Search</label>
+        <input id="search-input" name="q" type="search" value="elephants" autocomplete="off" spellcheck="false">
+        <button class="search-button" type="submit" aria-label="Search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.7" cy="10.7" r="6.7"/><path d="m16 16 5 5"/></svg>
+        </button>
+        <kbd class="focus-hint" aria-hidden="true">/</kbd>
+      </form>
+
+      <nav class="utility-nav" aria-label="Site">
+        <a href="#about">about</a>
+        <a href="#preferences" aria-label="Preferences" title="Preferences">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/><path d="M19.4 15a1.8 1.8 0 0 0 .36 2l.06.06-2.76 2.76-.06-.06a1.8 1.8 0 0 0-2-.36 1.8 1.8 0 0 0-1.1 1.65V21H10v-.09A1.8 1.8 0 0 0 8.9 19.3a1.8 1.8 0 0 0-2 .36l-.06.06-2.76-2.76.06-.06a1.8 1.8 0 0 0 .36-2A1.8 1.8 0 0 0 2.85 14H2v-4h.85A1.8 1.8 0 0 0 4.5 8.9a1.8 1.8 0 0 0-.36-2l-.06-.06 2.76-2.76.06.06a1.8 1.8 0 0 0 2 .36A1.8 1.8 0 0 0 10 2.85V2h4v.85a1.8 1.8 0 0 0 1.1 1.65 1.8 1.8 0 0 0 2-.36l.06-.06 2.76 2.76-.06.06a1.8 1.8 0 0 0-.36 2 1.8 1.8 0 0 0 1.65 1.1H22v4h-.85A1.8 1.8 0 0 0 19.4 15Z"/></svg>
+        </a>
+        <button class="theme-toggle" type="button" aria-label="Switch to light theme" title="Toggle theme (Alt+T)">
+          <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.3A8.4 8.4 0 0 1 8.7 4 8.5 8.5 0 1 0 20 15.3Z"/></svg>
+          <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"/></svg>
+        </button>
+      </nav>
+    </div>
+
+    <nav class="category-nav" aria-label="Search categories">
+      <a class="active" href="#general" aria-current="page">general</a>
+      <a href="#images">images</a>
+      <a href="#videos">videos</a>
+      <a href="#news">news</a>
+      <a href="#maps">maps</a>
+      <a href="#music">music</a>
+      <a href="#science">science</a>
+      <a href="#files">files</a>
+      <button class="filter-button" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M7 12h10M10 17h4"/></svg>
+        filters
+      </button>
+    </nav>
+  </header>
+
+  <main class="results-shell" id="results">
+    <div class="filter-strip" aria-label="Search filters">
+      <span>91 results</span>
+      <span aria-hidden="true">·</span>
+      <span>3.8s</span>
+      <button type="button">any time <span aria-hidden="true">⌄</span></button>
+      <button type="button">all languages <span aria-hidden="true">⌄</span></button>
+    </div>
+
+    <section class="knowledge-result" aria-labelledby="knowledge-title">
+      <div class="knowledge-copy">
+        <p class="knowledge-kicker">Wikipedia</p>
+        <h1 id="knowledge-title">Elephant</h1>
+        <p class="knowledge-subtitle">Large terrestrial mammals from Africa and Asia</p>
+        <p>Elephants are the largest living land animals. Three living species are currently recognised: the African bush elephant, the African forest elephant, and the Asian elephant. They are the only surviving members of the family Elephantidae.</p>
+        <a href="https://en.wikipedia.org/wiki/Elephant">Continue on Wikipedia</a>
+        <div class="knowledge-extra" hidden>
+          <dl>
+            <div><dt>Family</dt><dd>Elephantidae</dd></div>
+            <div><dt>Order</dt><dd>Proboscidea</dd></div>
+            <div><dt>Class</dt><dd>Mammalia</dd></div>
+          </dl>
+        </div>
+      </div>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/African_Bush_Elephant.jpg/330px-African_Bush_Elephant.jpg" alt="African bush elephant walking through grassland">
+      <button class="knowledge-toggle" type="button" aria-expanded="false">
+        <span>show details</span><span aria-hidden="true">⌄</span>
+      </button>
+    </section>
+
+    <section class="web-results" aria-label="Web results">
+      <article class="web-result">
+        <div class="result-head">
+          <span class="source-icon">W</span>
+          <div><strong>Wikipedia</strong><span>en.wikipedia.org › wiki › Elephant</span></div>
+          <button type="button" aria-label="Result actions">•••</button>
+        </div>
+        <h2><a href="https://en.wikipedia.org/wiki/Elephant">Elephant - Wikipedia</a></h2>
+        <p>African bush <strong>elephants</strong> and Asian <strong>elephants</strong> are listed as endangered. One of the largest threats to elephant populations is the ivory trade.</p>
+      </article>
+
+      <section class="media-pack image-pack" id="images" aria-labelledby="images-title">
+        <div class="section-heading">
+          <h2 id="images-title"><span aria-hidden="true">▧</span> Images for <strong>elephants</strong></h2>
+          <a href="#image-category">open images</a>
+        </div>
+        <div class="image-row">
+          <article>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQMj_Tk8nEiCgdhilk7GHqQmgvXmAa9LE1GtW0U_YvpTmR1ts-_uWroqps" alt="Elephants walking through green grass">
+            <h3>Elephant species and their habitats</h3><p>britannica.com</p>
+          </article>
+          <article>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQuwbMgHbGm07FEAjNDBwlbhlVdAP5OgvobmoBzo9WpPhnFEmThbkvCsoZL" alt="African elephant herd">
+            <h3>African savanna elephant</h3><p>worldwildlife.org</p>
+          </article>
+          <article>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR36wDsVljQalPesZK5cprnZ2XSECN0CXvQjcZO_DLzME2HlPi_pEIaT-8" alt="Elephant family in the savanna">
+            <h3>Inside an elephant family</h3><p>nationalgeographic.com</p>
+          </article>
+          <article>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/African_Bush_Elephant.jpg/330px-African_Bush_Elephant.jpg" alt="African bush elephant">
+            <h3>The world's largest land animal</h3><p>bbc.com</p>
+          </article>
+        </div>
+        <a class="more-media" href="#image-category"><span>More images</span><span aria-hidden="true">›</span></a>
+      </section>
+
+      <article class="web-result">
+        <div class="result-head">
+          <span class="source-icon bbc">B</span>
+          <div><strong>BBC Earth</strong><span>bbcearth.com › factfiles › animals › elephant</span></div>
+          <button type="button" aria-label="Result actions">•••</button>
+        </div>
+        <h2><a href="#bbc">Elephant facts | Mammals | BBC Earth</a></h2>
+        <p>Learn about the largest living land animal, its size, appearance, behaviour, intelligence and conservation status.</p>
+      </article>
+
+      <article class="web-result">
+        <div class="result-head">
+          <span class="source-icon wwf">W</span>
+          <div><strong>World Wide Fund for Nature</strong><span>wwf.org.uk › learn › fascinating-facts › elephants</span></div>
+          <button type="button" aria-label="Result actions">•••</button>
+        </div>
+        <h2><a href="#wwf">Our top 10 facts about elephants | WWF</a></h2>
+        <p><strong>Elephants</strong> are the world's largest land mammals, with males weighing up to six tonnes on average. Discover ten fascinating facts.</p>
+      </article>
+
+      <article class="web-result with-result-image">
+        <div>
+          <div class="result-head">
+            <span class="source-icon">W</span>
+            <div><strong>Wikipedia</strong><span>en.wikipedia.org › wiki › African_elephant</span></div>
+            <button type="button" aria-label="Result actions">•••</button>
+          </div>
+          <h2><a href="#african-elephant">African elephant - Wikipedia</a></h2>
+          <p>African elephants are members of the genus Loxodonta comprising two living elephant species, the African bush elephant and the smaller African forest elephant.</p>
+        </div>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/African_Bush_Elephant.jpg/330px-African_Bush_Elephant.jpg" alt="African elephant">
+      </article>
+
+      <section class="media-pack video-pack" id="videos" aria-labelledby="videos-title">
+        <div class="section-heading">
+          <h2 id="videos-title"><span aria-hidden="true">▷</span> Videos for <strong>elephants</strong></h2>
+          <a href="#video-category">open videos</a>
+        </div>
+        <div class="video-row">
+          <article>
+            <div class="video-image"><img src="https://i.ytimg.com/vi/5Mn9UkKwQZI/hqdefault.jpg" alt="Elephant documentary"><span>51:18</span></div>
+            <h3>Elephants: lives of towering giants</h3><p>2yr · YouTube</p>
+          </article>
+          <article>
+            <div class="video-image"><img src="https://i.ytimg.com/vi/Aw6GkiCvcWs/hqdefault.jpg" alt="Elephants in the wild"><span>38:20</span></div>
+            <h3>Elephants being elephants</h3><p>3yr · YouTube</p>
+          </article>
+          <article>
+            <div class="video-image"><img src="https://i.ytimg.com/vi/5Mn9UkKwQZI/hqdefault.jpg" alt="Elephants crossing grassland"><span>42:35</span></div>
+            <h3>Secrets of the elephants</h3><p>1yr · YouTube</p>
+          </article>
+          <article>
+            <div class="video-image"><img src="https://i.ytimg.com/vi/Aw6GkiCvcWs/hqdefault.jpg" alt="Elephant family"><span>5:31</span></div>
+            <h3>How elephant families communicate</h3><p>3yr · YouTube</p>
+          </article>
+        </div>
+        <a class="more-media" href="#video-category"><span>More videos</span><span aria-hidden="true">›</span></a>
+      </section>
+
+      <article class="web-result">
+        <div class="result-head">
+          <span class="source-icon science">S</span>
+          <div><strong>Live Science</strong><span>livescience.com › animals › elephants</span></div>
+          <button type="button" aria-label="Result actions">•••</button>
+        </div>
+        <h2><a href="#live-science">Elephants: Facts about Earth's largest living land animals</a></h2>
+        <p>Discover interesting facts about elephants, the highly intelligent and social animals that roam Africa and Asia.</p>
+      </article>
+    </section>
+
+    <section class="related-searches" aria-labelledby="related-title">
+      <h2 id="related-title">Searches related to <strong>elephants</strong></h2>
+      <div>
+        <a href="#"><span aria-hidden="true">⌕</span> elephant facts and information</a>
+        <a href="#"><span aria-hidden="true">⌕</span> african elephants</a>
+        <a href="#"><span aria-hidden="true">⌕</span> types of elephants list</a>
+        <a href="#"><span aria-hidden="true">⌕</span> indian elephants</a>
+        <a href="#"><span aria-hidden="true">⌕</span> elephant diet</a>
+        <a href="#"><span aria-hidden="true">⌕</span> elephant habitat</a>
+      </div>
+    </section>
+
+    <a class="more-results" href="#page-2">More results</a>
+  </main>
+
+  <footer class="site-footer">
+    <span>Powered by SearXNG 2026.8.30</span>
+    <nav aria-label="Footer"><a href="#source">source</a><a href="#issues">issues</a><a href="#stats">engine stats</a></nav>
+  </footer>
+</body>
+</html>
