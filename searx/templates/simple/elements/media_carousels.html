@@ -1,0 +1,106 @@
+{% from 'simple/icons.html' import icon_small %}
+{% from 'simple/macros.html' import iframe with context %}
+
+{% macro link_target() -%}
+  {%- if results_on_new_tab %}target="_blank" rel="noopener noreferrer"{% else %}rel="noreferrer"{% endif -%}
+{%- endmacro %}
+
+{% macro more_media(category, label) -%}
+  <form method="{{ method }}" action="{{ url_for('search') }}" class="opportunistic-media-more">
+    <input type="hidden" name="q" value="{{ q|e }}">
+    <input type="hidden" name="category_{{ category }}" value="1">
+    <input type="hidden" name="language" value="{{ current_language }}">
+    <input type="hidden" name="time_range" value="{{ time_range }}">
+    <input type="hidden" name="safesearch" value="{{ safesearch }}">
+    <input type="hidden" name="theme" value="{{ theme }}">
+    {% if timeout_limit %}<input type="hidden" name="timeout_limit" value="{{ timeout_limit|e }}">{% endif %}
+    <button type="submit">{{ label }} {{ icon_small('navigate-right') }}</button>
+  </form>
+{%- endmacro %}
+
+{% macro media_carousels(video_results=[], image_results=[]) -%}
+{% if video_results %}
+<section id="opportunistic-videos" class="opportunistic-media" aria-labelledby="opportunistic-videos-title">
+  <div class="opportunistic-media-heading">
+    <h2 id="opportunistic-videos-title">{{ icon_small('film') }} {{ _('Videos for') }} <strong>{{ q|e }}</strong></h2>
+    <span>{{ video_results|count }}</span>
+  </div>
+  <div class="opportunistic-media-track video-media-track">
+    {% for result in video_results %}
+      {% set video_thumbnail = result.thumbnail or result.thumbnail_src or result.img_src %}
+      {% set video_target = 'opportunistic-video-' + loop.index|string %}
+      <article class="opportunistic-video-card">
+        {% if result.iframe_src %}
+          <button class="opportunistic-video-visual btn-collapse collapsed media-loader disabled_if_nojs"
+                  type="button"
+                  data-target="#{{ video_target }}"
+                  data-btn-text-collapsed="{{ _('Play') }}"
+                  data-btn-text-not-collapsed="{{ _('Close') }}"
+                  aria-label="{{ _('Play') }} {{ result.title|striptags }}">
+            {% if video_thumbnail %}<img src="{{ image_proxify(video_thumbnail) }}" alt="" loading="lazy">{% endif %}
+            <span class="opportunistic-video-play">{{ icon_small('play') }} <span>{{ _('Play') }}</span></span>
+            {% if result.length %}<span class="opportunistic-video-duration">{{ result.length }}</span>{% endif %}
+          </button>
+          <div id="{{ video_target }}" class="opportunistic-video-embed invisible">
+            {{ iframe(result.iframe_src, result) }}
+          </div>
+        {% else %}
+          <a class="opportunistic-video-visual" {{ link_target() }} href="{{ result.url }}">
+            {% if video_thumbnail %}<img src="{{ image_proxify(video_thumbnail) }}" alt="" loading="lazy">{% endif %}
+            <span class="opportunistic-video-play">{{ icon_small('play') }}</span>
+            {% if result.length %}<span class="opportunistic-video-duration">{{ result.length }}</span>{% endif %}
+          </a>
+        {% endif %}
+        <h3><a {{ link_target() }} href="{{ result.url }}">{{ result.title|safe }}</a></h3>
+        <a class="opportunistic-video-source" {{ link_target() }} href="{{ result.url }}">
+          <span class="opportunistic-video-favicon" aria-hidden="true">
+            {% if favicon_resolver != '' %}
+              <img src="{{ favicon_url(result.parsed_url.netloc) }}" alt="" loading="lazy">
+            {% else %}
+              {{ result.parsed_url.netloc|replace('www.', '')|first|upper }}
+            {% endif %}
+          </span>
+          <span>{{ result.parsed_url.netloc|replace('www.', '') }}</span>
+        </a>
+        {% if result.publishedDate or result.author or result.views or result.metadata %}
+          <p class="opportunistic-video-meta">
+            {% if result.publishedDate %}<span>{{ result.publishedDate }}</span>{% endif %}
+            {% if result.author %}<span>{{ result.author }}</span>{% endif %}
+            {% if result.views %}<span>{{ result.views }} {{ _('views') }}</span>{% endif %}
+            {% if result.metadata %}<span>{{ result.metadata }}</span>{% endif %}
+          </p>
+        {% endif %}
+      </article>
+    {% endfor %}
+  </div>
+  {{ more_media('videos', _('More videos')) }}
+</section>
+{% endif %}
+
+{% if image_results %}
+<section id="opportunistic-images" class="opportunistic-media" aria-labelledby="opportunistic-images-title">
+  <div class="opportunistic-media-heading">
+    <h2 id="opportunistic-images-title">{{ icon_small('image') }} {{ _('Images for') }} <strong>{{ q|e }}</strong></h2>
+    <span>{{ image_results|count }}</span>
+  </div>
+  <div class="opportunistic-media-track image-media-track{% if 'images' not in selected_categories %} image-media-preview{% endif %}">
+    {% for result in image_results %}
+      {% if result['template'] == 'images.html' %}
+        {% set carousel_image = result.thumbnail_src or result.img_src %}
+      {% else %}
+        {% set carousel_image = result.thumbnail %}
+      {% endif %}
+      <article class="opportunistic-image-card">
+        <a {{ link_target() }} href="{{ result.url }}">
+          <img src="{{ image_proxify(carousel_image) }}" alt="{{ result.title|striptags }}" loading="lazy">
+          {% if result.resolution %}<span class="opportunistic-image-resolution">{{ result.resolution }}</span>{% endif %}
+          <span class="opportunistic-image-title">{{ result.title|striptags }}</span>
+          <span class="opportunistic-image-source">{{ result.parsed_url.netloc|replace('www.', '') }}</span>
+        </a>
+      </article>
+    {% endfor %}
+  </div>
+  {% if 'images' not in selected_categories %}{{ more_media('images', _('More photos')) }}{% endif %}
+</section>
+{% endif %}
+{%- endmacro %}

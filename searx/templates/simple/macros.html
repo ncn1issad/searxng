@@ -18,7 +18,7 @@
 {%- endmacro -%}
 
 <!-- Draw result header -->
-{% macro result_header(result, favicons, image_proxify) -%}
+{% macro result_header(result, favicons, image_proxify, show_thumbnail=true) -%}
 <article class="result {% if result['template'] %}result-{{ result.template|replace('.html', '') }}{% else %}result-default{% endif %} {% if result['category'] %}category-{{ result['category'] }}{% endif %}">
   {{- result_open_link(result.url, "url_header") -}}
   {%- set source_name = result.parsed_url.netloc | replace('www.', '') -%}
@@ -51,7 +51,7 @@
     </span>
   </div>
   {{- result_close_link() -}}
-  {%- if result.thumbnail %}{{ result_open_link(result.url, classes='thumbnail_link') }}<img class="thumbnail" src="{{ image_proxify(result.thumbnail) }}" title="{{ result.title|striptags }}" loading="lazy">{%- if result.length -%}<span class="thumbnail_length">{{ result.length }}</span>{%- endif -%}{{ result_close_link() }}{% endif -%}
+  {%- if show_thumbnail and result.thumbnail %}{{ result_open_link(result.url, classes='thumbnail_link') }}<img class="thumbnail" src="{{ image_proxify(result.thumbnail) }}" title="{{ result.title|striptags }}" loading="lazy">{%- if result.length -%}<span class="thumbnail_length">{{ result.length }}</span>{%- endif -%}{{ result_close_link() }}{% endif -%}
   <h3>{{ result_link(result.url, result.title|safe) }}</h3>
 {%- endmacro -%}
 
@@ -90,9 +90,9 @@
 {%- endmacro -%}
 
 <!-- iframe that additionally sets some extra feature attrs for videos -->
-{%- macro iframe(iframe_src) -%}
+{%- macro iframe(iframe_src, result_item) -%}
   <iframe data-src="{{iframe_src}}" frameborder="0" allowfullscreen
-    {% if result.parsed_url.hostname in ("www.youtube.com", ) -%}
+    {% if result_item.parsed_url.hostname in ("www.youtube.com", ) -%}
     allow="picture-in-picture" referrerpolicy="origin"
     {%- endif -%}
     >

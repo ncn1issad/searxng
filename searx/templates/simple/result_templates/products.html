@@ -1,6 +1,6 @@
 {% from 'simple/macros.html' import result_header, result_sub_header, result_sub_footer, result_footer with context %}
 
-{{ result_header(result, favicons, image_proxify) -}}
+{{ result_header(result, favicons, image_proxify, show_result_thumbnail|default(true)) -}}
 {{- result_sub_header(result) -}}
 {% if result.price %}<div class="result_price">{{ result.price }}</div></br>{% endif %}
 {% if result.shipping %}<div class="result_shipping">{{ result.shipping }}</div></br>{% endif %}
