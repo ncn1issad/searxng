@@ -1,3 +1,4 @@
+{% from 'simple/icons.html' import icon_small %}
 <section id="suggestions" role="complementary" aria-labelledby="suggestions-title">
     <h2 class="title" id="suggestions-title">{{ _('Searches related to') }} <strong>{{ q|e }}</strong></h2>
     <ul class="wrapper">
@@ -14,7 +15,10 @@
           {%- if timeout_limit -%}
             <input type="hidden" name="timeout_limit" value="{{ timeout_limit|e }}" >
           {%- endif -%}
-          <input type="submit" class="suggestion" role="link" value="{{ suggestion.title }}">
+          <button type="submit" class="suggestion" role="link">
+            <span class="suggestion_icon" aria-hidden="true">{{ icon_small('search') }}</span>
+            <span class="suggestion_text">{{ suggestion.title }}</span>
+          </button>
       </form></li>
       {%- endfor -%}
     </ul>

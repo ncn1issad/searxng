@@ -22,6 +22,13 @@
 <article class="result {% if result['template'] %}result-{{ result.template|replace('.html', '') }}{% else %}result-default{% endif %} {% if result['category'] %}category-{{ result['category'] }}{% endif %}">
   {{- result_open_link(result.url, "url_header") -}}
   {%- set source_name = result.parsed_url.netloc | replace('www.', '') -%}
+  {%- set title_text = result.title | striptags -%}
+  {%- set source_label = source_name -%}
+  {%- if ' - ' in title_text -%}
+    {%- set source_label = title_text.rsplit(' - ', 1)[1] -%}
+  {%- elif ' | ' in title_text -%}
+    {%- set source_label = title_text.rsplit(' | ', 1)[1] -%}
+  {%- endif -%}
   <span class="source_mark" aria-hidden="true">
     {%- if favicon_resolver != "" -%}
       <img loading="lazy" src="{{ favicon_url(result.parsed_url.netloc) }}" alt="">
@@ -30,10 +37,16 @@
     {%- endif -%}
   </span>
   <div class="url_wrapper">
-    <span class="result_site_name">{{- source_name -}}</span>
+    <span class="result_site_name">{{- source_label -}}</span>
     <span class="result_breadcrumb">
-      {%- for part in get_pretty_url(result.parsed_url) -%}
+      {%- set pretty_url = get_pretty_url(result.parsed_url) -%}
+      {%- if pretty_url | length > 1 -%}
+      <span class="url_o1"><span class="url_i1">{{- source_name -}}</span></span>
+      {%- endif -%}
+      {%- for part in pretty_url -%}
+      {%- if pretty_url | length == 1 or not loop.first -%}
       <span class="url_o{{loop.index}}"><span class="url_i{{loop.index}}">{{- part -}}</span></span>
+      {%- endif -%}
       {%- endfor -%}
     </span>
   </div>
