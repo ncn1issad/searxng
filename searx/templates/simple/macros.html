@@ -30,9 +30,12 @@
     {%- endif -%}
   </span>
   <div class="url_wrapper">
-    {%- for part in get_pretty_url(result.parsed_url) -%}
-    <span class="url_o{{loop.index}}"><span class="url_i{{loop.index}}">{{- part -}}</span></span>
-    {%- endfor %}
+    <span class="result_site_name">{{- source_name -}}</span>
+    <span class="result_breadcrumb">
+      {%- for part in get_pretty_url(result.parsed_url) -%}
+      <span class="url_o{{loop.index}}"><span class="url_i{{loop.index}}">{{- part -}}</span></span>
+      {%- endfor -%}
+    </span>
   </div>
   {{- result_close_link() -}}
   {%- if result.thumbnail %}{{ result_open_link(result.url, classes='thumbnail_link') }}<img class="thumbnail" src="{{ image_proxify(result.thumbnail) }}" title="{{ result.title|striptags }}" loading="lazy">{%- if result.length -%}<span class="thumbnail_length">{{ result.length }}</span>{%- endif -%}{{ result_close_link() }}{% endif -%}
