@@ -35,6 +35,18 @@ const imageLoader = (resultElement: HTMLElement): void => {
   }, 1000) as unknown as number;
 };
 
+// Use each thumbnail's proportions to size the justified image rows.
+for (const image of document.querySelectorAll<HTMLImageElement>(".opportunistic-image-card img")) {
+  const updateImageRatio = (): void => {
+    if (!(image.naturalWidth && image.naturalHeight)) return;
+    image
+      .closest<HTMLElement>(".opportunistic-image-card")
+      ?.style.setProperty("--image-ratio", String(Math.max(1, image.naturalWidth / image.naturalHeight)));
+  };
+  image.addEventListener("load", updateImageRatio);
+  if (image.complete) updateImageRatio();
+}
+
 const imageThumbnails: NodeListOf<HTMLImageElement> = document.querySelectorAll<HTMLImageElement>(
   "#urls img.image_thumbnail, img.thumbnail"
 );

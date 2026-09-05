@@ -92,8 +92,10 @@
       {% endif %}
       <article class="opportunistic-image-card">
         <a {{ link_target() }} href="{{ result.url }}">
-          <img src="{{ image_proxify(carousel_image) }}" alt="{{ result.title|striptags }}" loading="lazy">
-          {% if result.resolution %}<span class="opportunistic-image-resolution">{{ result.resolution }}</span>{% endif %}
+          <span class="opportunistic-image-visual">
+            <img src="{{ image_proxify(carousel_image) }}" alt="{{ result.title|striptags }}" loading="lazy">
+            {% if result.resolution %}<span class="opportunistic-image-resolution">{{ result.resolution }}</span>{% endif %}
+          </span>
           <span class="opportunistic-image-title">{{ result.title|striptags }}</span>
           <span class="opportunistic-image-source">{{ result.parsed_url.netloc|replace('www.', '') }}</span>
         </a>
