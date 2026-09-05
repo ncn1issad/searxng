@@ -1384,7 +1384,9 @@ def init():
 
 
 def static_headers(headers: Headers, _path: str, _url: str) -> None:
-    headers['Cache-Control'] = 'public, max-age=30, stale-while-revalidate=60'
+    headers['Cache-Control'] = (
+        'no-store' if searx.sxng_debug or app.debug else 'public, max-age=30, stale-while-revalidate=60'
+    )
 
     for header, value in settings['server']['default_http_headers'].items():
         # cast value to string, as WhiteNoise requires header values to be strings
@@ -1396,6 +1398,7 @@ app.wsgi_app = WhiteNoise(
     app.wsgi_app,
     root=settings['ui']['static_path'],
     prefix="static",
+    autorefresh=searx.sxng_debug or app.debug,
     max_age=None,
     allow_all_origins=False,
     add_headers_function=static_headers,

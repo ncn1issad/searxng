@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="SearXNG development" type="CompoundRunConfigurationType">
+    <toRun name="SearXNG server" type="ShConfigurationType" />
+    <toRun name="Simple theme watcher" type="ShConfigurationType" />
+    <method v="2" />
+  </configuration>
+</component>
