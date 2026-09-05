@@ -43,8 +43,15 @@ for (const image of document.querySelectorAll<HTMLImageElement>(".opportunistic-
       .closest<HTMLElement>(".opportunistic-image-card")
       ?.style.setProperty("--image-ratio", String(Math.max(1, image.naturalWidth / image.naturalHeight)));
   };
+  const removeFailedImage = (): void => {
+    image.closest(".opportunistic-image-card")?.remove();
+  };
   image.addEventListener("load", updateImageRatio);
-  if (image.complete) updateImageRatio();
+  image.addEventListener("error", removeFailedImage);
+  if (image.complete) {
+    if (image.naturalWidth > 0) updateImageRatio();
+    else removeFailedImage();
+  }
 }
 
 const imageThumbnails: NodeListOf<HTMLImageElement> = document.querySelectorAll<HTMLImageElement>(
