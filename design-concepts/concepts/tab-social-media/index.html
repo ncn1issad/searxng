@@ -1,0 +1,797 @@
+<!doctype html>
+<html lang="en" data-theme="mocha">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>elephants - social media | SearXNG</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#results">Skip to results</a>
+
+  <header class="site-header">
+    <div class="header-row">
+      <a class="brand" href="../05-ddg-results/index.html" aria-label="SearXNG home">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="13" cy="13" r="8.5"/><path d="m19.5 19.5 7 7"/></svg>
+        <span>searxng</span>
+      </a>
+
+      <form class="search-form" role="search">
+        <label class="sr-only" for="search-input">Search</label>
+        <input id="search-input" name="q" type="search" value="elephants" autocomplete="off" spellcheck="false">
+        <button class="search-button" type="submit" aria-label="Search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.7" cy="10.7" r="6.7"/><path d="m16 16 5 5"/></svg>
+        </button>
+        <kbd class="focus-hint" aria-hidden="true">/</kbd>
+      </form>
+
+      <nav class="utility-nav" aria-label="Site">
+        <a href="#about">about</a>
+        <a href="#preferences" aria-label="Preferences" title="Preferences">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/><path d="M19.4 15a1.8 1.8 0 0 0 .36 2l.06.06-2.76 2.76-.06-.06a1.8 1.8 0 0 0-2-.36 1.8 1.8 0 0 0-1.1 1.65V21H10v-.09A1.8 1.8 0 0 0 8.9 19.3a1.8 1.8 0 0 0-2 .36l-.06.06-2.76-2.76.06-.06a1.8 1.8 0 0 0 .36-2A1.8 1.8 0 0 0 2.85 14H2v-4h.85A1.8 1.8 0 0 0 4.5 8.9a1.8 1.8 0 0 0-.36-2l-.06-.06 2.76-2.76.06.06a1.8 1.8 0 0 0 2 .36A1.8 1.8 0 0 0 10 2.85V2h4v.85a1.8 1.8 0 0 0 1.1 1.65 1.8 1.8 0 0 0 2-.36l.06-.06 2.76 2.76-.06.06a1.8 1.8 0 0 0-.36 2 1.8 1.8 0 0 0 1.65 1.1H22v4h-.85A1.8 1.8 0 0 0 19.4 15Z"/></svg>
+        </a>
+        <button class="theme-toggle" type="button" aria-label="Switch to light theme" title="Toggle theme (Alt+T)">
+          <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.3A8.4 8.4 0 0 1 8.7 4 8.5 8.5 0 1 0 20 15.3Z"/></svg>
+          <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"/></svg>
+        </button>
+      </nav>
+    </div>
+
+    <nav class="category-nav" aria-label="Search categories">
+      <a href="../05-ddg-results/index.html">general</a>
+      <a href="../05-ddg-results/index.html#images">images</a>
+      <a href="../tab-videos/index.html">videos</a>
+      <a href="../tab-news/index.html">news</a>
+      <a href="../tab-map/index.html">map</a>
+      <a href="../tab-music/index.html">music</a>
+      <a href="../tab-it/index.html">it</a>
+      <a href="../tab-science/index.html">science</a>
+      <a href="../tab-files/index.html">files</a>
+      <a class="active" href="index.html" aria-current="page">social media</a>
+      <button class="filter-button" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M7 12h10M10 17h4"/></svg>
+        filters
+      </button>
+    </nav>
+  </header>
+
+  <main class="results-shell" id="results">
+    <div class="filter-strip" aria-label="Search filters">
+      <span class="stat-count">218 posts &amp; threads</span>
+      <span aria-hidden="true">·</span>
+      <span class="stat-time">0.42s</span>
+
+      <div class="filter-controls">
+        <div class="dropdown-wrapper">
+          <button class="filter-pill" type="button" id="platform-filter" aria-haspopup="true" aria-expanded="false">
+            <span class="pill-label">platform:</span>
+            <span class="pill-value">all</span>
+            <span class="pill-arrow" aria-hidden="true">⌄</span>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="platform-filter" hidden>
+            <button class="dropdown-item active" type="button">all platforms</button>
+            <button class="dropdown-item" type="button">mastodon</button>
+            <button class="dropdown-item" type="button">bluesky</button>
+            <button class="dropdown-item" type="button">reddit</button>
+            <button class="dropdown-item" type="button">lemmy</button>
+            <button class="dropdown-item" type="button">threads</button>
+          </div>
+        </div>
+
+        <div class="dropdown-wrapper">
+          <button class="filter-pill" type="button" id="format-filter" aria-haspopup="true" aria-expanded="false">
+            <span class="pill-label">format:</span>
+            <span class="pill-value">posts &amp; threads</span>
+            <span class="pill-arrow" aria-hidden="true">⌄</span>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="format-filter" hidden>
+            <button class="dropdown-item active" type="button">posts &amp; threads</button>
+            <button class="dropdown-item" type="button">posts only</button>
+            <button class="dropdown-item" type="button">threads only</button>
+            <button class="dropdown-item" type="button">profiles only</button>
+            <button class="dropdown-item" type="button">with media</button>
+          </div>
+        </div>
+
+        <div class="dropdown-wrapper">
+          <button class="filter-pill" type="button" id="time-filter" aria-haspopup="true" aria-expanded="false">
+            <span class="pill-value">past 24h</span>
+            <span class="pill-arrow" aria-hidden="true">⌄</span>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="time-filter" hidden>
+            <button class="dropdown-item" type="button">any time</button>
+            <button class="dropdown-item active" type="button">past 24h</button>
+            <button class="dropdown-item" type="button">past week</button>
+            <button class="dropdown-item" type="button">past month</button>
+            <button class="dropdown-item" type="button">past year</button>
+          </div>
+        </div>
+
+        <div class="dropdown-wrapper">
+          <button class="filter-pill" type="button" id="sort-filter" aria-haspopup="true" aria-expanded="false">
+            <span class="pill-value">top engagement</span>
+            <span class="pill-arrow" aria-hidden="true">⌄</span>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="sort-filter" hidden>
+            <button class="dropdown-item active" type="button">top engagement</button>
+            <button class="dropdown-item" type="button">latest</button>
+            <button class="dropdown-item" type="button">most relevant</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spotlight / Profile Knowledge Card -->
+    <section class="social-spotlight" aria-labelledby="spotlight-title">
+      <div class="spotlight-badge">
+        <span class="source-tag mastodon">mastodon</span>
+        <span class="badge-label">featured organization</span>
+      </div>
+
+      <div class="spotlight-main">
+        <div class="spotlight-avatar-wrap">
+          <img class="spotlight-avatar" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/African_Bush_Elephant.jpg/330px-African_Bush_Elephant.jpg" alt="Save the Elephants avatar">
+          <span class="verified-indicator" title="Verified account">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+        </div>
+
+        <div class="spotlight-details">
+          <div class="spotlight-header-line">
+            <h1 id="spotlight-title">Save the Elephants</h1>
+            <span class="account-handle">@elephantcrisis@mastodon.world</span>
+            <span class="instance-pill">fediverse</span>
+          </div>
+
+          <p class="spotlight-bio">
+            Conducting vital research on elephant behavior and movement since 1993. Operating the Elephant Crisis Fund in partnership with WCN to stop poaching, trafficking, and foster coexistence across Africa.
+          </p>
+
+          <div class="spotlight-metrics">
+            <div class="metric-item">
+              <span class="metric-value">842K</span>
+              <span class="metric-label">followers</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-value">4.2K</span>
+              <span class="metric-label">posts</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-value">98.4%</span>
+              <span class="metric-label">activity rate</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-value">Nairobi, KE</span>
+              <span class="metric-label">location</span>
+            </div>
+          </div>
+
+          <div class="spotlight-actions">
+            <a class="action-btn primary" href="https://mastodon.world/@elephantcrisis" target="_blank" rel="noopener noreferrer">
+              <span>open on mastodon</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+            <a class="action-btn secondary" href="https://savetheelephants.org" target="_blank" rel="noopener noreferrer">
+              <span>official website</span>
+            </a>
+            <button class="action-btn ghost spotlight-toggle" type="button" aria-expanded="false">
+              <span>show details</span>
+              <span class="toggle-chevron" aria-hidden="true">⌄</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="spotlight-collapsible" hidden>
+        <div class="spotlight-meta-grid">
+          <div>
+            <dt>fediverse address</dt>
+            <dd>@elephantcrisis@mastodon.world</dd>
+          </div>
+          <div>
+            <dt>also active on</dt>
+            <dd>Bluesky (@elephantcrisis.org), YouTube (@savetheelephants)</dd>
+          </div>
+          <div>
+            <dt>latest status</dt>
+            <dd>"Tracking collar data shows migratory herd crossing Ewaso Nyiro basin safely today."</dd>
+          </div>
+          <div>
+            <dt>established</dt>
+            <dd>1993 · Founded by Dr. Iain Douglas-Hamilton</dd>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Social Feed / Results List -->
+    <section class="social-feed" aria-label="Social media results">
+
+      <!-- Result 1: Rich Post with Image on Bluesky -->
+      <article class="social-card" data-post-id="post-1">
+        <div class="card-meta-bar">
+          <div class="author-block">
+            <img class="author-avatar" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR36wDsVljQalPesZK5cprnZ2XSECN0CXvQjcZO_DLzME2HlPi_pEIaT-8" alt="Amboseli Trust avatar">
+            <div class="author-info">
+              <div class="author-name-row">
+                <a class="author-name" href="#author-amboseli">Amboseli Trust for Elephants</a>
+                <span class="verified-badge" title="Verified account">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <span class="author-handle">@amboselieleeps.bsky.social</span>
+              </div>
+              <div class="source-subrow">
+                <span class="platform-chip bluesky">bluesky</span>
+                <span class="bullet" aria-hidden="true">·</span>
+                <time datetime="2026-09-05T17:15:00Z">2 hours ago</time>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-options">
+            <button class="options-btn" type="button" aria-label="Post actions">•••</button>
+          </div>
+        </div>
+
+        <div class="post-content">
+          <p class="post-text">
+            Three generations of matriarchs walking the southern ridge of Amboseli at sunrise. Even after two severe dry seasons, the oldest females remember where the subsurface volcanic water channels flow beneath the dust. Cultural memory is their shield. <a class="hashtag" href="#tag-elephants">#Elephants</a> <a class="hashtag" href="#tag-conservation">#WildlifeConservation</a> <a class="hashtag" href="#tag-kenya">#Amboseli</a>
+          </p>
+
+          <div class="media-attachment single-image">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/African_Bush_Elephant.jpg/330px-African_Bush_Elephant.jpg" alt="African elephant matriarch leading herd through savanna grassland">
+            <span class="media-badge">high res photo</span>
+          </div>
+        </div>
+
+        <footer class="engagement-toolbar" aria-label="Engagement metrics">
+          <button class="engagement-pill reply-action" type="button" aria-label="148 replies">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg>
+            <span class="metric-count">148</span>
+          </button>
+
+          <button class="engagement-pill repost-action" type="button" aria-label="924 reposts">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m17 2 4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+            <span class="metric-count">924</span>
+          </button>
+
+          <button class="engagement-pill like-action" type="button" aria-label="5.2k likes">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+            <span class="metric-count">5.2k</span>
+          </button>
+
+          <button class="engagement-pill bookmark-action" type="button" aria-label="431 bookmarks">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2Z"/></svg>
+            <span class="metric-count">431</span>
+          </button>
+
+          <div class="toolbar-right">
+            <span class="engagement-reach">38.4k views</span>
+            <a class="direct-link" href="https://bsky.app" target="_blank" rel="noopener noreferrer" title="Open on Bluesky">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        </footer>
+      </article>
+
+      <!-- Result 2: Connected Multi-post Conversation Thread on Mastodon -->
+      <article class="social-card thread-card" data-post-id="thread-1">
+        <div class="thread-header-badge">
+          <span class="thread-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </span>
+          <span>conversation thread · 4 posts</span>
+        </div>
+
+        <div class="thread-chain">
+          <!-- Parent Post -->
+          <div class="thread-node parent-node">
+            <div class="thread-spine" aria-hidden="true">
+              <img class="author-avatar" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQuwbMgHbGm07FEAjNDBwlbhlVdAP5OgvobmoBzo9WpPhnFEmThbkvCsoZL" alt="Dr. Paula Kahumbu avatar">
+              <div class="spine-line"></div>
+            </div>
+
+            <div class="node-body">
+              <div class="card-meta-bar">
+                <div class="author-info">
+                  <div class="author-name-row">
+                    <a class="author-name" href="#author-paula">Dr. Paula Kahumbu</a>
+                    <span class="verified-badge" title="Verified conservationist">
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                    </span>
+                    <span class="author-handle">@paulakahumbu@mastodon.africa</span>
+                  </div>
+                  <div class="source-subrow">
+                    <span class="platform-chip mastodon">mastodon</span>
+                    <span class="bullet" aria-hidden="true">·</span>
+                    <time datetime="2026-09-05T15:30:00Z">4 hours ago</time>
+                  </div>
+                </div>
+              </div>
+
+              <p class="post-text">
+                Crucial legal milestone today for Kenya's wildlife: The High Court has issued a permanent injunction safeguarding the Kimana wildlife corridor from industrial subdivision. Why does this matter? A short breakdown on connectivity 🧵 (1/4)
+              </p>
+            </div>
+          </div>
+
+          <!-- Connected Reply Node -->
+          <div class="thread-node reply-node">
+            <div class="thread-spine" aria-hidden="true">
+              <img class="author-avatar sub-avatar" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQuwbMgHbGm07FEAjNDBwlbhlVdAP5OgvobmoBzo9WpPhnFEmThbkvCsoZL" alt="Dr. Paula Kahumbu reply avatar">
+              <div class="spine-line dashed"></div>
+            </div>
+
+            <div class="node-body">
+              <div class="card-meta-bar">
+                <div class="author-info">
+                  <div class="author-name-row">
+                    <span class="author-name">Dr. Paula Kahumbu</span>
+                    <span class="reply-tag">author</span>
+                    <time datetime="2026-09-05T15:32:00Z">4 hours ago</time>
+                  </div>
+                </div>
+              </div>
+
+              <p class="post-text">
+                1/ Over 2,200 elephants use this 4-kilometer wide passage to move between Amboseli, the Chyulu Hills, and Tsavo West. Without it, the ecosystem splits in two, isolating populations and sparking acute human-elephant conflict with perimeter smallholders.
+              </p>
+            </div>
+          </div>
+
+          <!-- Collapsible additional posts in thread -->
+          <div class="thread-extended" hidden>
+            <div class="thread-node reply-node">
+              <div class="thread-spine" aria-hidden="true">
+                <img class="author-avatar sub-avatar" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQuwbMgHbGm07FEAjNDBwlbhlVdAP5OgvobmoBzo9WpPhnFEmThbkvCsoZL" alt="Dr. Paula Kahumbu reply avatar">
+                <div class="spine-line dashed"></div>
+              </div>
+              <div class="node-body">
+                <div class="card-meta-bar">
+                  <div class="author-info">
+                    <div class="author-name-row">
+                      <span class="author-name">Dr. Paula Kahumbu</span>
+                      <span class="reply-tag">author</span>
+                      <time datetime="2026-09-05T15:34:00Z">4 hours ago</time>
+                    </div>
+                  </div>
+                </div>
+                <p class="post-text">
+                  2/ The ruling reinforces community conservancy leases as legally binding land covenants. Maasai landowners who set aside grazing lands for wildlife tourism now have judicial backing against speculative developers.
+                </p>
+              </div>
+            </div>
+
+            <div class="thread-node reply-node">
+              <div class="thread-spine" aria-hidden="true">
+                <img class="author-avatar sub-avatar" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQuwbMgHbGm07FEAjNDBwlbhlVdAP5OgvobmoBzo9WpPhnFEmThbkvCsoZL" alt="Dr. Paula Kahumbu reply avatar">
+              </div>
+              <div class="node-body">
+                <div class="card-meta-bar">
+                  <div class="author-info">
+                    <div class="author-name-row">
+                      <span class="author-name">Dr. Paula Kahumbu</span>
+                      <span class="reply-tag">author</span>
+                      <time datetime="2026-09-05T15:36:00Z">4 hours ago</time>
+                    </div>
+                  </div>
+                </div>
+                <p class="post-text">
+                  3/ Full judgment summary and maps are published on our open portal. Huge gratitude to the community elders, rangers, and legal team who stood firm for four years.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="thread-toggle-strip">
+          <button class="thread-toggle-btn" type="button" aria-expanded="false">
+            <span class="toggle-text">show full thread (2 more posts)</span>
+            <span class="toggle-icon" aria-hidden="true">⌄</span>
+          </button>
+        </div>
+
+        <footer class="engagement-toolbar" aria-label="Thread engagement metrics">
+          <button class="engagement-pill reply-action" type="button" aria-label="312 replies">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg>
+            <span class="metric-count">312</span>
+          </button>
+
+          <button class="engagement-pill repost-action" type="button" aria-label="2.1k boosts">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m17 2 4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+            <span class="metric-count">2.1k</span>
+          </button>
+
+          <button class="engagement-pill like-action" type="button" aria-label="8.7k favorites">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+            <span class="metric-count">8.7k</span>
+          </button>
+
+          <button class="engagement-pill bookmark-action" type="button" aria-label="650 bookmarks">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2Z"/></svg>
+            <span class="metric-count">650</span>
+          </button>
+
+          <div class="toolbar-right">
+            <span class="federation-tag">fediverse sync</span>
+            <a class="direct-link" href="https://mastodon.africa" target="_blank" rel="noopener noreferrer" title="Open thread on Mastodon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        </footer>
+      </article>
+
+      <!-- Profiles & Communities Pack (Concept 05 Media Pack Pattern adapted for Social) -->
+      <section class="media-pack profiles-pack" aria-labelledby="profiles-title">
+        <div class="section-heading">
+          <h2 id="profiles-title">
+            <span class="heading-symbol" aria-hidden="true">👥</span>
+            Profiles &amp; communities for <strong>elephants</strong>
+          </h2>
+          <a class="section-link" href="#all-profiles">explore all social sources</a>
+        </div>
+
+        <div class="profiles-grid">
+          <!-- Profile Card 1 -->
+          <article class="profile-card">
+            <div class="profile-card-top">
+              <img class="profile-card-avatar" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/African_Bush_Elephant.jpg/330px-African_Bush_Elephant.jpg" alt="Sheldrick Trust">
+              <span class="source-chip mastodon">mastodon</span>
+            </div>
+            <h3 class="profile-card-name">
+              Sheldrick Trust
+              <span class="verified-badge-mini" title="Verified">✓</span>
+            </h3>
+            <p class="profile-card-handle">@SheldrickTrust@mastodon.world</p>
+            <p class="profile-card-desc">Orphan elephant rescue and rehabilitation project in Tsavo, Kenya.</p>
+            <div class="profile-card-footer">
+              <span class="follower-stat"><strong>1.2M</strong> followers</span>
+              <a class="card-follow-btn" href="#follow-sheldrick">view</a>
+            </div>
+          </article>
+
+          <!-- Profile Card 2 -->
+          <article class="profile-card">
+            <div class="profile-card-top">
+              <img class="profile-card-avatar" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQMj_Tk8nEiCgdhilk7GHqQmgvXmAa9LE1GtW0U_YvpTmR1ts-_uWroqps" alt="ElephantVoices">
+              <span class="source-chip bluesky">bluesky</span>
+            </div>
+            <h3 class="profile-card-name">
+              ElephantVoices
+              <span class="verified-badge-mini" title="Verified">✓</span>
+            </h3>
+            <p class="profile-card-handle">@elephantvoices.bsky.social</p>
+            <p class="profile-card-desc">Scientific research on elephant cognition, vocal communication, and gestures.</p>
+            <div class="profile-card-footer">
+              <span class="follower-stat"><strong>340K</strong> followers</span>
+              <a class="card-follow-btn" href="#follow-voices">view</a>
+            </div>
+          </article>
+
+          <!-- Profile Card 3 -->
+          <article class="profile-card">
+            <div class="profile-card-top">
+              <div class="community-avatar reddit-avatar">r/</div>
+              <span class="source-chip reddit">reddit</span>
+            </div>
+            <h3 class="profile-card-name">r/Elephants</h3>
+            <p class="profile-card-handle">reddit.com/r/elephants</p>
+            <p class="profile-card-desc">Community discussions, field updates, wildlife photography, and news.</p>
+            <div class="profile-card-footer">
+              <span class="follower-stat"><strong>128K</strong> members</span>
+              <a class="card-follow-btn" href="#visit-reddit">join</a>
+            </div>
+          </article>
+
+          <!-- Profile Card 4 -->
+          <article class="profile-card">
+            <div class="profile-card-top">
+              <div class="community-avatar lemmy-avatar">!w</div>
+              <span class="source-chip lemmy">lemmy</span>
+            </div>
+            <h3 class="profile-card-name">!wildlife@lemmy.world</h3>
+            <p class="profile-card-handle">lemmy.world/c/wildlife</p>
+            <p class="profile-card-desc">Decentralized discussions on endangered megafauna and habitat restoration.</p>
+            <div class="profile-card-footer">
+              <span class="follower-stat"><strong>45K</strong> subscribers</span>
+              <a class="card-follow-btn" href="#visit-lemmy">open</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Result 3: Community Forum Thread with Upvote Score (Reddit / Lemmy style) -->
+      <article class="social-card forum-card" data-post-id="forum-1">
+        <div class="forum-layout">
+          <!-- Upvote / Downvote Score Column -->
+          <div class="vote-widget" aria-label="Vote score: 3,420">
+            <button class="vote-arrow vote-up" type="button" aria-label="Upvote">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
+            </button>
+            <span class="vote-score">3.4k</span>
+            <button class="vote-arrow vote-down" type="button" aria-label="Downvote">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+          </div>
+
+          <!-- Forum Content -->
+          <div class="forum-main">
+            <div class="card-meta-bar">
+              <div class="author-block">
+                <div class="author-info">
+                  <div class="forum-breadcrumb">
+                    <span class="community-name">r/biology</span>
+                    <span class="bullet" aria-hidden="true">·</span>
+                    <span class="posted-by">Posted by <a href="#user-bio">u/elephant_acoustic_lab</a></span>
+                    <span class="flair-badge">Field Research</span>
+                    <span class="bullet" aria-hidden="true">·</span>
+                    <time datetime="2026-09-05T12:00:00Z">7 hours ago</time>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-options">
+                <span class="platform-chip reddit">reddit</span>
+              </div>
+            </div>
+
+            <h2 class="forum-title">
+              <a href="#forum-post">Acoustic analysis confirms wild African elephants use distinct name-like vocal labels for individual herd members</a>
+            </h2>
+
+            <p class="post-text forum-excerpt">
+              Our lab analyzed 469 low-frequency acoustic rumbles across Samburu and Amboseli reserves over 14 months. When playback experiments were conducted, target elephants responded immediately by vocalizing and moving toward the speaker, while non-target elephants showed no orientation response. This demonstrates arbitrary acoustic naming rather than simple maternal tone recognition.
+            </p>
+
+            <div class="forum-footer">
+              <a class="forum-stat" href="#comments">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg>
+                <span>418 comments</span>
+              </a>
+
+              <button class="forum-stat bookmark-action" type="button">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2Z"/></svg>
+                <span>save</span>
+              </button>
+
+              <button class="forum-stat" type="button">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                <span>share</span>
+              </button>
+
+              <div class="forum-awards">
+                <span class="award-pill" title="Original Research">🔬 original research</span>
+                <span class="award-pill peer-reviewed" title="Peer Reviewed Source">verified paper</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Result 4: Rich Video Post with Duration & Play Preview -->
+      <article class="social-card video-card" data-post-id="video-1">
+        <div class="card-meta-bar">
+          <div class="author-block">
+            <img class="author-avatar" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQMj_Tk8nEiCgdhilk7GHqQmgvXmAa9LE1GtW0U_YvpTmR1ts-_uWroqps" alt="WWF Wild avatar">
+            <div class="author-info">
+              <div class="author-name-row">
+                <a class="author-name" href="#author-wwf">World Wildlife Fund</a>
+                <span class="verified-badge" title="Verified account">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <span class="author-handle">@wwf@mastodon.world</span>
+              </div>
+              <div class="source-subrow">
+                <span class="platform-chip mastodon">mastodon</span>
+                <span class="bullet" aria-hidden="true">·</span>
+                <time datetime="2026-09-05T08:20:00Z">11 hours ago</time>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-options">
+            <button class="options-btn" type="button" aria-label="Post actions">•••</button>
+          </div>
+        </div>
+
+        <div class="post-content">
+          <p class="post-text">
+            Rare camera trap sequence from northern Botswana: A family unit digs deep sand wells along the dried river channel to access clean filtered ground water, which subsequently provides hydration to antelopes and birds throughout the afternoon. Ecosystem engineers at work.
+          </p>
+
+          <div class="video-embed-box">
+            <img src="https://i.ytimg.com/vi/Aw6GkiCvcWs/hqdefault.jpg" alt="Elephant herd digging wells in Botswana riverbed">
+            <div class="video-overlay">
+              <button class="play-button" type="button" aria-label="Play video">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </button>
+              <div class="video-badge-bar">
+                <span class="duration-pill">01:42</span>
+                <span class="quality-pill">1080p</span>
+                <span class="audio-pill">natural audio</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <footer class="engagement-toolbar" aria-label="Engagement metrics">
+          <button class="engagement-pill reply-action" type="button" aria-label="523 replies">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg>
+            <span class="metric-count">523</span>
+          </button>
+
+          <button class="engagement-pill repost-action" type="button" aria-label="2.4k boosts">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m17 2 4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+            <span class="metric-count">2.4k</span>
+          </button>
+
+          <button class="engagement-pill like-action" type="button" aria-label="9.8k favorites">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+            <span class="metric-count">9.8k</span>
+          </button>
+
+          <button class="engagement-pill bookmark-action" type="button" aria-label="812 bookmarks">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2Z"/></svg>
+            <span class="metric-count">812</span>
+          </button>
+
+          <div class="toolbar-right">
+            <span class="engagement-reach">54.1k views</span>
+            <a class="direct-link" href="#video-external" title="Open source post">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        </footer>
+      </article>
+
+      <!-- Result 5: Quote Post / Re-shared context -->
+      <article class="social-card quote-post-card" data-post-id="quote-1">
+        <div class="card-meta-bar">
+          <div class="author-block">
+            <img class="author-avatar" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR36wDsVljQalPesZK5cprnZ2XSECN0CXvQjcZO_DLzME2HlPi_pEIaT-8" alt="Conservation Science Daily">
+            <div class="author-info">
+              <div class="author-name-row">
+                <a class="author-name" href="#author-csd">Conservation Science Daily</a>
+                <span class="verified-badge" title="Verified publication">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <span class="author-handle">@conservationsci.bsky.social</span>
+              </div>
+              <div class="source-subrow">
+                <span class="platform-chip bluesky">bluesky</span>
+                <span class="bullet" aria-hidden="true">·</span>
+                <time datetime="2026-09-04T22:10:00Z">Yesterday</time>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-options">
+            <button class="options-btn" type="button" aria-label="Post actions">•••</button>
+          </div>
+        </div>
+
+        <div class="post-content">
+          <p class="post-text">
+            Long-term demographic data continues to validate Cynthia Moss's pioneer findings from Amboseli: herds led by matriarchs aged 50 or older had nearly double the calf survival rate during severe droughts compared to younger herds.
+          </p>
+
+          <!-- Embedded Quote Card -->
+          <div class="quoted-card">
+            <div class="quoted-meta">
+              <span class="quoted-author">Cynthia Moss</span>
+              <span class="quoted-handle">@cynthia_moss</span>
+              <span class="bullet" aria-hidden="true">·</span>
+              <span class="quoted-date">Amboseli Trust Archive</span>
+            </div>
+            <p class="quoted-text">
+              "An elephant matriarch does not merely lead her family through terrain. She is the living library of droughts survived, dry seasons navigated, and safe water recalled from decades past."
+            </p>
+          </div>
+        </div>
+
+        <footer class="engagement-toolbar" aria-label="Engagement metrics">
+          <button class="engagement-pill reply-action" type="button" aria-label="95 replies">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg>
+            <span class="metric-count">95</span>
+          </button>
+
+          <button class="engagement-pill repost-action" type="button" aria-label="640 reposts">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m17 2 4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+            <span class="metric-count">640</span>
+          </button>
+
+          <button class="engagement-pill like-action" type="button" aria-label="3.1k likes">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+            <span class="metric-count">3.1k</span>
+          </button>
+
+          <button class="engagement-pill bookmark-action" type="button" aria-label="389 bookmarks">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2Z"/></svg>
+            <span class="metric-count">389</span>
+          </button>
+
+          <div class="toolbar-right">
+            <span class="engagement-reach">19.7k views</span>
+            <a class="direct-link" href="#quote-external" title="Open source post">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        </footer>
+      </article>
+
+    </section>
+
+    <!-- Trending Hashtags & Social Topics (DDG related-searches style) -->
+    <section class="related-searches" aria-labelledby="trending-title">
+      <h2 id="trending-title">
+        Trending hashtags &amp; topics for <strong>elephants</strong>
+      </h2>
+      <div class="trending-grid">
+        <a class="trending-tag" href="#tag-worldelephantday">
+          <span class="tag-hash" aria-hidden="true">#</span>
+          <div class="tag-copy">
+            <strong>WorldElephantDay</strong>
+            <span>42.8k posts across fediverse &amp; bluesky</span>
+          </div>
+        </a>
+
+        <a class="trending-tag" href="#tag-savetheelephants">
+          <span class="tag-hash" aria-hidden="true">#</span>
+          <div class="tag-copy">
+            <strong>SaveTheElephants</strong>
+            <span>18.2k active conversations</span>
+          </div>
+        </a>
+
+        <a class="trending-tag" href="#tag-wildlifeconservation">
+          <span class="tag-hash" aria-hidden="true">#</span>
+          <div class="tag-copy">
+            <strong>WildlifeConservation</strong>
+            <span>64.1k posts this week</span>
+          </div>
+        </a>
+
+        <a class="trending-tag" href="#tag-amboseli">
+          <span class="tag-hash" aria-hidden="true">#</span>
+          <div class="tag-copy">
+            <strong>AmboseliCorridor</strong>
+            <span>12.5k posts · Legal victory update</span>
+          </div>
+        </a>
+
+        <a class="trending-tag" href="#tag-nature">
+          <span class="tag-hash" aria-hidden="true">#</span>
+          <div class="tag-copy">
+            <strong>r/NatureIsFuckingLit</strong>
+            <span>3.8k upvotes · Elephant well-digging</span>
+          </div>
+        </a>
+
+        <a class="trending-tag" href="#tag-tsavo">
+          <span class="tag-hash" aria-hidden="true">#</span>
+          <div class="tag-copy">
+            <strong>TsavoOrphans</strong>
+            <span>9.4k posts · Sheldrick Trust</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <a class="more-results" href="#page-2">Load more social posts</a>
+  </main>
+
+  <footer class="site-footer">
+    <span>Powered by SearXNG 2026.8.30</span>
+    <nav aria-label="Footer">
+      <a href="#source">source</a>
+      <a href="#issues">issues</a>
+      <a href="#stats">engine stats</a>
+    </nav>
+  </footer>
+</body>
+</html>

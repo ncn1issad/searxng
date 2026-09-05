@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="en" data-theme="mocha">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>elephants - News | SearXNG DDG news concept</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#results">Skip to news results</a>
+
+  <header class="site-header">
+    <div class="header-row">
+      <a class="brand" href="../05-ddg-results/index.html" aria-label="SearXNG home">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="13" cy="13" r="8.5"/><path d="m19.5 19.5 7 7"/></svg>
+        <span>searxng</span>
+      </a>
+
+      <form class="search-form" role="search">
+        <label class="sr-only" for="search-input">Search</label>
+        <input id="search-input" name="q" type="search" value="elephants" autocomplete="off" spellcheck="false">
+        <button class="search-button" type="submit" aria-label="Search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.7" cy="10.7" r="6.7"/><path d="m16 16 5 5"/></svg>
+        </button>
+        <kbd class="focus-hint" aria-hidden="true">/</kbd>
+      </form>
+
+      <nav class="utility-nav" aria-label="Site">
+        <a href="#about">about</a>
+        <a href="#preferences" aria-label="Preferences" title="Preferences">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/><path d="M19.4 15a1.8 1.8 0 0 0 .36 2l.06.06-2.76 2.76-.06-.06a1.8 1.8 0 0 0-2-.36 1.8 1.8 0 0 0-1.1 1.65V21H10v-.09A1.8 1.8 0 0 0 8.9 19.3a1.8 1.8 0 0 0-2 .36l-.06.06-2.76-2.76.06.06a1.8 1.8 0 0 0 .36-2A1.8 1.8 0 0 0 2.85 14H2v-4h.85A1.8 1.8 0 0 0 4.5 8.9a1.8 1.8 0 0 0-.36-2l-.06-.06 2.76-2.76.06.06a1.8 1.8 0 0 0 2 .36A1.8 1.8 0 0 0 10 2.85V2h4v.85a1.8 1.8 0 0 0 1.1 1.65 1.8 1.8 0 0 0 2-.36l.06-.06 2.76 2.76-.06.06a1.8 1.8 0 0 0-.36 2 1.8 1.8 0 0 0 1.65 1.1H22v4h-.85A1.8 1.8 0 0 0 19.4 15Z"/></svg>
+        </a>
+        <button class="theme-toggle" type="button" aria-label="Switch to light theme" title="Toggle theme (Alt+T)">
+          <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.3A8.4 8.4 0 0 1 8.7 4 8.5 8.5 0 1 0 20 15.3Z"/></svg>
+          <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"/></svg>
+        </button>
+      </nav>
+    </div>
+
+    <nav class="category-nav" aria-label="Search categories">
+      <a href="../05-ddg-results/index.html">general</a>
+      <a href="../05-ddg-results/index.html#images">images</a>
+      <a href="../tab-videos/index.html">videos</a>
+      <a class="active" href="index.html" aria-current="page">news</a>
+      <a href="../tab-map/index.html">map</a>
+      <a href="../tab-music/index.html">music</a>
+      <a href="../tab-it/index.html">it</a>
+      <a href="../tab-science/index.html">science</a>
+      <a href="../tab-files/index.html">files</a>
+      <a href="../tab-social-media/index.html">social media</a>
+      <button class="filter-button" type="button" id="toggle-filter-panel" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M7 12h10M10 17h4"/></svg>
+        filters
+      </button>
+    </nav>
+  </header>
+
+  <main class="results-shell" id="results">
+    <div class="filter-strip" aria-label="Search filters">
+      <div class="filter-stats">
+        <span>142 news stories</span>
+        <span aria-hidden="true">·</span>
+        <span>0.28s</span>
+      </div>
+
+      <div class="filter-controls">
+        <div class="dropdown-wrapper">
+          <button class="dropdown-trigger" type="button" id="btn-time" aria-haspopup="listbox" aria-expanded="false">
+            <span class="label-muted">time:</span>
+            <span class="value-text">past 24h</span>
+            <span class="chevron" aria-hidden="true">⌄</span>
+          </button>
+          <ul class="dropdown-menu" id="menu-time" role="listbox" aria-labelledby="btn-time" hidden>
+            <li role="option" aria-selected="false"><button type="button">any time</button></li>
+            <li role="option" aria-selected="false"><button type="button">past hour</button></li>
+            <li role="option" aria-selected="true" class="selected"><button type="button">past 24 hours</button></li>
+            <li role="option" aria-selected="false"><button type="button">past week</button></li>
+            <li role="option" aria-selected="false"><button type="button">past month</button></li>
+          </ul>
+        </div>
+
+        <div class="dropdown-wrapper">
+          <button class="dropdown-trigger" type="button" id="btn-sort" aria-haspopup="listbox" aria-expanded="false">
+            <span class="label-muted">sort:</span>
+            <span class="value-text">relevance</span>
+            <span class="chevron" aria-hidden="true">⌄</span>
+          </button>
+          <ul class="dropdown-menu" id="menu-sort" role="listbox" aria-labelledby="btn-sort" hidden>
+            <li role="option" aria-selected="true" class="selected"><button type="button">relevance</button></li>
+            <li role="option" aria-selected="false"><button type="button">date (newest first)</button></li>
+          </ul>
+        </div>
+
+        <div class="dropdown-wrapper">
+          <button class="dropdown-trigger" type="button" id="btn-region" aria-haspopup="listbox" aria-expanded="false">
+            <span class="label-muted">region:</span>
+            <span class="value-text">all regions</span>
+            <span class="chevron" aria-hidden="true">⌄</span>
+          </button>
+          <ul class="dropdown-menu" id="menu-region" role="listbox" aria-labelledby="btn-region" hidden>
+            <li role="option" aria-selected="true" class="selected"><button type="button">all regions</button></li>
+            <li role="option" aria-selected="false"><button type="button">United States</button></li>
+            <li role="option" aria-selected="false"><button type="button">United Kingdom</button></li>
+            <li role="option" aria-selected="false"><button type="button">European Union</button></li>
+            <li role="option" aria-selected="false"><button type="button">Kenya & East Africa</button></li>
+          </ul>
+        </div>
+
+        <div class="dropdown-wrapper">
+          <button class="dropdown-trigger" type="button" id="btn-engine" aria-haspopup="listbox" aria-expanded="false">
+            <span class="label-muted">engines:</span>
+            <span class="value-text">all (4)</span>
+            <span class="chevron" aria-hidden="true">⌄</span>
+          </button>
+          <ul class="dropdown-menu" id="menu-engine" role="listbox" aria-labelledby="btn-engine" hidden>
+            <li role="option" aria-selected="true" class="selected"><button type="button">all engines</button></li>
+            <li role="option" aria-selected="false"><button type="button">Google News</button></li>
+            <li role="option" aria-selected="false"><button type="button">Bing News</button></li>
+            <li role="option" aria-selected="false"><button type="button">Yahoo News</button></li>
+            <li role="option" aria-selected="false"><button type="button">Brave News</button></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Topic filter chips -->
+    <div class="topic-strip" aria-label="Filter by topic">
+      <span class="topic-label">topics:</span>
+      <div class="topic-scroll">
+        <button class="topic-chip active" type="button">all coverage</button>
+        <button class="topic-chip" type="button">conservation</button>
+        <button class="topic-chip" type="button">wildlife corridors</button>
+        <button class="topic-chip" type="button">ivory trade treaty</button>
+        <button class="topic-chip" type="button">genetics & research</button>
+        <button class="topic-chip" type="button">sanctuaries & rewilding</button>
+        <button class="topic-chip" type="button">human-wildlife conflict</button>
+      </div>
+    </div>
+
+    <!-- Top stories hero cluster -->
+    <section class="top-stories-section" aria-labelledby="top-stories-title">
+      <div class="section-header-row">
+        <h2 id="top-stories-title" class="section-title">
+          <span class="icon-bolt" aria-hidden="true">⚡</span>
+          Top stories for <strong>elephants</strong>
+        </h2>
+        <span class="live-indicator">
+          <span class="live-dot" aria-hidden="true"></span>
+          updated 12m ago
+        </span>
+      </div>
+
+      <div class="top-stories-grid">
+        <!-- Main lead story -->
+        <article class="lead-story">
+          <div class="lead-media">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/African_Bush_Elephant.jpg/640px-African_Bush_Elephant.jpg" alt="African elephant herd moving across grassland" loading="eager">
+            <span class="lead-badge">Key development</span>
+          </div>
+          <div class="lead-body">
+            <div class="news-source-line">
+              <span class="source-icon reuters">R</span>
+              <div class="source-details">
+                <strong>Reuters</strong>
+                <span>reuters.com › environment</span>
+              </div>
+              <time class="news-timestamp" datetime="2026-09-05T19:10:00Z">42m ago</time>
+            </div>
+            <h3 class="lead-headline">
+              <a href="#reuters-lead">Fourteen African nations sign treaty establishing protected transboundary corridors for elephant migrations</a>
+            </h3>
+            <p class="lead-summary">
+              Ministers gathered in Nairobi concluded landmark negotiations establishing interconnected ecological pathways between Kenya, Tanzania, and Uganda. The accord guarantees contiguous legal protection for seasonal herd migrations affected by climate-induced droughts.
+            </p>
+            <div class="lead-coverage-cluster">
+              <span class="cluster-heading">3 additional sources on this story:</span>
+              <ul class="cluster-list">
+                <li><a href="#bbc-cov"><span class="cluster-source">BBC News</span> <time>1h ago</time></a></li>
+                <li aria-hidden="true">·</li>
+                <li><a href="#ap-cov"><span class="cluster-source">Associated Press</span> <time>1h ago</time></a></li>
+                <li aria-hidden="true">·</li>
+                <li><a href="#guardian-cov"><span class="cluster-source">The Guardian</span> <time>2h ago</time></a></li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- Companion top stories -->
+        <div class="companion-column">
+          <article class="companion-story">
+            <div class="news-source-line">
+              <span class="source-icon natgeo">N</span>
+              <div class="source-details">
+                <strong>National Geographic</strong>
+                <span>nationalgeographic.com › science</span>
+              </div>
+              <time class="news-timestamp" datetime="2026-09-05T17:45:00Z">2h ago</time>
+            </div>
+            <div class="companion-content-row">
+              <div class="companion-text">
+                <h4>
+                  <a href="#natgeo-route">GPS collar telemetry maps nocturnal detour strategies used by Amboseli matriarch herds</a>
+                </h4>
+                <p>Telemetry over 36 months shows matriarchs rerouting families around farming perimeters specifically during moonlit nights.</p>
+                <div class="story-tags">
+                  <span class="story-tag">Behavior</span>
+                  <span class="story-tag">Telemetry</span>
+                </div>
+              </div>
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQuwbMgHbGm07FEAjNDBwlbhlVdAP5OgvobmoBzo9WpPhnFEmThbkvCsoZL" alt="Elephant herd traveling together" loading="lazy">
+            </div>
+          </article>
+
+          <article class="companion-story">
+            <div class="news-source-line">
+              <span class="source-icon mongabay">M</span>
+              <div class="source-details">
+                <strong>Mongabay</strong>
+                <span>news.mongabay.com › conservation</span>
+              </div>
+              <time class="news-timestamp" datetime="2026-09-05T16:30:00Z">3h ago</time>
+            </div>
+            <div class="companion-content-row">
+              <div class="companion-text">
+                <h4>
+                  <a href="#mongabay-fences">Community beehive fences achieve 84% reduction in elephant crop raiding across rural Tanzania</a>
+                </h4>
+                <p>Natural bio-acoustic deterrents protect farming households while generating supplementary raw honey income for 42 local villages.</p>
+                <div class="story-tags">
+                  <span class="story-tag">Community</span>
+                  <span class="story-tag">Ecology</span>
+                </div>
+              </div>
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR36wDsVljQalPesZK5cprnZ2XSECN0CXvQjcZO_DLzME2HlPi_pEIaT-8" alt="Elephant family standing in savanna" loading="lazy">
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- News results list -->
+    <section class="news-results-list" aria-label="Latest news articles">
+      <!-- Result 1: BBC with expandable multi-coverage drawer -->
+      <article class="news-card">
+        <div class="news-card-inner">
+          <div class="news-card-body">
+            <div class="result-head">
+              <span class="source-icon bbc">B</span>
+              <div>
+                <strong>BBC News</strong>
+                <span>bbc.com › news › world-africa</span>
+              </div>
+              <time class="news-timestamp" datetime="2026-09-05T16:15:00Z">3h ago</time>
+              <button class="result-menu-btn" type="button" aria-label="Story options">•••</button>
+            </div>
+
+            <h2>
+              <a href="#bbc-cites">CITES summit votes decisively against commercial ivory stockpile liquidations</a>
+            </h2>
+
+            <p>
+              Delegates at the international wildlife conference rejected proposals to authorize exceptional one-off ivory auctions. Member governments affirmed that opening legal trade routes presents unacceptable poaching risks for vulnerable African forest <strong>elephants</strong> and Asian <strong>elephants</strong>.
+            </p>
+
+            <div class="news-card-footer">
+              <span class="engine-badge">google news</span>
+              <span class="engine-badge">bing news</span>
+              <span class="read-estimate">4 min read</span>
+              <a class="cache-link" href="#cache-1">cached</a>
+            </div>
+
+            <details class="coverage-drawer">
+              <summary>
+                <span class="drawer-icon" aria-hidden="true">▤</span>
+                <span>View 2 related reports from France 24 and Deutsche Welle</span>
+                <span class="drawer-arrow" aria-hidden="true">⌄</span>
+              </summary>
+              <div class="drawer-panel">
+                <article class="drawer-item">
+                  <span class="source-icon france24">F</span>
+                  <div>
+                    <a href="#france24"><strong>France 24</strong> · Conservation groups welcome vote upholding global trade prohibitions</a>
+                    <time>3h ago</time>
+                  </div>
+                </article>
+                <article class="drawer-item">
+                  <span class="source-icon dw">D</span>
+                  <div>
+                    <a href="#dw"><strong>Deutsche Welle</strong> · Southern African nations query ivory stockpile restrictions after CITES outcome</a>
+                    <time>4h ago</time>
+                  </div>
+                </article>
+              </div>
+            </details>
+          </div>
+
+          <div class="news-card-media">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQMj_Tk8nEiCgdhilk7GHqQmgvXmAa9LE1GtW0U_YvpTmR1ts-_uWroqps" alt="Adult elephant grazing in green field" loading="lazy">
+          </div>
+        </div>
+      </article>
+
+      <!-- Result 2: Nature News -->
+      <article class="news-card">
+        <div class="news-card-inner">
+          <div class="news-card-body">
+            <div class="result-head">
+              <span class="source-icon nature">N</span>
+              <div>
+                <strong>Nature News</strong>
+                <span>nature.com › articles › biological-sciences</span>
+              </div>
+              <time class="news-timestamp" datetime="2026-09-05T14:40:00Z">5h ago</time>
+              <button class="result-menu-btn" type="button" aria-label="Story options">•••</button>
+            </div>
+
+            <h2>
+              <a href="#nature-mammoths">High-coverage genome sequencing pinpoints cold-tolerance divergence between mammoths and Asian elephants</a>
+            </h2>
+
+            <p>
+              Analysis of permafrost specimens identified eight key mutations altering haemoglobin oxygen release and lipid retention in mammoths. The findings outline the precise genetic path that separated ancestral cold-adapted lines from extant Asian <strong>elephants</strong>.
+            </p>
+
+            <div class="news-card-footer">
+              <span class="engine-badge">google news</span>
+              <span class="engine-badge">brave</span>
+              <span class="read-estimate">6 min read</span>
+              <a class="cache-link" href="#cache-2">cached</a>
+            </div>
+          </div>
+
+          <div class="news-card-media">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRfoBnyMrt3Ktqn_I-S-rhQdt9kUOdThQH7mPMj3ruECnIOI4H1dApSr48" alt="Asian elephant close-up" loading="lazy">
+          </div>
+        </div>
+      </article>
+
+      <!-- Result 3: The Hindu -->
+      <article class="news-card">
+        <div class="news-card-inner">
+          <div class="news-card-body">
+            <div class="result-head">
+              <span class="source-icon hindu">H</span>
+              <div>
+                <strong>The Hindu</strong>
+                <span>thehindu.com › sci-tech › environment</span>
+              </div>
+              <time class="news-timestamp" datetime="2026-09-05T12:20:00Z">7h ago</time>
+              <button class="result-menu-btn" type="button" aria-label="Story options">•••</button>
+            </div>
+
+            <h2>
+              <a href="#hindu-corridors">Western Ghats state department notifies five vital elephant corridors as eco-sensitive zones</a>
+            </h2>
+
+            <p>
+              Strict land-use regulations now protect migratory passes connecting Mudumalai, Bandipur, and Wayanad reserves. Commercial vehicular night traffic along three forest roads is prohibited to curb collisions with moving <strong>elephant</strong> family groups.
+            </p>
+
+            <div class="news-card-footer">
+              <span class="engine-badge">bing news</span>
+              <span class="engine-badge">yahoo news</span>
+              <span class="read-estimate">3 min read</span>
+              <a class="cache-link" href="#cache-3">cached</a>
+            </div>
+          </div>
+
+          <div class="news-card-media">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSLJIi7g3F6fuyqMBNMGZqSHaCCrhxZ3tkVSoEU-ahvxRRrz17OTS8iSEY" alt="Elephant in forest vegetation" loading="lazy">
+          </div>
+        </div>
+      </article>
+
+      <!-- Mid-feed media pack: Video news reports -->
+      <section class="media-pack video-pack" id="broadcasts" aria-labelledby="broadcasts-title">
+        <div class="section-heading">
+          <h2 id="broadcasts-title"><span aria-hidden="true">▷</span> Video reports & dispatches for <strong>elephants</strong></h2>
+          <a href="#all-video-news">all video reports</a>
+        </div>
+        <div class="video-row">
+          <article>
+            <div class="video-image">
+              <img src="https://i.ytimg.com/vi/5Mn9UkKwQZI/hqdefault.jpg" alt="Railway sensors tested near forest track">
+              <span>08:42</span>
+            </div>
+            <h3>Can AI acoustic sensors prevent railway collisions with wild elephants?</h3>
+            <p>DW Documentaries · 6h ago</p>
+          </article>
+          <article>
+            <div class="video-image">
+              <img src="https://i.ytimg.com/vi/Aw6GkiCvcWs/hqdefault.jpg" alt="Kenya Amboseli calf births">
+              <span>05:15</span>
+            </div>
+            <h3>Amboseli records historic baby boom as drought recedes in East Africa</h3>
+            <p>BBC News Africa · 8h ago</p>
+          </article>
+          <article>
+            <div class="video-image">
+              <img src="https://i.ytimg.com/vi/5Mn9UkKwQZI/hqdefault.jpg" alt="Rangers conducting night patrol">
+              <span>11:30</span>
+            </div>
+            <h3>On night patrol with community conservancy rangers in northern Kenya</h3>
+            <p>PBS NewsHour · 1d ago</p>
+          </article>
+          <article>
+            <div class="video-image">
+              <img src="https://i.ytimg.com/vi/Aw6GkiCvcWs/hqdefault.jpg" alt="Orphan elephant feeding">
+              <span>06:48</span>
+            </div>
+            <h3>Inside the Tsavo East rewilding nursery preparing juveniles for the wild</h3>
+            <p>France 24 English · 2d ago</p>
+          </article>
+        </div>
+        <a class="more-media" href="#more-broadcasts"><span>More broadcast reports</span><span aria-hidden="true">›</span></a>
+      </section>
+
+      <!-- Result 4: Scientific American -->
+      <article class="news-card">
+        <div class="news-card-inner">
+          <div class="news-card-body">
+            <div class="result-head">
+              <span class="source-icon sciam">S</span>
+              <div>
+                <strong>Scientific American</strong>
+                <span>scientificamerican.com › ecology</span>
+              </div>
+              <time class="news-timestamp" datetime="2026-09-05T09:15:00Z">10h ago</time>
+              <button class="result-menu-btn" type="button" aria-label="Story options">•••</button>
+            </div>
+
+            <h2>
+              <a href="#sciam-acoustics">Infrasonic rumbles allow elephant matriarchs to coordinate herd separation over ten kilometres</a>
+            </h2>
+
+            <p>
+              Calibrated microphone arrays in Hwange National Park registered low-frequency harmonic calls that travel through soil and atmospheric boundary layers. Ground vibrations provide warning signals before encounters between unrelated <strong>elephants</strong>.
+            </p>
+
+            <div class="news-card-footer">
+              <span class="engine-badge">google news</span>
+              <span class="engine-badge">bing news</span>
+              <span class="read-estimate">5 min read</span>
+              <a class="cache-link" href="#cache-4">cached</a>
+            </div>
+          </div>
+
+          <div class="news-card-media">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQf1ndnjTJOeZ5mE312oZ1g9-bp8doIdVnX8Me5oNMcPABfLPVgHdQjQf_6" alt="Elephant lifting head in savanna" loading="lazy">
+          </div>
+        </div>
+      </article>
+
+      <!-- Result 5: Associated Press -->
+      <article class="news-card">
+        <div class="news-card-inner">
+          <div class="news-card-body">
+            <div class="result-head">
+              <span class="source-icon ap">A</span>
+              <div>
+                <strong>Associated Press</strong>
+                <span>apnews.com › article › wildlife-conservation</span>
+              </div>
+              <time class="news-timestamp" datetime="2026-09-05T05:30:00Z">14h ago</time>
+              <button class="result-menu-btn" type="button" aria-label="Story options">•••</button>
+            </div>
+
+            <h2>
+              <a href="#ap-orphans">Wildlife Trust successfully releases eight rehabilitated orphan elephants back to Tsavo East wild groups</a>
+            </h2>
+
+            <p>
+              The rewilded herd completed its transition after four years of veterinary stabilization, socialization, and soft releases. Satellite tracking monitors confirm full integration with wild resident <strong>elephants</strong> in protected savanna sectors.
+            </p>
+
+            <div class="news-card-footer">
+              <span class="engine-badge">bing news</span>
+              <span class="engine-badge">brave</span>
+              <span class="read-estimate">3 min read</span>
+              <a class="cache-link" href="#cache-5">cached</a>
+            </div>
+          </div>
+
+          <div class="news-card-media">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ_xzsi1-9RBP3lJtyZZbWyPbhQWfm4zZ_Evyb6ZqKztoa-4ZW_4oq-rCn2" alt="Young elephant walking alongside adults" loading="lazy">
+          </div>
+        </div>
+      </article>
+
+      <!-- Result 6: The Guardian -->
+      <article class="news-card">
+        <div class="news-card-inner">
+          <div class="news-card-body">
+            <div class="result-head">
+              <span class="source-icon guardian">G</span>
+              <div>
+                <strong>The Guardian</strong>
+                <span>theguardian.com › environment › wildlife</span>
+              </div>
+              <time class="news-timestamp" datetime="2026-09-05T01:00:00Z">18h ago</time>
+              <button class="result-menu-btn" type="button" aria-label="Story options">•••</button>
+            </div>
+
+            <h2>
+              <a href="#guardian-carbon">Why forest elephants are proving indispensable to Central Africa's carbon storage capacity</a>
+            </h2>
+
+            <p>
+              Ecologists publishing long-term plot data report that browsing patterns of forest <strong>elephants</strong> remove fast-growing low-density flora, enabling slow-growing hardwood trees to store 9% more atmospheric carbon per hectare.
+            </p>
+
+            <div class="news-card-footer">
+              <span class="engine-badge">google news</span>
+              <span class="engine-badge">yahoo news</span>
+              <span class="read-estimate">7 min read</span>
+              <a class="cache-link" href="#cache-6">cached</a>
+            </div>
+          </div>
+
+          <div class="news-card-media">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR0IEeWEEcF_cmVGYqQnWEJwgL6hhyAnd6zuFU1rUy7OrKGQv7ZRPhe5RQc" alt="Elephant in lush jungle environment" loading="lazy">
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Related news queries -->
+    <section class="related-searches" aria-labelledby="related-title">
+      <h2 id="related-title">News topics related to <strong>elephants</strong></h2>
+      <div>
+        <a href="#"><span aria-hidden="true">⌕</span> elephant migration corridor treaty 2026</a>
+        <a href="#"><span aria-hidden="true">⌕</span> cites ivory trade ban conference results</a>
+        <a href="#"><span aria-hidden="true">⌕</span> amboseli elephant population census</a>
+        <a href="#"><span aria-hidden="true">⌕</span> woolly mammoth genetic divergence paper</a>
+        <a href="#"><span aria-hidden="true">⌕</span> beehive fence elephant deterrent trials</a>
+        <a href="#"><span aria-hidden="true">⌕</span> western ghats elephant corridor notifications</a>
+      </div>
+    </section>
+
+    <!-- More results action -->
+    <a class="more-results" href="#page-2">Load more news stories</a>
+  </main>
+
+  <footer class="site-footer">
+    <span>Powered by SearXNG 2026.8.30 · News tab concept</span>
+    <nav aria-label="Footer">
+      <a href="#source">source</a>
+      <a href="#issues">issues</a>
+      <a href="#stats">engine stats</a>
+      <a href="../../index.html">all concepts</a>
+    </nav>
+  </footer>
+</body>
+</html>

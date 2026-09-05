@@ -218,6 +218,29 @@ h1 {
 .concept-ddg .mini-results span:first-child { height: 4.1rem; border: 1px solid var(--border); border-radius: 0.55rem; background: var(--surface); }
 .concept-ddg .mini-results span::before { background: var(--mauve); }
 
+.concept-videos .mini-results { gap: 0.42rem; border-color: transparent; }
+.concept-videos .mini-results span { height: 2.35rem; border-bottom-color: var(--border); }
+.concept-videos .mini-results span:first-child { height: 4.1rem; border: 1px solid var(--border); border-radius: 0.55rem; background: var(--surface); }
+.concept-videos .mini-results span::before { background: var(--mauve); }
+
+.mini-layout-news { grid-template-columns: 1fr; }
+.concept-news .mini-results { gap: 0.42rem; border-color: transparent; }
+.concept-news .mini-results span { height: 2.35rem; border-bottom-color: var(--border); }
+.concept-news .mini-results span:first-child { height: 4.3rem; border: 1px solid var(--border); border-radius: 0.55rem; background: var(--surface); }
+.concept-news .mini-results span::before { background: var(--peach); }
+
+.mini-layout-it { grid-template-columns: 1fr; }
+.concept-it .mini-results { gap: 0.42rem; border-color: transparent; }
+.concept-it .mini-results span { height: 2.35rem; border-bottom-color: var(--border); }
+.concept-it .mini-results span:first-child { height: 4.2rem; border: 1px solid var(--border); border-radius: 0.55rem; background: var(--surface); }
+.concept-it .mini-results span::before { background: var(--blue); }
+
+.mini-layout-map { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+.concept-map .mini-results { gap: 0.35rem; }
+.concept-map .mini-results span { height: 1.6rem; border-radius: 0.25rem; }
+.mini-side-map { background: var(--surface); border: 1px solid var(--border); border-radius: 0.35rem; position: relative; }
+.mini-side-map::after { content: ""; position: absolute; top: 35%; left: 45%; width: 5px; height: 5px; border-radius: 50%; background: var(--mauve); box-shadow: 10px 12px 0 var(--mauve), -8px 16px 0 var(--peach); }
+
 .concept-copy { padding: 1.7rem 0.35rem 1.25rem; }
 
 .concept h2 {

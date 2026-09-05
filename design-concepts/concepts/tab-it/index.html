@@ -1,0 +1,946 @@
+<!doctype html>
+<html lang="en" data-theme="mocha">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>fastapi auth | SearXNG IT results concept</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#results">Skip to results</a>
+
+  <header class="site-header">
+    <div class="header-row">
+      <a class="brand" href="../05-ddg-results/index.html" aria-label="SearXNG home">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="13" cy="13" r="8.5"/><path d="m19.5 19.5 7 7"/></svg>
+        <span>searxng</span>
+      </a>
+
+      <form class="search-form" role="search">
+        <label class="sr-only" for="search-input">Search</label>
+        <input id="search-input" name="q" type="search" value="elephants" autocomplete="off" spellcheck="false">
+        <button class="search-button" type="submit" aria-label="Search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.7" cy="10.7" r="6.7"/><path d="m16 16 5 5"/></svg>
+        </button>
+        <kbd class="focus-hint" aria-hidden="true">/</kbd>
+      </form>
+
+      <nav class="utility-nav" aria-label="Site">
+        <a href="#about">about</a>
+        <a href="#preferences" aria-label="Preferences" title="Preferences">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/><path d="M19.4 15a1.8 1.8 0 0 0 .36 2l.06.06-2.76 2.76-.06-.06a1.8 1.8 0 0 0-2-.36 1.8 1.8 0 0 0-1.1 1.65V21H10v-.09A1.8 1.8 0 0 0 8.9 19.3a1.8 1.8 0 0 0-2 .36l-.06.06-2.76-2.76.06-.06a1.8 1.8 0 0 0 .36-2A1.8 1.8 0 0 0 2.85 14H2v-4h.85A1.8 1.8 0 0 0 4.5 8.9a1.8 1.8 0 0 0-.36-2l-.06-.06 2.76-2.76.06.06a1.8 1.8 0 0 0 2 .36A1.8 1.8 0 0 0 10 2.85V2h4v.85a1.8 1.8 0 0 0 1.1 1.65 1.8 1.8 0 0 0 2-.36l.06-.06 2.76 2.76-.06.06a1.8 1.8 0 0 0-.36 2 1.8 1.8 0 0 0 1.65 1.1H22v4h-.85A1.8 1.8 0 0 0 19.4 15Z"/></svg>
+        </a>
+        <button class="theme-toggle" type="button" aria-label="Switch to light theme" title="Toggle theme (Alt+T)">
+          <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.3A8.4 8.4 0 0 1 8.7 4 8.5 8.5 0 1 0 20 15.3Z"/></svg>
+          <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"/></svg>
+        </button>
+      </nav>
+    </div>
+
+    <nav class="category-nav" aria-label="Search categories">
+      <a href="../05-ddg-results/index.html">general</a>
+      <a href="../05-ddg-results/index.html#images">images</a>
+      <a href="../tab-videos/index.html">videos</a>
+      <a href="../tab-news/index.html">news</a>
+      <a href="../tab-map/index.html">map</a>
+      <a href="../tab-music/index.html">music</a>
+      <a class="active" href="index.html" aria-current="page">it</a>
+      <a href="../tab-science/index.html">science</a>
+      <a href="../tab-files/index.html">files</a>
+      <a href="../tab-social-media/index.html">social media</a>
+      <button class="filter-button" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M7 12h10M10 17h4"/></svg>
+        filters
+      </button>
+    </nav>
+  </header>
+
+  <main class="results-shell" id="results">
+    <div class="filter-strip" aria-label="Search filters">
+      <div class="filter-stats">
+        <span>16 results</span>
+        <span aria-hidden="true">·</span>
+        <span>0.24s</span>
+      </div>
+
+      <nav class="subcat-filters" aria-label="IT Subcategories">
+        <button class="subcat-pill active" type="button" data-filter="all">all it <span class="pill-count">16</span></button>
+        <button class="subcat-pill" type="button" data-filter="repos">repos <span class="pill-count">4</span></button>
+        <button class="subcat-pill" type="button" data-filter="packages">packages <span class="pill-count">3</span></button>
+        <button class="subcat-pill" type="button" data-filter="code">code <span class="pill-count">3</span></button>
+        <button class="subcat-pill" type="button" data-filter="qa">q&amp;a <span class="pill-count">4</span></button>
+        <button class="subcat-pill" type="button" data-filter="wikis">wikis <span class="pill-count">2</span></button>
+      </nav>
+
+      <div class="filter-actions">
+        <button type="button">any time <span aria-hidden="true">⌄</span></button>
+        <button type="button">all languages <span aria-hidden="true">⌄</span></button>
+        <button type="button">engines (6) <span aria-hidden="true">⌄</span></button>
+      </div>
+    </div>
+
+    <!-- DDG-inspired IT Knowledge / Developer Overview Card -->
+    <section class="it-overview" aria-labelledby="overview-title">
+      <div class="it-overview-copy">
+        <div class="it-overview-kicker">
+          <span>PyPI · GitHub · Documentation</span>
+          <span class="badge badge-primary">Framework</span>
+        </div>
+        <h1 class="it-overview-title" id="overview-title">
+          FastAPI
+          <span class="version-pill">v0.115.6</span>
+        </h1>
+        <p class="it-overview-subtitle">Modern, fast web framework for building APIs with Python based on standard type hints</p>
+        <p class="it-overview-desc">High performance on par with NodeJS and Go via Starlette and Pydantic. Features built-in security utilities for OAuth2 with password flow, JWT bearer tokens, and HTTP Basic authentication.</p>
+
+        <div class="install-strip">
+          <div class="install-tabs">
+            <button class="install-tab active" type="button" data-cmd="pip install &quot;fastapi[standard]&quot;">pip</button>
+            <button class="install-tab" type="button" data-cmd="uv add &quot;fastapi[standard]&quot;">uv</button>
+            <button class="install-tab" type="button" data-cmd="poetry add &quot;fastapi[standard]&quot;">poetry</button>
+          </div>
+          <div class="install-cmd-row">
+            <span class="install-cmd">pip install &quot;fastapi[standard]&quot;</span>
+            <button class="copy-btn" type="button" data-copy="pip install &quot;fastapi[standard]&quot;" aria-label="Copy install command">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              <span>Copy</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="it-overview-specs">
+          <dl>
+            <div><dt>License</dt><dd>MIT</dd></div>
+            <div><dt>Language</dt><dd>Python 3.8+</dd></div>
+            <div><dt>Stars</dt><dd>78.5k ★</dd></div>
+            <div><dt>Downloads</dt><dd>52.4M / mo</dd></div>
+            <div><dt>Author</dt><dd>Sebastián Ramírez (@tiangolo)</dd></div>
+          </dl>
+        </div>
+
+        <div class="it-overview-links">
+          <a href="https://fastapi.tiangolo.com/" target="_blank" rel="noopener noreferrer">Official Docs ↗</a>
+          <a href="https://fastapi.tiangolo.com/tutorial/security/" target="_blank" rel="noopener noreferrer">Security Tutorial ↗</a>
+          <a href="https://github.com/tiangolo/fastapi" target="_blank" rel="noopener noreferrer">GitHub Repo ↗</a>
+          <a href="https://pypi.org/project/fastapi/" target="_blank" rel="noopener noreferrer">PyPI Package ↗</a>
+        </div>
+      </div>
+
+      <div class="it-overview-logo-card" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        <span class="card-name">FastAPI</span>
+        <span class="card-meta">Python 3.8+</span>
+      </div>
+
+      <button class="overview-toggle" type="button" aria-expanded="false">
+        <span>show details</span><span aria-hidden="true">⌄</span>
+      </button>
+    </section>
+
+    <!-- Main IT Results List -->
+    <div class="it-results" aria-label="IT search results">
+
+      <!-- Result 1: REPOSITORY (GitHub) -->
+      <article class="it-result" data-type="repos">
+        <div class="result-head">
+          <span class="source-icon github">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </span>
+          <div>
+            <strong>GitHub</strong>
+            <span>github.com › tiangolo › fastapi</span>
+          </div>
+          <button class="result-menu-btn" type="button" aria-label="Result actions">•••</button>
+        </div>
+
+        <h2>
+          <a href="https://github.com/tiangolo/fastapi">tiangolo/fastapi</a>
+          <span class="badge badge-repo">Repository</span>
+          <span class="version-pill">v0.115.6</span>
+        </h2>
+
+        <p class="result-snippet">
+          FastAPI framework, high performance, easy to learn, fast to code, ready for production. Native support for <strong>OAuth2 authentication</strong>, password flows, JWT bearer tokens, and dependency injection security scopes.
+        </p>
+
+        <div class="repo-meta-bar">
+          <span class="repo-lang">
+            <span class="lang-dot lang-python"></span>
+            <span>Python (99.1%)</span>
+          </span>
+          <span class="repo-stat">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <strong>78,540</strong> stars
+          </span>
+          <span class="repo-stat">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><path d="M18 9v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V9"/><path d="M12 12v3"/></svg>
+            <strong>6,432</strong> forks
+          </span>
+          <span class="repo-stat">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span>286 open issues</span>
+          </span>
+          <span>MIT license</span>
+          <span>Updated 3 days ago</span>
+        </div>
+
+        <div class="repo-tags">
+          <a class="tag-pill" href="#">fastapi</a>
+          <a class="tag-pill" href="#">python</a>
+          <a class="tag-pill" href="#">authentication</a>
+          <a class="tag-pill" href="#">oauth2</a>
+          <a class="tag-pill" href="#">jwt</a>
+          <a class="tag-pill" href="#">pydantic</a>
+        </div>
+
+        <div class="repo-quick-actions">
+          <div class="clone-box">
+            <code>git clone https://github.com/tiangolo/fastapi.git</code>
+            <button class="copy-btn" type="button" data-copy="git clone https://github.com/tiangolo/fastapi.git" aria-label="Copy clone command">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              <span>Copy</span>
+            </button>
+          </div>
+          <div class="repo-sublinks">
+            <a href="#">README</a>
+            <span>·</span>
+            <a href="#">Security Tutorial</a>
+            <span>·</span>
+            <a href="#">Releases</a>
+            <span>·</span>
+            <a href="#">Discussions</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Result 2: PACKAGE (PyPI) -->
+      <article class="it-result" data-type="packages">
+        <div class="result-head">
+          <span class="source-icon pypi">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 9.4 7.55 4.24a1.79 1.79 0 0 0-1.8 0l-4 2.31a1.8 1.8 0 0 0-.9 1.56v4.61a1.8 1.8 0 0 0 .9 1.56l4 2.31c.56.32 1.25.32 1.8 0l8.95-5.17a1.8 1.8 0 0 0 .9-1.56V5.25a1.8 1.8 0 0 0-.9-1.56L14 2.2a1.8 1.8 0 0 0-1.8 0L9.85 3.56"/></svg>
+          </span>
+          <div>
+            <strong>PyPI</strong>
+            <span>pypi.org › project › fastapi</span>
+          </div>
+          <button class="result-menu-btn" type="button" aria-label="Result actions">•••</button>
+        </div>
+
+        <h2>
+          <a href="https://pypi.org/project/fastapi/">fastapi</a>
+          <span class="badge badge-package">Package</span>
+          <span class="version-pill">v0.115.6</span>
+        </h2>
+
+        <p class="result-snippet">
+          FastAPI framework, high performance, easy to learn, fast to code, ready for production. Official package distribution on the Python Package Index.
+        </p>
+
+        <div class="package-box">
+          <div class="package-install-row">
+            <div class="install-command">
+              <span class="cmd-prompt">$</span>
+              <code>pip install &quot;fastapi[standard]&quot;</code>
+            </div>
+            <button class="copy-btn" type="button" data-copy="pip install &quot;fastapi[standard]&quot;" aria-label="Copy install command">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              <span>Copy</span>
+            </button>
+          </div>
+
+          <div class="package-specs-grid">
+            <div class="spec-item">
+              <dt>Version</dt>
+              <dd>0.115.6 (3 days ago)</dd>
+            </div>
+            <div class="spec-item">
+              <dt>License</dt>
+              <dd>MIT</dd>
+            </div>
+            <div class="spec-item">
+              <dt>Maintainer</dt>
+              <dd>tiangolo (Sebastián Ramírez)</dd>
+            </div>
+            <div class="spec-item">
+              <dt>Monthly Downloads</dt>
+              <dd><strong>52,410,290</strong></dd>
+            </div>
+            <div class="spec-item">
+              <dt>Python Version</dt>
+              <dd>&gt;= 3.8</dd>
+            </div>
+            <div class="spec-item">
+              <dt>Key Dependencies</dt>
+              <dd>pydantic &gt;= 2.0.0, starlette &gt;= 0.40.0</dd>
+            </div>
+          </div>
+
+          <div class="package-links-row">
+            <a href="https://pypi.org/project/fastapi/">PyPI Overview ↗</a>
+            <a href="https://fastapi.tiangolo.com">Homepage &amp; Docs ↗</a>
+            <a href="https://github.com/tiangolo/fastapi">Source Code ↗</a>
+            <a href="https://github.com/tiangolo/fastapi/releases">Changelog ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Result 3: Q&A (Stack Overflow) -->
+      <article class="it-result" data-type="qa">
+        <div class="result-head">
+          <span class="source-icon stackoverflow">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+          </span>
+          <div>
+            <strong>Stack Overflow</strong>
+            <span>stackoverflow.com › questions › 65670867</span>
+          </div>
+          <button class="result-menu-btn" type="button" aria-label="Result actions">•••</button>
+        </div>
+
+        <div class="qa-grid">
+          <div class="qa-metrics">
+            <div class="qa-metric-box">
+              <span class="metric-val">+342</span>
+              <span class="metric-lbl">votes</span>
+            </div>
+            <div class="qa-metric-box is-accepted">
+              <span class="metric-val">6</span>
+              <span class="metric-lbl">✓ accepted</span>
+            </div>
+          </div>
+
+          <div class="qa-main">
+            <h2>
+              <a href="https://stackoverflow.com/questions/65670867">How to implement JWT authentication and token refresh in FastAPI?</a>
+              <span class="badge badge-qa">Q&amp;A</span>
+            </h2>
+
+            <p class="result-snippet">
+              I am building a REST API with FastAPI and need to issue access tokens and refresh tokens. What is the standard dependency injection pattern using <strong>OAuth2PasswordBearer</strong> to verify expiration and return user models?
+            </p>
+
+            <div class="qa-accepted-box">
+              <div class="qa-accepted-title">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Accepted answer by tiangolo · 418 upvotes</span>
+              </div>
+              <p>Extract the bearer token with <code>OAuth2PasswordBearer</code> and decode it using PyJWT inside a dependency:</p>
+              <pre><code><span class="syn-kwd">async def</span> <span class="syn-fun">get_current_user</span>(token: Annotated[<span class="syn-typ">str</span>, Depends(oauth2_scheme)]):
+    <span class="syn-kwd">try</span>:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        username: <span class="syn-typ">str</span> = payload.get(<span class="syn-str">"sub"</span>)
+        <span class="syn-kwd">if</span> username <span class="syn-kwd">is</span> <span class="syn-num">None</span>:
+            <span class="syn-kwd">raise</span> credentials_exception
+    <span class="syn-kwd">except</span> InvalidTokenError:
+        <span class="syn-kwd">raise</span> credentials_exception
+    <span class="syn-kwd">return</span> get_user(db, username=username)</code></pre>
+            </div>
+
+            <div class="qa-footer-meta">
+              <div class="qa-tags">
+                <a class="tag-pill" href="#">fastapi</a>
+                <a class="tag-pill" href="#">python</a>
+                <a class="tag-pill" href="#">jwt</a>
+                <a class="tag-pill" href="#">authentication</a>
+                <a class="tag-pill" href="#">oauth-2.0</a>
+              </div>
+              <span>asked Oct 14, 2023 · answered by tiangolo</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Result 4: CODE SEARCH (GitHub Code) -->
+      <article class="it-result" data-type="code">
+        <div class="result-head">
+          <span class="source-icon searchcode">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </span>
+          <div>
+            <strong>GitHub Code</strong>
+            <span>github.com › tiangolo/fastapi › fastapi/security/oauth2.py:142</span>
+          </div>
+          <button class="result-menu-btn" type="button" aria-label="Result actions">•••</button>
+        </div>
+
+        <h2>
+          <a href="#">OAuth2PasswordBearer in fastapi/security/oauth2.py</a>
+          <span class="badge badge-code">Code</span>
+        </h2>
+
+        <div class="code-card">
+          <div class="code-card-header">
+            <span class="code-filepath">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <span>fastapi / security / oauth2.py</span>
+            </span>
+            <span class="code-range-pill">Lines 142–159 · Python</span>
+            <button class="copy-btn" type="button" data-copy="class OAuth2PasswordBearer(OAuth2):
+    def __init__(
+        self,
+        tokenUrl: str,
+        scheme_name: Optional[str] = None,
+        scopes: Optional[Dict[str, str]] = None,
+        description: Optional[str] = None,
+        auto_error: bool = True,
+    ):
+        if not scopes:
+            scopes = {}
+        flows = OAuthFlowsModel(password={&quot;tokenUrl&quot;: tokenUrl, &quot;scopes&quot;: scopes})
+        super().__init__(
+            flows=flows,
+            scheme_name=scheme_name,
+            description=description,
+            auto_error=auto_error,
+        )" aria-label="Copy code snippet">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              <span>Copy snippet</span>
+            </button>
+          </div>
+
+          <pre class="code-snippet"><table class="code-table"><tbody>
+<tr><td class="line-num">142</td><td class="line-code"><span class="syn-kwd">class</span> <span class="syn-cls code-match">OAuth2PasswordBearer</span>(OAuth2):</td></tr>
+<tr><td class="line-num">143</td><td class="line-code">    <span class="syn-kwd">def</span> <span class="syn-fun">__init__</span>(</td></tr>
+<tr><td class="line-num">144</td><td class="line-code">        <span class="syn-num">self</span>,</td></tr>
+<tr><td class="line-num">145</td><td class="line-code">        <span class="code-match">tokenUrl</span>: <span class="syn-typ">str</span>,</td></tr>
+<tr><td class="line-num">146</td><td class="line-code">        scheme_name: Optional[<span class="syn-typ">str</span>] = <span class="syn-num">None</span>,</td></tr>
+<tr><td class="line-num">147</td><td class="line-code">        scopes: Optional[Dict[<span class="syn-typ">str</span>, <span class="syn-typ">str</span>]] = <span class="syn-num">None</span>,</td></tr>
+<tr><td class="line-num">148</td><td class="line-code">        description: Optional[<span class="syn-typ">str</span>] = <span class="syn-num">None</span>,</td></tr>
+<tr><td class="line-num">149</td><td class="line-code">        auto_error: <span class="syn-typ">bool</span> = <span class="syn-num">True</span>,</td></tr>
+<tr><td class="line-num">150</td><td class="line-code">    ):</td></tr>
+<tr><td class="line-num">151</td><td class="line-code">        <span class="syn-kwd">if not</span> scopes:</td></tr>
+<tr><td class="line-num">152</td><td class="line-code">            scopes = {}</td></tr>
+<tr><td class="line-num">153</td><td class="line-code">        flows = OAuthFlowsModel(password={<span class="syn-str">"tokenUrl"</span>: tokenUrl, <span class="syn-str">"scopes"</span>: scopes})</td></tr>
+<tr><td class="line-num">154</td><td class="line-code">        <span class="syn-kwd">super</span>().__init__(</td></tr>
+<tr><td class="line-num">155</td><td class="line-code">            flows=flows,</td></tr>
+<tr><td class="line-num">156</td><td class="line-code">            scheme_name=scheme_name,</td></tr>
+<tr><td class="line-num">157</td><td class="line-code">            description=description,</td></tr>
+<tr><td class="line-num">158</td><td class="line-code">            auto_error=auto_error,</td></tr>
+<tr><td class="line-num">159</td><td class="line-code">        )</td></tr>
+          </tbody></table></pre>
+
+          <div class="code-card-footer">
+            <span>Defined in <code>fastapi.security.oauth2</code></span>
+            <button class="code-expand-btn" type="button">Show 16 more lines ⌄</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Inline Repositories Pack (like DDG media pack) -->
+      <section class="media-pack repos-pack" aria-labelledby="repos-pack-title">
+        <div class="section-heading">
+          <h2 id="repos-pack-title"><span aria-hidden="true">▧</span> Repositories related to <strong>fastapi auth</strong></h2>
+          <a href="#repos">view all repos ›</a>
+        </div>
+        <div class="card-grid-4">
+          <a class="repo-pack-card" href="https://github.com/fastapi-users/fastapi-users">
+            <div class="pack-card-top">
+              <div class="pack-card-title">
+                <span>fastapi-users</span>
+                <span class="badge badge-repo">★ 5.8k</span>
+              </div>
+              <p class="pack-card-desc">Ready-to-use and customizable user management and auth for FastAPI.</p>
+            </div>
+            <div class="pack-card-bottom">
+              <span>● Python</span>
+              <span>MIT</span>
+            </div>
+          </a>
+
+          <a class="repo-pack-card" href="https://github.com/koxudaxi/fastapi-code-generator">
+            <div class="pack-card-top">
+              <div class="pack-card-title">
+                <span>fastapi-code-generator</span>
+                <span class="badge badge-repo">★ 2.4k</span>
+              </div>
+              <p class="pack-card-desc">Code generator creates FastAPI app and Pydantic models from OpenAPI specs.</p>
+            </div>
+            <div class="pack-card-bottom">
+              <span>● Python</span>
+              <span>MIT</span>
+            </div>
+          </a>
+
+          <a class="repo-pack-card" href="https://github.com/jpadilla/pyjwt">
+            <div class="pack-card-top">
+              <div class="pack-card-title">
+                <span>pyjwt</span>
+                <span class="badge badge-repo">★ 5.3k</span>
+              </div>
+              <p class="pack-card-desc">JSON Web Token implementation in Python. RFC 7519 compliant with crypto support.</p>
+            </div>
+            <div class="pack-card-bottom">
+              <span>● Python</span>
+              <span>MIT</span>
+            </div>
+          </a>
+
+          <a class="repo-pack-card" href="https://github.com/dmontagu/fastapi-utils">
+            <div class="pack-card-top">
+              <div class="pack-card-title">
+                <span>fastapi-utils</span>
+                <span class="badge badge-repo">★ 1.9k</span>
+              </div>
+              <p class="pack-card-desc">Reusable utilities for FastAPI: class-based views, timing middleware, routers.</p>
+            </div>
+            <div class="pack-card-bottom">
+              <span>● Python</span>
+              <span>MIT</span>
+            </div>
+          </a>
+        </div>
+        <a class="more-media" href="#repos"><span>More repositories</span><span aria-hidden="true">›</span></a>
+      </section>
+
+      <!-- Result 5: PACKAGE (PyPI pyjwt) -->
+      <article class="it-result" data-type="packages">
+        <div class="result-head">
+          <span class="source-icon pypi">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 9.4 7.55 4.24a1.79 1.79 0 0 0-1.8 0l-4 2.31a1.8 1.8 0 0 0-.9 1.56v4.61a1.8 1.8 0 0 0 .9 1.56l4 2.31c.56.32 1.25.32 1.8 0l8.95-5.17a1.8 1.8 0 0 0 .9-1.56V5.25a1.8 1.8 0 0 0-.9-1.56L14 2.2a1.8 1.8 0 0 0-1.8 0L9.85 3.56"/></svg>
+          </span>
+          <div>
+            <strong>PyPI</strong>
+            <span>pypi.org › project › pyjwt</span>
+          </div>
+          <button class="result-menu-btn" type="button" aria-label="Result actions">•••</button>
+        </div>
+
+        <h2>
+          <a href="https://pypi.org/project/pyjwt/">pyjwt</a>
+          <span class="badge badge-package">Package</span>
+          <span class="version-pill">v2.10.1</span>
+        </h2>
+
+        <p class="result-snippet">
+          JSON Web Token implementation in Python with support for HMAC (HS256, HS384, HS512), RSA, ECDSA, Ed25519, and JWK token formats. Primary cryptographic backend for FastAPI JWT security.
+        </p>
+
+        <div class="package-box">
+          <div class="package-install-row">
+            <div class="install-command">
+              <span class="cmd-prompt">$</span>
+              <code>pip install &quot;pyjwt[crypto]&quot;</code>
+            </div>
+            <button class="copy-btn" type="button" data-copy="pip install &quot;pyjwt[crypto]&quot;" aria-label="Copy install command">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              <span>Copy</span>
+            </button>
+          </div>
+
+          <div class="package-specs-grid">
+            <div class="spec-item">
+              <dt>Version</dt>
+              <dd>2.10.1</dd>
+            </div>
+            <div class="spec-item">
+              <dt>License</dt>
+              <dd>MIT</dd>
+            </div>
+            <div class="spec-item">
+              <dt>Maintainer</dt>
+              <dd>José Padilla (@jpadilla)</dd>
+            </div>
+            <div class="spec-item">
+              <dt>Monthly Downloads</dt>
+              <dd><strong>94,300,000</strong></dd>
+            </div>
+            <div class="spec-item">
+              <dt>Python Version</dt>
+              <dd>&gt;= 3.9</dd>
+            </div>
+            <div class="spec-item">
+              <dt>Crypto Backend</dt>
+              <dd>cryptography &gt;= 3.4.0</dd>
+            </div>
+          </div>
+
+          <div class="package-links-row">
+            <a href="https://pypi.org/project/pyjwt/">PyPI Overview ↗</a>
+            <a href="https://pyjwt.readthedocs.io/">Documentation ↗</a>
+            <a href="https://github.com/jpadilla/pyjwt">GitHub Repository ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Result 6: Q&A (Stack Overflow) -->
+      <article class="it-result" data-type="qa">
+        <div class="result-head">
+          <span class="source-icon stackoverflow">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+          </span>
+          <div>
+            <strong>Stack Overflow</strong>
+            <span>stackoverflow.com › questions › 67352341</span>
+          </div>
+          <button class="result-menu-btn" type="button" aria-label="Result actions">•••</button>
+        </div>
+
+        <div class="qa-grid">
+          <div class="qa-metrics">
+            <div class="qa-metric-box">
+              <span class="metric-val">+128</span>
+              <span class="metric-lbl">votes</span>
+            </div>
+            <div class="qa-metric-box is-accepted">
+              <span class="metric-val">4</span>
+              <span class="metric-lbl">✓ accepted</span>
+            </div>
+          </div>
+
+          <div class="qa-main">
+            <h2>
+              <a href="#">FastAPI OAuth2PasswordBearer returns 401 Unauthorized with valid token</a>
+              <span class="badge badge-qa">Q&amp;A</span>
+            </h2>
+
+            <p class="result-snippet">
+              My client sends <code>Authorization: Bearer &lt;token&gt;</code> to the <code>/users/me</code> endpoint, but FastAPI keeps throwing 401 Unauthorized before invoking my route dependency handler.
+            </p>
+
+            <div class="qa-accepted-box">
+              <div class="qa-accepted-title">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Accepted answer by encode_enthusiast · 156 upvotes</span>
+              </div>
+              <p>Verify that your <code>tokenUrl</code> parameter exactly matches your token endpoint route including or excluding trailing slashes. If you defined <code>@app.post("/token/")</code>, passing <code>tokenUrl="token"</code> triggers a redirect that drops the Authorization header.</p>
+            </div>
+
+            <div class="qa-footer-meta">
+              <div class="qa-tags">
+                <a class="tag-pill" href="#">fastapi</a>
+                <a class="tag-pill" href="#">oauth2</a>
+                <a class="tag-pill" href="#">http-headers</a>
+                <a class="tag-pill" href="#">python</a>
+              </div>
+              <span>asked May 2, 2021 by dev_vikram · answered May 2, 2021</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Result 7: SOFTWARE WIKI (Arch Linux Wiki) -->
+      <article class="it-result" data-type="wikis">
+        <div class="result-head">
+          <span class="source-icon arch">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 20 8-16 8 16-4-3-4 1-4-1z"/></svg>
+          </span>
+          <div>
+            <strong>ArchWiki</strong>
+            <span>wiki.archlinux.org › title › FastAPI</span>
+          </div>
+          <button class="result-menu-btn" type="button" aria-label="Result actions">•••</button>
+        </div>
+
+        <h2>
+          <a href="https://wiki.archlinux.org/title/FastAPI">FastAPI - ArchWiki</a>
+          <span class="badge badge-wiki">Wiki</span>
+        </h2>
+
+        <p class="result-snippet">
+          FastAPI is a modern, high-performance web framework for building APIs with Python. The package <code>python-fastapi</code> is available in the official Extra repository with production setup guides for Uvicorn systemd services and Nginx SSL reverse proxies.
+        </p>
+
+        <div class="repo-quick-actions">
+          <div class="clone-box">
+            <code>sudo pacman -S python-fastapi python-uvicorn</code>
+            <button class="copy-btn" type="button" data-copy="sudo pacman -S python-fastapi python-uvicorn" aria-label="Copy pacman command">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              <span>Copy</span>
+            </button>
+          </div>
+          <div class="repo-sublinks">
+            <a href="#">1. Installation</a>
+            <span>·</span>
+            <a href="#">2. Systemd service</a>
+            <span>·</span>
+            <a href="#">3. Nginx reverse proxy</a>
+            <span>·</span>
+            <a href="#">4. Security guidelines</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Result 8: CODE SEARCH (Full Stack FastAPI Template) -->
+      <article class="it-result" data-type="code">
+        <div class="result-head">
+          <span class="source-icon searchcode">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </span>
+          <div>
+            <strong>GitHub Code</strong>
+            <span>github.com › tiangolo/full-stack-fastapi-template › backend/app/core/security.py:22</span>
+          </div>
+          <button class="result-menu-btn" type="button" aria-label="Result actions">•••</button>
+        </div>
+
+        <h2>
+          <a href="#">create_access_token in backend/app/core/security.py</a>
+          <span class="badge badge-code">Code</span>
+        </h2>
+
+        <div class="code-card">
+          <div class="code-card-header">
+            <span class="code-filepath">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <span>backend / app / core / security.py</span>
+            </span>
+            <span class="code-range-pill">Lines 22–34 · Python</span>
+            <button class="copy-btn" type="button" data-copy="def create_access_token(subject: str | Any, expires_delta: timedelta | None = None) -> str:
+    if expires_delta:
+        expire = datetime.now(timezone.utc) + expires_delta
+    else:
+        expire = datetime.now(timezone.utc) + timedelta(
+            minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES
+        )
+    to_encode = {&quot;exp&quot;: expire, &quot;sub&quot;: str(subject)}
+    encoded_jwt = jwt.encode(to_encode, settings.SECRET_KEY, algorithm=security.ALGORITHM)
+    return encoded_jwt
+
+def verify_password(plain_password: str, hashed_password: str) -> bool:
+    return pwd_context.verify(plain_password, hashed_password)" aria-label="Copy code snippet">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              <span>Copy snippet</span>
+            </button>
+          </div>
+
+          <pre class="code-snippet"><table class="code-table"><tbody>
+<tr><td class="line-num">22</td><td class="line-code"><span class="syn-kwd">def</span> <span class="syn-fun">create_access_token</span>(subject: <span class="syn-typ">str</span> | Any, expires_delta: timedelta | <span class="syn-num">None</span> = <span class="syn-num">None</span>) -&gt; <span class="syn-typ">str</span>:</td></tr>
+<tr><td class="line-num">23</td><td class="line-code">    <span class="syn-kwd">if</span> expires_delta:</td></tr>
+<tr><td class="line-num">24</td><td class="line-code">        expire = datetime.now(timezone.utc) + expires_delta</td></tr>
+<tr><td class="line-num">25</td><td class="line-code">    <span class="syn-kwd">else</span>:</td></tr>
+<tr><td class="line-num">26</td><td class="line-code">        expire = datetime.now(timezone.utc) + timedelta(</td></tr>
+<tr><td class="line-num">27</td><td class="line-code">            minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES</td></tr>
+<tr><td class="line-num">28</td><td class="line-code">        )</td></tr>
+<tr><td class="line-num">29</td><td class="line-code">    to_encode = {<span class="syn-str">"exp"</span>: expire, <span class="syn-str">"sub"</span>: <span class="syn-typ">str</span>(subject)}</td></tr>
+<tr><td class="line-num">30</td><td class="line-code">    encoded_jwt = <span class="code-match">jwt.encode</span>(to_encode, settings.SECRET_KEY, algorithm=security.ALGORITHM)</td></tr>
+<tr><td class="line-num">31</td><td class="line-code">    <span class="syn-kwd">return</span> encoded_jwt</td></tr>
+<tr><td class="line-num">32</td><td class="line-code"></td></tr>
+<tr><td class="line-num">33</td><td class="line-code"><span class="syn-kwd">def</span> <span class="syn-fun">verify_password</span>(plain_password: <span class="syn-typ">str</span>, hashed_password: <span class="syn-typ">str</span>) -&gt; <span class="syn-typ">bool</span>:</td></tr>
+<tr><td class="line-num">34</td><td class="line-code">    <span class="syn-kwd">return</span> pwd_context.verify(plain_password, hashed_password)</td></tr>
+          </tbody></table></pre>
+
+          <div class="code-card-footer">
+            <span>Repository: <code>tiangolo/full-stack-fastapi-template</code></span>
+            <button class="code-expand-btn" type="button">Show 14 more lines ⌄</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Inline Packages Pack (like DDG media pack) -->
+      <section class="media-pack packages-pack" aria-labelledby="pkgs-pack-title">
+        <div class="section-heading">
+          <h2 id="pkgs-pack-title"><span aria-hidden="true">📦</span> Packages related to <strong>fastapi auth</strong></h2>
+          <a href="#packages">view all packages ›</a>
+        </div>
+        <div class="card-grid-4">
+          <a class="pkg-pack-card" href="https://pypi.org/project/python-jose/">
+            <div class="pack-card-top">
+              <div class="pack-card-title">
+                <span>python-jose</span>
+                <span class="badge badge-package">PyPI</span>
+              </div>
+              <p class="pack-card-desc">JOSE implementation in Python for signing and verifying tokens.</p>
+              <div class="pack-card-cmd">pip install python-jose[cryptography]</div>
+            </div>
+            <div class="pack-card-bottom">
+              <span>v3.3.0</span>
+              <span>MIT</span>
+            </div>
+          </a>
+
+          <a class="pkg-pack-card" href="https://pypi.org/project/passlib/">
+            <div class="pack-card-top">
+              <div class="pack-card-title">
+                <span>passlib</span>
+                <span class="badge badge-package">PyPI</span>
+              </div>
+              <p class="pack-card-desc">Password hashing library with bcrypt and argon2 support.</p>
+              <div class="pack-card-cmd">pip install passlib[bcrypt]</div>
+            </div>
+            <div class="pack-card-bottom">
+              <span>v1.7.4</span>
+              <span>BSD-3-Clause</span>
+            </div>
+          </a>
+
+          <a class="pkg-pack-card" href="https://pypi.org/project/python-multipart/">
+            <div class="pack-card-top">
+              <div class="pack-card-title">
+                <span>python-multipart</span>
+                <span class="badge badge-package">PyPI</span>
+              </div>
+              <p class="pack-card-desc">Streaming multipart parser required for OAuth2 form data logins.</p>
+              <div class="pack-card-cmd">pip install python-multipart</div>
+            </div>
+            <div class="pack-card-bottom">
+              <span>v0.0.20</span>
+              <span>Apache-2.0</span>
+            </div>
+          </a>
+
+          <a class="pkg-pack-card" href="https://pypi.org/project/argon2-cffi/">
+            <div class="pack-card-top">
+              <div class="pack-card-title">
+                <span>argon2-cffi</span>
+                <span class="badge badge-package">PyPI</span>
+              </div>
+              <p class="pack-card-desc">Secure password hashing using Argon2 algorithm for FastAPI.</p>
+              <div class="pack-card-cmd">pip install argon2-cffi</div>
+            </div>
+            <div class="pack-card-bottom">
+              <span>v23.1.0</span>
+              <span>MIT</span>
+            </div>
+          </a>
+        </div>
+        <a class="more-media" href="#packages"><span>More packages</span><span aria-hidden="true">›</span></a>
+      </section>
+
+      <!-- Result 9: Q&A (Server Fault) -->
+      <article class="it-result" data-type="qa">
+        <div class="result-head">
+          <span class="source-icon serverfault">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M7 8h10"/><path d="M7 12h10"/><path d="M7 16h10"/></svg>
+          </span>
+          <div>
+            <strong>Server Fault</strong>
+            <span>serverfault.com › questions › 1092834</span>
+          </div>
+          <button class="result-menu-btn" type="button" aria-label="Result actions">•••</button>
+        </div>
+
+        <div class="qa-grid">
+          <div class="qa-metrics">
+            <div class="qa-metric-box">
+              <span class="metric-val">+84</span>
+              <span class="metric-lbl">votes</span>
+            </div>
+            <div class="qa-metric-box is-accepted">
+              <span class="metric-val">3</span>
+              <span class="metric-lbl">✓ accepted</span>
+            </div>
+          </div>
+
+          <div class="qa-main">
+            <h2>
+              <a href="#">Hardening Nginx reverse proxy headers for FastAPI OAuth2 and SSL termination</a>
+              <span class="badge badge-qa">Q&amp;A</span>
+            </h2>
+
+            <p class="result-snippet">
+              When terminating SSL at Nginx in front of a Uvicorn/FastAPI instance, OAuth2 redirect URLs generate <code>http://</code> scheme instead of <code>https://</code>. Which headers must be configured?
+            </p>
+
+            <div class="qa-accepted-box">
+              <div class="qa-accepted-title">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Accepted answer by sysadmin_dan · 96 upvotes</span>
+              </div>
+              <p>Pass <code>proxy_set_header X-Forwarded-Proto $scheme;</code> and <code>proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</code> in your Nginx location block, and start Uvicorn with the <code>--proxy-headers</code> flag.</p>
+            </div>
+
+            <div class="qa-footer-meta">
+              <div class="qa-tags">
+                <a class="tag-pill" href="#">nginx</a>
+                <a class="tag-pill" href="#">fastapi</a>
+                <a class="tag-pill" href="#">reverse-proxy</a>
+                <a class="tag-pill" href="#">ssl</a>
+              </div>
+              <span>asked Jan 12, 2022 · answered Jan 12, 2022</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Result 10: REPOSITORY (fastapi-users) -->
+      <article class="it-result" data-type="repos">
+        <div class="result-head">
+          <span class="source-icon github">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </span>
+          <div>
+            <strong>GitHub</strong>
+            <span>github.com › fastapi-users › fastapi-users</span>
+          </div>
+          <button class="result-menu-btn" type="button" aria-label="Result actions">•••</button>
+        </div>
+
+        <h2>
+          <a href="https://github.com/fastapi-users/fastapi-users">fastapi-users/fastapi-users</a>
+          <span class="badge badge-repo">Repository</span>
+          <span class="version-pill">v13.0.0</span>
+        </h2>
+
+        <p class="result-snippet">
+          Ready-to-use and customizable user management and authentication system for FastAPI. Features registration, password reset, email verification, OAuth2 social logins, and pluggable ORM adapters (SQLAlchemy, Tortoise, Beanie).
+        </p>
+
+        <div class="repo-meta-bar">
+          <span class="repo-lang">
+            <span class="lang-dot lang-python"></span>
+            <span>Python (98.4%)</span>
+          </span>
+          <span class="repo-stat">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <strong>5,820</strong> stars
+          </span>
+          <span class="repo-stat">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><path d="M18 9v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V9"/><path d="M12 12v3"/></svg>
+            <strong>514</strong> forks
+          </span>
+          <span>MIT license</span>
+          <span>Updated yesterday</span>
+        </div>
+
+        <div class="repo-quick-actions">
+          <div class="clone-box">
+            <code>git clone https://github.com/fastapi-users/fastapi-users.git</code>
+            <button class="copy-btn" type="button" data-copy="git clone https://github.com/fastapi-users/fastapi-users.git" aria-label="Copy clone command">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              <span>Copy</span>
+            </button>
+          </div>
+          <div class="repo-sublinks">
+            <a href="#">Docs</a>
+            <span>·</span>
+            <a href="#">SQLAlchemy Guide</a>
+            <span>·</span>
+            <a href="#">Releases</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Related Searches for Developer Queries -->
+    <section class="related-searches" aria-labelledby="related-title">
+      <h2 id="related-title">Searches related to <strong>fastapi auth</strong></h2>
+      <div>
+        <a href="#"><span aria-hidden="true">⌕</span> fastapi jwt refresh token example</a>
+        <a href="#"><span aria-hidden="true">⌕</span> fastapi oauth2 password bearer with cookies</a>
+        <a href="#"><span aria-hidden="true">⌕</span> python-jose vs pyjwt fastapi</a>
+        <a href="#"><span aria-hidden="true">⌕</span> fastapi authentication best practices</a>
+        <a href="#"><span aria-hidden="true">⌕</span> fastapi users sqlalchemy async tutorial</a>
+        <a href="#"><span aria-hidden="true">⌕</span> fastapi rate limit auth endpoints</a>
+      </div>
+    </section>
+
+    <a class="more-results" href="#page-2">More IT results</a>
+  </main>
+
+  <footer class="site-footer">
+    <span>Powered by SearXNG 2026.8.30 · Engines: GitHub, PyPI, Stack Overflow, Searchcode, ArchWiki, crates.io</span>
+    <nav aria-label="Footer">
+      <a href="#source">source</a>
+      <a href="#issues">issues</a>
+      <a href="#stats">engine stats</a>
+      <a href="#preferences">preferences</a>
+    </nav>
+  </footer>
+</body>
+</html>

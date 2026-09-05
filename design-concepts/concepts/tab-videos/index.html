@@ -1,0 +1,696 @@
+<!doctype html>
+<html lang="en" data-theme="mocha">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>elephants - Videos | SearXNG</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#results">Skip to results</a>
+
+  <header class="site-header">
+    <div class="header-row">
+      <a class="brand" href="../05-ddg-results/index.html" aria-label="SearXNG home">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="13" cy="13" r="8.5"/><path d="m19.5 19.5 7 7"/></svg>
+        <span>searxng</span>
+      </a>
+
+      <form class="search-form" role="search">
+        <label class="sr-only" for="search-input">Search</label>
+        <input id="search-input" name="q" type="search" value="elephants" autocomplete="off" spellcheck="false">
+        <button class="search-button" type="submit" aria-label="Search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.7" cy="10.7" r="6.7"/><path d="m16 16 5 5"/></svg>
+        </button>
+        <kbd class="focus-hint" aria-hidden="true">/</kbd>
+      </form>
+
+      <nav class="utility-nav" aria-label="Site">
+        <a href="#about">about</a>
+        <a href="#preferences" aria-label="Preferences" title="Preferences">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/><path d="M19.4 15a1.8 1.8 0 0 0 .36 2l.06.06-2.76 2.76-.06-.06a1.8 1.8 0 0 0-2-.36 1.8 1.8 0 0 0-1.1 1.65V21H10v-.09A1.8 1.8 0 0 0 8.9 19.3a1.8 1.8 0 0 0-2 .36l-.06.06-2.76-2.76.06-.06a1.8 1.8 0 0 0 .36-2A1.8 1.8 0 0 0 2.85 14H2v-4h.85A1.8 1.8 0 0 0 4.5 8.9a1.8 1.8 0 0 0-.36-2l-.06-.06 2.76-2.76.06.06a1.8 1.8 0 0 0 2 .36A1.8 1.8 0 0 0 10 2.85V2h4v.85a1.8 1.8 0 0 0 1.1 1.65 1.8 1.8 0 0 0 2-.36l.06-.06 2.76 2.76-.06.06a1.8 1.8 0 0 0-.36 2 1.8 1.8 0 0 0 1.65 1.1H22v4h-.85A1.8 1.8 0 0 0 19.4 15Z"/></svg>
+        </a>
+        <button class="theme-toggle" type="button" aria-label="Switch to light theme" title="Toggle theme (Alt+T)">
+          <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.3A8.4 8.4 0 0 1 8.7 4 8.5 8.5 0 1 0 20 15.3Z"/></svg>
+          <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"/></svg>
+        </button>
+      </nav>
+    </div>
+
+    <nav class="category-nav" aria-label="Search categories">
+      <a href="../05-ddg-results/index.html">general</a>
+      <a href="../05-ddg-results/index.html#images">images</a>
+      <a class="active" href="index.html" aria-current="page">videos</a>
+      <a href="../tab-news/index.html">news</a>
+      <a href="../tab-map/index.html">map</a>
+      <a href="../tab-music/index.html">music</a>
+      <a href="../tab-it/index.html">it</a>
+      <a href="../tab-science/index.html">science</a>
+      <a href="../tab-files/index.html">files</a>
+      <a href="../tab-social-media/index.html">social media</a>
+      <button class="filter-button" id="toggle-filter-drawer" type="button" aria-expanded="false" aria-controls="filter-drawer">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M7 12h10M10 17h4"/></svg>
+        filters
+      </button>
+    </nav>
+  </header>
+
+  <main class="results-shell" id="results">
+    <!-- Filter Strip with quick dropdowns and view toggles -->
+    <div class="filter-strip" aria-label="Search filters">
+      <span class="results-stats">84 video results</span>
+      <span aria-hidden="true" class="stats-sep">·</span>
+      <span class="results-stats">1.4s</span>
+
+      <div class="filter-controls">
+        <div class="dropdown-filter" data-filter="duration">
+          <button type="button" class="filter-dropdown-btn" aria-haspopup="listbox" aria-expanded="false">
+            <span class="filter-label">duration:</span> <strong class="filter-val">any</strong> <span class="caret" aria-hidden="true">⌄</span>
+          </button>
+          <ul class="filter-menu" role="listbox" hidden>
+            <li role="option" aria-selected="true" data-value="any">any duration</li>
+            <li role="option" aria-selected="false" data-value="short">short (&lt; 4 min)</li>
+            <li role="option" aria-selected="false" data-value="medium">medium (4–20 min)</li>
+            <li role="option" aria-selected="false" data-value="long">long (&gt; 20 min)</li>
+          </ul>
+        </div>
+
+        <div class="dropdown-filter" data-filter="time">
+          <button type="button" class="filter-dropdown-btn" aria-haspopup="listbox" aria-expanded="false">
+            <span class="filter-label">time:</span> <strong class="filter-val">any time</strong> <span class="caret" aria-hidden="true">⌄</span>
+          </button>
+          <ul class="filter-menu" role="listbox" hidden>
+            <li role="option" aria-selected="true" data-value="any">any time</li>
+            <li role="option" aria-selected="false" data-value="day">past 24 hours</li>
+            <li role="option" aria-selected="false" data-value="week">past week</li>
+            <li role="option" aria-selected="false" data-value="month">past month</li>
+            <li role="option" aria-selected="false" data-value="year">past year</li>
+          </ul>
+        </div>
+
+        <div class="dropdown-filter" data-filter="quality">
+          <button type="button" class="filter-dropdown-btn" aria-haspopup="listbox" aria-expanded="false">
+            <span class="filter-label">quality:</span> <strong class="filter-val">all</strong> <span class="caret" aria-hidden="true">⌄</span>
+          </button>
+          <ul class="filter-menu" role="listbox" hidden>
+            <li role="option" aria-selected="true" data-value="any">all qualities</li>
+            <li role="option" aria-selected="false" data-value="hd">HD (1080p+)</li>
+            <li role="option" aria-selected="false" data-value="4k">4K Ultra HD</li>
+          </ul>
+        </div>
+
+        <div class="dropdown-filter" data-filter="source">
+          <button type="button" class="filter-dropdown-btn" aria-haspopup="listbox" aria-expanded="false">
+            <span class="filter-label">source:</span> <strong class="filter-val">all</strong> <span class="caret" aria-hidden="true">⌄</span>
+          </button>
+          <ul class="filter-menu" role="listbox" hidden>
+            <li role="option" aria-selected="true" data-value="any">all sources</li>
+            <li role="option" aria-selected="false" data-value="youtube">YouTube</li>
+            <li role="option" aria-selected="false" data-value="vimeo">Vimeo</li>
+            <li role="option" aria-selected="false" data-value="peertube">PeerTube</li>
+            <li role="option" aria-selected="false" data-value="dailymotion">Dailymotion</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="view-switch" role="group" aria-label="View mode">
+        <button type="button" class="view-btn active" data-view="grid" title="Grid view" aria-label="Grid view" aria-pressed="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+        </button>
+        <button type="button" class="view-btn" data-view="list" title="List view" aria-label="List view" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Expandable Filter Drawer -->
+    <section class="filter-drawer" id="filter-drawer" hidden aria-label="Advanced video search filters">
+      <div class="drawer-grid">
+        <div class="drawer-col">
+          <span class="drawer-heading">Duration</span>
+          <div class="chip-group">
+            <button type="button" class="chip active" data-filter-group="duration" data-val="any">All</button>
+            <button type="button" class="chip" data-filter-group="duration" data-val="short">&lt; 4 min</button>
+            <button type="button" class="chip" data-filter-group="duration" data-val="medium">4–20 min</button>
+            <button type="button" class="chip" data-filter-group="duration" data-val="long">&gt; 20 min</button>
+          </div>
+        </div>
+
+        <div class="drawer-col">
+          <span class="drawer-heading">Upload time</span>
+          <div class="chip-group">
+            <button type="button" class="chip active" data-filter-group="time" data-val="any">Any time</button>
+            <button type="button" class="chip" data-filter-group="time" data-val="day">Past 24h</button>
+            <button type="button" class="chip" data-filter-group="time" data-val="week">Past week</button>
+            <button type="button" class="chip" data-filter-group="time" data-val="month">Past month</button>
+            <button type="button" class="chip" data-filter-group="time" data-val="year">Past year</button>
+          </div>
+        </div>
+
+        <div class="drawer-col">
+          <span class="drawer-heading">Resolution</span>
+          <div class="chip-group">
+            <button type="button" class="chip active" data-filter-group="quality" data-val="any">All</button>
+            <button type="button" class="chip" data-filter-group="quality" data-val="hd">1080p HD</button>
+            <button type="button" class="chip" data-filter-group="quality" data-val="4k">4K UHD</button>
+          </div>
+        </div>
+
+        <div class="drawer-col">
+          <span class="drawer-heading">Active engines</span>
+          <div class="engine-pills">
+            <span class="engine-badge active">youtube</span>
+            <span class="engine-badge active">google videos</span>
+            <span class="engine-badge active">bing videos</span>
+            <span class="engine-badge active">vimeo</span>
+            <span class="engine-badge active">peertube</span>
+            <span class="engine-badge active">dailymotion</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Top Spotlight / Hero Video Result -->
+    <article class="spotlight-card" aria-label="Featured video result">
+      <div class="spotlight-thumb-wrap">
+        <img src="https://i.ytimg.com/vi/5Mn9UkKwQZI/hqdefault.jpg" alt="Giants of the Earth: The Majestic World of Elephants preview thumbnail">
+        <span class="badge-duration">51:18</span>
+        <span class="badge-quality">4K</span>
+        <button type="button" class="play-trigger" data-video-id="5Mn9UkKwQZI" data-title="Giants of the Earth: The Majestic World of Elephants | Full Documentary" data-channel="Nature Documentaries" data-platform="YouTube" data-views="3.4M views" data-date="1 year ago" aria-label="Watch Giants of the Earth in embedded player">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="7 4 19 12 7 20 7 4"/></svg>
+        </button>
+      </div>
+
+      <div class="spotlight-content">
+        <div class="spotlight-top">
+          <div class="channel-line">
+            <span class="channel-icon">N</span>
+            <div class="channel-text">
+              <span class="channel-name">Nature Documentaries</span>
+              <span class="verified-icon" title="Verified channel">✓</span>
+              <span class="platform-tag">YouTube</span>
+            </div>
+          </div>
+          <div class="engine-tag-list">
+            <span class="engine-tag">youtube</span>
+            <span class="engine-tag">google videos</span>
+          </div>
+        </div>
+
+        <h2 class="spotlight-title">
+          <a href="https://www.youtube.com/watch?v=5Mn9UkKwQZI" target="_blank" rel="noreferrer">Giants of the Earth: The Majestic World of <strong>Elephants</strong> | Full Documentary</a>
+        </h2>
+
+        <div class="spotlight-meta">
+          <span>3.4M views</span>
+          <span aria-hidden="true">·</span>
+          <span>1 year ago</span>
+          <span aria-hidden="true">·</span>
+          <span class="spotlight-highlight">Full length</span>
+        </div>
+
+        <p class="spotlight-description">
+          Journey across the African savanna and the lush rainforests of Asia to witness the complex social structures, emotional intelligence, and enduring matriarchal bonds of <strong>elephants</strong>. High-resolution footage tracks annual migration routes and herd defence strategies.
+        </p>
+
+        <div class="key-moments">
+          <span class="moments-label">Key chapters:</span>
+          <div class="moments-chips">
+            <a href="#moment-1" class="moment-chip">00:00 Intro</a>
+            <a href="#moment-2" class="moment-chip">12:40 Matriarchal order</a>
+            <a href="#moment-3" class="moment-chip">28:15 Great drought crossing</a>
+            <a href="#moment-4" class="moment-chip">41:50 Conservation</a>
+          </div>
+        </div>
+
+        <div class="spotlight-actions">
+          <button type="button" class="action-btn primary play-trigger" data-video-id="5Mn9UkKwQZI" data-title="Giants of the Earth: The Majestic World of Elephants | Full Documentary" data-channel="Nature Documentaries" data-platform="YouTube" data-views="3.4M views" data-date="1 year ago">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="7 4 19 12 7 20 7 4"/></svg>
+            Watch preview
+          </button>
+          <a href="https://www.youtube.com/watch?v=5Mn9UkKwQZI" class="action-btn secondary" target="_blank" rel="noreferrer">
+            Open on YouTube
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Video Results Container (Grid or List view) -->
+    <section class="video-grid" id="video-results-container" data-view="grid" aria-label="Video search results">
+
+      <!-- Result 1 -->
+      <article class="video-card" data-duration="short" data-quality="hd" data-source="youtube">
+        <div class="video-thumb-wrap">
+          <img src="https://i.ytimg.com/vi/Aw6GkiCvcWs/hqdefault.jpg" alt="How elephant families communicate video preview" loading="lazy">
+          <span class="badge-duration">5:31</span>
+          <span class="badge-quality">HD</span>
+          <button type="button" class="play-trigger play-overlay" data-video-id="Aw6GkiCvcWs" data-title="How elephant families communicate across miles" data-channel="BBC Earth" data-platform="YouTube" data-views="1.8M views" data-date="2 years ago" aria-label="Play video: How elephant families communicate across miles">
+            <span class="play-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><polygon points="7 4 19 12 7 20 7 4"/></svg>
+            </span>
+          </button>
+        </div>
+        <div class="video-card-body">
+          <div class="video-meta-top">
+            <span class="channel-badge bbc">BBC</span>
+            <span class="channel-title">BBC Earth</span>
+            <span class="platform-badge">YouTube</span>
+            <span class="engine-name">youtube</span>
+          </div>
+          <h3 class="video-title">
+            <a href="https://www.youtube.com/watch?v=Aw6GkiCvcWs" target="_blank" rel="noreferrer">How <strong>elephant</strong> families communicate across miles</a>
+          </h3>
+          <div class="video-metrics">
+            <span>1.8M views</span>
+            <span aria-hidden="true">·</span>
+            <span>2 years ago</span>
+          </div>
+          <p class="video-snippet">
+            <strong>Elephants</strong> produce low-frequency infrasound calls that travel several kilometres through ground and air. Scientists decode seismic rumbles that coordinate distant herds.
+          </p>
+          <div class="video-card-footer">
+            <button type="button" class="inline-watch-btn play-trigger" data-video-id="Aw6GkiCvcWs" data-title="How elephant families communicate across miles" data-channel="BBC Earth" data-platform="YouTube" data-views="1.8M views" data-date="2 years ago">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="7 4 19 12 7 20 7 4"/></svg>
+              Watch preview
+            </button>
+            <a href="https://www.youtube.com/watch?v=Aw6GkiCvcWs" class="direct-link" title="Open on YouTube" target="_blank" rel="noreferrer">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Result 2 -->
+      <article class="video-card" data-duration="long" data-quality="4k" data-source="youtube">
+        <div class="video-thumb-wrap">
+          <img src="https://i.ytimg.com/vi/5Mn9UkKwQZI/hqdefault.jpg" alt="Secrets of the elephants preview" loading="lazy">
+          <span class="badge-duration">42:35</span>
+          <span class="badge-quality">4K</span>
+          <button type="button" class="play-trigger play-overlay" data-video-id="5Mn9UkKwQZI" data-title="Secrets of the Elephants: Desert Survivors" data-channel="National Geographic" data-platform="YouTube" data-views="920K views" data-date="8 months ago" aria-label="Play video: Secrets of the Elephants">
+            <span class="play-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><polygon points="7 4 19 12 7 20 7 4"/></svg>
+            </span>
+          </button>
+        </div>
+        <div class="video-card-body">
+          <div class="video-meta-top">
+            <span class="channel-badge natgeo">NG</span>
+            <span class="channel-title">National Geographic</span>
+            <span class="platform-badge">YouTube</span>
+            <span class="engine-name">google videos</span>
+          </div>
+          <h3 class="video-title">
+            <a href="https://www.youtube.com/watch?v=5Mn9UkKwQZI" target="_blank" rel="noreferrer">Secrets of the <strong>Elephants</strong>: Desert Survivors</a>
+          </h3>
+          <div class="video-metrics">
+            <span>920K views</span>
+            <span aria-hidden="true">·</span>
+            <span>8 months ago</span>
+          </div>
+          <p class="video-snippet">
+            In Namibia's arid Skeleton Coast, desert-adapted <strong>elephants</strong> travel hundreds of miles between secret springs, following mental maps handed down over centuries.
+          </p>
+          <div class="video-card-footer">
+            <button type="button" class="inline-watch-btn play-trigger" data-video-id="5Mn9UkKwQZI" data-title="Secrets of the Elephants: Desert Survivors" data-channel="National Geographic" data-platform="YouTube" data-views="920K views" data-date="8 months ago">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="7 4 19 12 7 20 7 4"/></svg>
+              Watch preview
+            </button>
+            <a href="https://www.youtube.com/watch?v=5Mn9UkKwQZI" class="direct-link" title="Open on YouTube" target="_blank" rel="noreferrer">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Result 3 -->
+      <article class="video-card" data-duration="medium" data-quality="hd" data-source="youtube">
+        <div class="video-thumb-wrap">
+          <img src="https://i.ytimg.com/vi/Aw6GkiCvcWs/hqdefault.jpg" alt="10 facts about elephants thumbnail" loading="lazy">
+          <span class="badge-duration">8:14</span>
+          <span class="badge-quality">HD</span>
+          <button type="button" class="play-trigger play-overlay" data-video-id="Aw6GkiCvcWs" data-title="10 Incredible Elephant Facts That Will Surprise You" data-channel="World Wildlife Fund" data-platform="YouTube" data-views="450K views" data-date="5 months ago" aria-label="Play video: 10 Incredible Elephant Facts">
+            <span class="play-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><polygon points="7 4 19 12 7 20 7 4"/></svg>
+            </span>
+          </button>
+        </div>
+        <div class="video-card-body">
+          <div class="video-meta-top">
+            <span class="channel-badge wwf">W</span>
+            <span class="channel-title">World Wildlife Fund</span>
+            <span class="platform-badge">YouTube</span>
+            <span class="engine-name">bing videos</span>
+          </div>
+          <h3 class="video-title">
+            <a href="https://www.youtube.com/watch?v=Aw6GkiCvcWs" target="_blank" rel="noreferrer">10 Incredible <strong>Elephant</strong> Facts That Will Surprise You</a>
+          </h3>
+          <div class="video-metrics">
+            <span>450K views</span>
+            <span aria-hidden="true">·</span>
+            <span>5 months ago</span>
+          </div>
+          <p class="video-snippet">
+            From self-awareness in mirrors to empathetic grieving rituals and tool usage, explore ten cognitive feats documented in African and Asian <strong>elephants</strong>.
+          </p>
+          <div class="video-card-footer">
+            <button type="button" class="inline-watch-btn play-trigger" data-video-id="Aw6GkiCvcWs" data-title="10 Incredible Elephant Facts That Will Surprise You" data-channel="World Wildlife Fund" data-platform="YouTube" data-views="450K views" data-date="5 months ago">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="7 4 19 12 7 20 7 4"/></svg>
+              Watch preview
+            </button>
+            <a href="https://www.youtube.com/watch?v=Aw6GkiCvcWs" class="direct-link" title="Open on YouTube" target="_blank" rel="noreferrer">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Result 4 -->
+      <article class="video-card" data-duration="medium" data-quality="hd" data-source="vimeo">
+        <div class="video-thumb-wrap">
+          <img src="https://i.ytimg.com/vi/5Mn9UkKwQZI/hqdefault.jpg" alt="Inside an Elephant Sanctuary thumbnail" loading="lazy">
+          <span class="badge-duration">18:45</span>
+          <span class="badge-quality">1080p</span>
+          <button type="button" class="play-trigger play-overlay" data-video-id="5Mn9UkKwQZI" data-title="Inside an Elephant Sanctuary: Rescuing Working Giants" data-channel="Elephant Nature Park" data-platform="Vimeo" data-views="310K views" data-date="1 year ago" aria-label="Play video: Inside an Elephant Sanctuary">
+            <span class="play-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><polygon points="7 4 19 12 7 20 7 4"/></svg>
+            </span>
+          </button>
+        </div>
+        <div class="video-card-body">
+          <div class="video-meta-top">
+            <span class="channel-badge vimeo">V</span>
+            <span class="channel-title">Elephant Nature Park</span>
+            <span class="platform-badge vimeo-pill">Vimeo</span>
+            <span class="engine-name">vimeo</span>
+          </div>
+          <h3 class="video-title">
+            <a href="#vimeo-link" target="_blank" rel="noreferrer">Inside an <strong>Elephant</strong> Sanctuary: Rescuing Working Giants</a>
+          </h3>
+          <div class="video-metrics">
+            <span>310K views</span>
+            <span aria-hidden="true">·</span>
+            <span>1 year ago</span>
+          </div>
+          <p class="video-snippet">
+            A quiet look inside the daily life of retired timber and tourist elephants finding peaceful rehabilitation in northern Thailand's forested river valley.
+          </p>
+          <div class="video-card-footer">
+            <button type="button" class="inline-watch-btn play-trigger" data-video-id="5Mn9UkKwQZI" data-title="Inside an Elephant Sanctuary: Rescuing Working Giants" data-channel="Elephant Nature Park" data-platform="Vimeo" data-views="310K views" data-date="1 year ago">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="7 4 19 12 7 20 7 4"/></svg>
+              Watch preview
+            </button>
+            <a href="#vimeo-link" class="direct-link" title="Open on Vimeo" target="_blank" rel="noreferrer">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Result 5 -->
+      <article class="video-card" data-duration="medium" data-quality="hd" data-source="youtube">
+        <div class="video-thumb-wrap">
+          <img src="https://i.ytimg.com/vi/Aw6GkiCvcWs/hqdefault.jpg" alt="African Forest Elephants preview" loading="lazy">
+          <span class="badge-duration">14:20</span>
+          <span class="badge-quality">HD</span>
+          <button type="button" class="play-trigger play-overlay" data-video-id="Aw6GkiCvcWs" data-title="African Forest Elephants: The Gardeners of the Congo Basin" data-channel="Smithsonian Channel" data-platform="YouTube" data-views="680K views" data-date="2 years ago" aria-label="Play video: African Forest Elephants">
+            <span class="play-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><polygon points="7 4 19 12 7 20 7 4"/></svg>
+            </span>
+          </button>
+        </div>
+        <div class="video-card-body">
+          <div class="video-meta-top">
+            <span class="channel-badge smithsonian">S</span>
+            <span class="channel-title">Smithsonian Channel</span>
+            <span class="platform-badge">YouTube</span>
+            <span class="engine-name">google videos</span>
+          </div>
+          <h3 class="video-title">
+            <a href="https://www.youtube.com/watch?v=Aw6GkiCvcWs" target="_blank" rel="noreferrer">African Forest <strong>Elephants</strong>: The Gardeners of the Congo Basin</a>
+          </h3>
+          <div class="video-metrics">
+            <span>680K views</span>
+            <span aria-hidden="true">·</span>
+            <span>2 years ago</span>
+          </div>
+          <p class="video-snippet">
+            Distinct from savanna cousins, African forest <strong>elephants</strong> maintain dense carbon-sequestering rainforests by dispersing slow-growing hardwood seeds across immense ranges.
+          </p>
+          <div class="video-card-footer">
+            <button type="button" class="inline-watch-btn play-trigger" data-video-id="Aw6GkiCvcWs" data-title="African Forest Elephants: The Gardeners of the Congo Basin" data-channel="Smithsonian Channel" data-platform="YouTube" data-views="680K views" data-date="2 years ago">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="7 4 19 12 7 20 7 4"/></svg>
+              Watch preview
+            </button>
+            <a href="https://www.youtube.com/watch?v=Aw6GkiCvcWs" class="direct-link" title="Open on YouTube" target="_blank" rel="noreferrer">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Result 6 -->
+      <article class="video-card" data-duration="short" data-quality="hd" data-source="youtube">
+        <div class="video-thumb-wrap">
+          <img src="https://i.ytimg.com/vi/5Mn9UkKwQZI/hqdefault.jpg" alt="Elephant calf takes first steps preview" loading="lazy">
+          <span class="badge-duration">3:45</span>
+          <span class="badge-quality">HD</span>
+          <button type="button" class="play-trigger play-overlay" data-video-id="5Mn9UkKwQZI" data-title="Elephant Calf Takes First Steps in the Maasai Mara" data-channel="WildEarth Live" data-platform="YouTube" data-views="1.2M views" data-date="3 weeks ago" aria-label="Play video: Elephant Calf Takes First Steps">
+            <span class="play-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><polygon points="7 4 19 12 7 20 7 4"/></svg>
+            </span>
+          </button>
+        </div>
+        <div class="video-card-body">
+          <div class="video-meta-top">
+            <span class="channel-badge wildearth">W</span>
+            <span class="channel-title">WildEarth Live</span>
+            <span class="platform-badge">YouTube</span>
+            <span class="engine-name">youtube</span>
+          </div>
+          <h3 class="video-title">
+            <a href="https://www.youtube.com/watch?v=5Mn9UkKwQZI" target="_blank" rel="noreferrer"><strong>Elephant</strong> Calf Takes First Steps in the Maasai Mara</a>
+          </h3>
+          <div class="video-metrics">
+            <span>1.2M views</span>
+            <span aria-hidden="true">·</span>
+            <span>3 weeks ago</span>
+          </div>
+          <p class="video-snippet">
+            A newborn savanna <strong>elephant</strong> calf tests its footing minutes after birth under the vigilant assistance of mother and older sister in the Kenyan reserve.
+          </p>
+          <div class="video-card-footer">
+            <button type="button" class="inline-watch-btn play-trigger" data-video-id="5Mn9UkKwQZI" data-title="Elephant Calf Takes First Steps in the Maasai Mara" data-channel="WildEarth Live" data-platform="YouTube" data-views="1.2M views" data-date="3 weeks ago">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="7 4 19 12 7 20 7 4"/></svg>
+              Watch preview
+            </button>
+            <a href="https://www.youtube.com/watch?v=5Mn9UkKwQZI" class="direct-link" title="Open on YouTube" target="_blank" rel="noreferrer">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Result 7 -->
+      <article class="video-card" data-duration="long" data-quality="hd" data-source="peertube">
+        <div class="video-thumb-wrap">
+          <img src="https://i.ytimg.com/vi/Aw6GkiCvcWs/hqdefault.jpg" alt="Why Asian elephants are becoming nocturnal thumbnail" loading="lazy">
+          <span class="badge-duration">26:10</span>
+          <span class="badge-quality">1080p</span>
+          <button type="button" class="play-trigger play-overlay" data-video-id="Aw6GkiCvcWs" data-title="Why Asian Elephants Are Becoming Nocturnal" data-channel="Terra Mater Factual" data-platform="PeerTube" data-views="185K views" data-date="4 months ago" aria-label="Play video: Why Asian Elephants Are Becoming Nocturnal">
+            <span class="play-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><polygon points="7 4 19 12 7 20 7 4"/></svg>
+            </span>
+          </button>
+        </div>
+        <div class="video-card-body">
+          <div class="video-meta-top">
+            <span class="channel-badge peertube">P</span>
+            <span class="channel-title">Terra Mater Factual</span>
+            <span class="platform-badge peertube-pill">PeerTube</span>
+            <span class="engine-name">peertube</span>
+          </div>
+          <h3 class="video-title">
+            <a href="#peertube-link" target="_blank" rel="noreferrer">Why Asian <strong>Elephants</strong> Are Becoming Nocturnal</a>
+          </h3>
+          <div class="video-metrics">
+            <span>185K views</span>
+            <span aria-hidden="true">·</span>
+            <span>4 months ago</span>
+          </div>
+          <p class="video-snippet">
+            GPS tracking across India and Sri Lanka shows how herds adjust foraging rhythms into darkness to avoid highways and expanding settlements.
+          </p>
+          <div class="video-card-footer">
+            <button type="button" class="inline-watch-btn play-trigger" data-video-id="Aw6GkiCvcWs" data-title="Why Asian Elephants Are Becoming Nocturnal" data-channel="Terra Mater Factual" data-platform="PeerTube" data-views="185K views" data-date="4 months ago">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="7 4 19 12 7 20 7 4"/></svg>
+              Watch preview
+            </button>
+            <a href="#peertube-link" class="direct-link" title="Open on PeerTube" target="_blank" rel="noreferrer">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Result 8 -->
+      <article class="video-card" data-duration="medium" data-quality="hd" data-source="dailymotion">
+        <div class="video-thumb-wrap">
+          <img src="https://i.ytimg.com/vi/5Mn9UkKwQZI/hqdefault.jpg" alt="Acoustics of Elephant Rumbles preview" loading="lazy">
+          <span class="badge-duration">11:02</span>
+          <span class="badge-quality">HD</span>
+          <button type="button" class="play-trigger play-overlay" data-video-id="5Mn9UkKwQZI" data-title="The Acoustics of Elephant Rumbles and Infrasound" data-channel="Bioacoustics Lab" data-platform="Dailymotion" data-views="95K views" data-date="1 year ago" aria-label="Play video: The Acoustics of Elephant Rumbles">
+            <span class="play-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><polygon points="7 4 19 12 7 20 7 4"/></svg>
+            </span>
+          </button>
+        </div>
+        <div class="video-card-body">
+          <div class="video-meta-top">
+            <span class="channel-badge daily">D</span>
+            <span class="channel-title">Bioacoustics Lab</span>
+            <span class="platform-badge daily-pill">Dailymotion</span>
+            <span class="engine-name">dailymotion</span>
+          </div>
+          <h3 class="video-title">
+            <a href="#dailymotion-link" target="_blank" rel="noreferrer">The Acoustics of <strong>Elephant</strong> Rumbles and Infrasound</a>
+          </h3>
+          <div class="video-metrics">
+            <span>95K views</span>
+            <span aria-hidden="true">·</span>
+            <span>1 year ago</span>
+          </div>
+          <p class="video-snippet">
+            High-speed acoustic analysis demonstrating how nasal cavity volume and trunk curvature alter fundamental resonance frequencies in sub-audible elephant calls.
+          </p>
+          <div class="video-card-footer">
+            <button type="button" class="inline-watch-btn play-trigger" data-video-id="5Mn9UkKwQZI" data-title="The Acoustics of Elephant Rumbles and Infrasound" data-channel="Bioacoustics Lab" data-platform="Dailymotion" data-views="95K views" data-date="1 year ago">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="7 4 19 12 7 20 7 4"/></svg>
+              Watch preview
+            </button>
+            <a href="#dailymotion-link" class="direct-link" title="Open on Dailymotion" target="_blank" rel="noreferrer">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Result 9 -->
+      <article class="video-card" data-duration="medium" data-quality="hd" data-source="youtube">
+        <div class="video-thumb-wrap">
+          <img src="https://i.ytimg.com/vi/Aw6GkiCvcWs/hqdefault.jpg" alt="Elephants Mourning Science of Grief preview" loading="lazy">
+          <span class="badge-duration">9:50</span>
+          <span class="badge-quality">HD</span>
+          <button type="button" class="play-trigger play-overlay" data-video-id="Aw6GkiCvcWs" data-title="Elephants Mourning: The Science of Animal Grief" data-channel="PBS Terra" data-platform="YouTube" data-views="740K views" data-date="6 months ago" aria-label="Play video: Elephants Mourning">
+            <span class="play-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><polygon points="7 4 19 12 7 20 7 4"/></svg>
+            </span>
+          </button>
+        </div>
+        <div class="video-card-body">
+          <div class="video-meta-top">
+            <span class="channel-badge pbs">P</span>
+            <span class="channel-title">PBS Terra</span>
+            <span class="platform-badge">YouTube</span>
+            <span class="engine-name">bing videos</span>
+          </div>
+          <h3 class="video-title">
+            <a href="https://www.youtube.com/watch?v=Aw6GkiCvcWs" target="_blank" rel="noreferrer"><strong>Elephants</strong> Mourning: The Science of Animal Grief</a>
+          </h3>
+          <div class="video-metrics">
+            <span>740K views</span>
+            <span aria-hidden="true">·</span>
+            <span>6 months ago</span>
+          </div>
+          <p class="video-snippet">
+            Field biologists observe silent vigils and gentle touch responses when <strong>elephants</strong> encounter remains of fallen family members, providing evidence of emotional processing.
+          </p>
+          <div class="video-card-footer">
+            <button type="button" class="inline-watch-btn play-trigger" data-video-id="Aw6GkiCvcWs" data-title="Elephants Mourning: The Science of Animal Grief" data-channel="PBS Terra" data-platform="YouTube" data-views="740K views" data-date="6 months ago">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="7 4 19 12 7 20 7 4"/></svg>
+              Watch preview
+            </button>
+            <a href="https://www.youtube.com/watch?v=Aw6GkiCvcWs" class="direct-link" title="Open on YouTube" target="_blank" rel="noreferrer">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- Related Searches -->
+    <section class="related-searches" aria-labelledby="related-title">
+      <h2 id="related-title">Video searches related to <strong>elephants</strong></h2>
+      <div>
+        <a href="#"><span aria-hidden="true">⌕</span> elephant sounds and seismic rumbles</a>
+        <a href="#"><span aria-hidden="true">⌕</span> african savanna elephant herd migration</a>
+        <a href="#"><span aria-hidden="true">⌕</span> baby elephants playing in water</a>
+        <a href="#"><span aria-hidden="true">⌕</span> asian elephant vs african elephant comparison</a>
+        <a href="#"><span aria-hidden="true">⌕</span> elephant sanctuary rescue stories</a>
+        <a href="#"><span aria-hidden="true">⌕</span> elephants defending herd against lions</a>
+      </div>
+    </section>
+
+    <!-- Pagination -->
+    <button class="more-results" id="load-more-btn" type="button">More video results</button>
+  </main>
+
+  <!-- Privacy-Preserving Inline Video Modal Player -->
+  <dialog class="video-modal-dialog" id="video-modal" aria-labelledby="modal-video-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <span class="privacy-pill">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Cookieless player
+          </span>
+          <h2 id="modal-video-title">Video preview</h2>
+        </div>
+        <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Close video player">✕</button>
+      </div>
+
+      <div class="modal-player-viewport">
+        <iframe id="modal-iframe" src="about:blank" title="Embedded video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+
+      <div class="modal-details">
+        <div class="modal-details-primary">
+          <div class="channel-line">
+            <span class="channel-icon" id="modal-channel-icon">N</span>
+            <div class="channel-text">
+              <span class="channel-name" id="modal-channel-name">Channel</span>
+              <span class="platform-tag" id="modal-platform">Platform</span>
+            </div>
+          </div>
+          <div class="modal-stats" id="modal-stats">3.4M views · 1 year ago</div>
+        </div>
+
+        <div class="modal-actions">
+          <a href="#" class="action-btn secondary" id="modal-source-link" target="_blank" rel="noreferrer">
+            Open on site
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+          <button type="button" class="action-btn secondary" id="modal-copy-btn">
+            Copy link
+          </button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <footer class="site-footer">
+    <span>Powered by SearXNG 2026.8.30</span>
+    <nav aria-label="Footer">
+      <a href="#source">source</a>
+      <a href="#issues">issues</a>
+      <a href="#stats">engine stats</a>
+    </nav>
+  </footer>
+</body>
+</html>

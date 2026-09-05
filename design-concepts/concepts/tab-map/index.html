@@ -1,0 +1,847 @@
+<!doctype html>
+<html lang="en" data-theme="mocha">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>elephants | SearXNG Map results concept</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#places-feed">Skip to map results</a>
+
+  <header class="site-header">
+    <div class="header-row">
+      <a class="brand" href="../05-ddg-results/index.html" aria-label="SearXNG home">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="13" cy="13" r="8.5"/><path d="m19.5 19.5 7 7"/></svg>
+        <span>searxng</span>
+      </a>
+
+      <form class="search-form" role="search">
+        <label class="sr-only" for="search-input">Search</label>
+        <input id="search-input" name="q" type="search" value="elephants" autocomplete="off" spellcheck="false">
+        <button class="search-button" type="submit" aria-label="Search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.7" cy="10.7" r="6.7"/><path d="m16 16 5 5"/></svg>
+        </button>
+        <kbd class="focus-hint" aria-hidden="true">/</kbd>
+      </form>
+
+      <nav class="utility-nav" aria-label="Site">
+        <a href="#about">about</a>
+        <a href="#preferences" aria-label="Preferences" title="Preferences">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/><path d="M19.4 15a1.8 1.8 0 0 0 .36 2l.06.06-2.76 2.76-.06-.06a1.8 1.8 0 0 0-2-.36 1.8 1.8 0 0 0-1.1 1.65V21H10v-.09A1.8 1.8 0 0 0 8.9 19.3a1.8 1.8 0 0 0-2 .36l-.06.06-2.76-2.76.06-.06a1.8 1.8 0 0 0 .36-2A1.8 1.8 0 0 0 2.85 14H2v-4h.85A1.8 1.8 0 0 0 4.5 8.9a1.8 1.8 0 0 0-.36-2l-.06-.06 2.76-2.76.06.06a1.8 1.8 0 0 0 2 .36A1.8 1.8 0 0 0 10 2.85V2h4v.85a1.8 1.8 0 0 0 1.1 1.65 1.8 1.8 0 0 0 2-.36l.06-.06 2.76 2.76-.06.06a1.8 1.8 0 0 0-.36 2 1.8 1.8 0 0 0 1.65 1.1H22v4h-.85A1.8 1.8 0 0 0 19.4 15Z"/></svg>
+        </a>
+        <button class="theme-toggle" type="button" aria-label="Switch to light theme" title="Toggle theme (Alt+T)">
+          <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.3A8.4 8.4 0 0 1 8.7 4 8.5 8.5 0 1 0 20 15.3Z"/></svg>
+          <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"/></svg>
+        </button>
+      </nav>
+    </div>
+
+    <nav class="category-nav" aria-label="Search categories">
+      <a href="../05-ddg-results/index.html">general</a>
+      <a href="../05-ddg-results/index.html#images">images</a>
+      <a href="../tab-videos/index.html">videos</a>
+      <a href="../tab-news/index.html">news</a>
+      <a class="active" href="index.html" aria-current="page">map</a>
+      <a href="../tab-music/index.html">music</a>
+      <a href="../tab-it/index.html">it</a>
+      <a href="../tab-science/index.html">science</a>
+      <a href="../tab-files/index.html">files</a>
+      <a href="../tab-social-media/index.html">social media</a>
+      <button class="filter-button" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M7 12h10M10 17h4"/></svg>
+        filters
+      </button>
+    </nav>
+  </header>
+
+  <div class="map-layout" id="map-app">
+    <!-- Left pane: places list -->
+    <aside class="places-sidebar" id="places-panel" aria-label="Place search results">
+      <div class="places-header">
+        <div class="results-meta-row">
+          <div class="meta-counts">
+            <span class="count-bold">8 places</span>
+            <span class="meta-dot">·</span>
+            <span class="meta-time">0.24s</span>
+            <span class="meta-dot">·</span>
+            <span class="engine-pill">OpenStreetMap</span>
+          </div>
+          <div class="sort-box">
+            <label for="sort-select" class="sr-only">Sort results</label>
+            <select id="sort-select" class="sort-select">
+              <option value="relevance">Relevance</option>
+              <option value="rating">Top rated</option>
+              <option value="name">Name</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="quick-filters" role="group" aria-label="Quick filters">
+          <button class="filter-chip active" type="button" data-filter="all">All (8)</button>
+          <button class="filter-chip" type="button" data-filter="sanctuary">Sanctuaries (4)</button>
+          <button class="filter-chip" type="button" data-filter="park">National parks (3)</button>
+          <button class="filter-chip" type="button" data-filter="open">Open now</button>
+          <button class="filter-chip" type="button" data-filter="top-rated">★ 4.8+</button>
+        </div>
+      </div>
+
+      <div class="places-scroll-area" id="places-feed" role="feed" aria-label="Places list">
+        <!-- Place 1 -->
+        <article class="place-card active" data-id="1" data-category="sanctuary" data-rating="4.9" data-open="true" data-lat="-1.3768" data-lon="36.7758" tabindex="0">
+          <div class="place-card-body">
+            <div class="place-card-top">
+              <span class="place-pin-badge" aria-hidden="true">1</span>
+              <div class="place-title-wrap">
+                <h2 class="place-title"><a href="#place-1">Sheldrick Wildlife Trust Elephant Orphanage</a></h2>
+                <span class="place-type-badge">Wildlife Sanctuary · Rehabilitation</span>
+              </div>
+            </div>
+
+            <div class="place-meta-line">
+              <span class="place-rating"><span class="star-icon">★</span> 4.9</span>
+              <span class="place-review-count">(3,420)</span>
+              <span class="meta-dot">·</span>
+              <span class="place-status status-open"><span class="status-indicator"></span>Open · Closes 12:00</span>
+            </div>
+
+            <p class="place-address">
+              <svg class="icon-tiny" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10Z"/><circle cx="12" cy="11" r="2.5"/></svg>
+              KWS Central Workshop Gate, Magadi Rd, Nairobi, Kenya
+            </p>
+
+            <div class="place-tags">
+              <span class="tag">Milk feeding visits</span>
+              <span class="tag">Rescue center</span>
+              <span class="tag">Wheelchair accessible</span>
+            </div>
+
+            <div class="place-actions">
+              <a class="action-btn primary" href="https://www.openstreetmap.org/directions?to=-1.3768,36.7758" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 19-9-9 19-2-8-8-2Z"/></svg>
+                Directions
+              </a>
+              <a class="action-btn" href="https://www.sheldrickwildlifetrust.org" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                Website
+              </a>
+              <button class="action-btn copy-coord-btn" type="button" data-coords="-1.3768, 36.7758" title="Copy coordinates">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                Coords
+              </button>
+              <button class="action-btn toggle-details-btn" type="button" aria-expanded="false">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                Details
+              </button>
+            </div>
+
+            <div class="place-expanded-details" hidden>
+              <div class="details-divider"></div>
+              <p class="place-snippet">World-famous orphan elephant rescue and rehabilitation project located along Nairobi National Park border. Daily public visiting hour is strictly 11:00 to 12:00 for calves feeding.</p>
+              <dl class="details-list">
+                <div><dt>Coordinates</dt><dd>1°22'36.5"S 36°46'32.9"E</dd></div>
+                <div><dt>Phone</dt><dd>+254 733 891 996</dd></div>
+                <div><dt>OSM Way</dt><dd><a href="https://www.openstreetmap.org" target="_blank" rel="noopener">way/24810291</a></dd></div>
+              </dl>
+            </div>
+          </div>
+          <div class="place-thumbnail">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/African_Bush_Elephant.jpg/330px-African_Bush_Elephant.jpg" alt="Elephant calf at Sheldrick sanctuary" loading="lazy">
+          </div>
+        </article>
+
+        <!-- Place 2 -->
+        <article class="place-card" data-id="2" data-category="park" data-rating="4.8" data-open="true" data-lat="-2.6527" data-lon="37.2606" tabindex="0">
+          <div class="place-card-body">
+            <div class="place-card-top">
+              <span class="place-pin-badge" aria-hidden="true">2</span>
+              <div class="place-title-wrap">
+                <h2 class="place-title"><a href="#place-2">Amboseli Elephant Research Trust</a></h2>
+                <span class="place-type-badge">Research Station · Biosphere Reserve</span>
+              </div>
+            </div>
+
+            <div class="place-meta-line">
+              <span class="place-rating"><span class="star-icon">★</span> 4.8</span>
+              <span class="place-review-count">(1,890)</span>
+              <span class="meta-dot">·</span>
+              <span class="place-status status-open"><span class="status-indicator"></span>Open · 06:00 - 18:00</span>
+            </div>
+
+            <p class="place-address">
+              <svg class="icon-tiny" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10Z"/><circle cx="12" cy="11" r="2.5"/></svg>
+              Amboseli National Park, Kajiado County, Kenya
+            </p>
+
+            <div class="place-tags">
+              <span class="tag">Longest elephant study</span>
+              <span class="tag">Kilimanjaro view</span>
+              <span class="tag">Safari routes</span>
+            </div>
+
+            <div class="place-actions">
+              <a class="action-btn primary" href="https://www.openstreetmap.org/directions?to=-2.6527,37.2606" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 19-9-9 19-2-8-8-2Z"/></svg>
+                Directions
+              </a>
+              <a class="action-btn" href="https://www.elephanttrust.org" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                Website
+              </a>
+              <button class="action-btn copy-coord-btn" type="button" data-coords="-2.6527, 37.2606" title="Copy coordinates">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                Coords
+              </button>
+              <button class="action-btn toggle-details-btn" type="button" aria-expanded="false">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                Details
+              </button>
+            </div>
+
+            <div class="place-expanded-details" hidden>
+              <div class="details-divider"></div>
+              <p class="place-snippet">Founded in 1972 by Dr. Cynthia Moss, conducting the longest continuous field study of free-ranging African elephants, tracking over 3,000 individuals across generations.</p>
+              <dl class="details-list">
+                <div><dt>Coordinates</dt><dd>2°39'09.7"S 37°15'38.2"E</dd></div>
+                <div><dt>Region</dt><dd>Kajiado / Rift Valley</dd></div>
+                <div><dt>Elevation</dt><dd>1,150 m</dd></div>
+              </dl>
+            </div>
+          </div>
+          <div class="place-thumbnail">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQuwbMgHbGm07FEAjNDBwlbhlVdAP5OgvobmoBzo9WpPhnFEmThbkvCsoZL" alt="Elephant herd in Amboseli" loading="lazy">
+          </div>
+        </article>
+
+        <!-- Place 3 -->
+        <article class="place-card" data-id="3" data-category="sanctuary" data-rating="4.9" data-open="false" data-lat="0.9833" data-lon="37.3167" tabindex="0">
+          <div class="place-card-body">
+            <div class="place-card-top">
+              <span class="place-pin-badge" aria-hidden="true">3</span>
+              <div class="place-title-wrap">
+                <h2 class="place-title"><a href="#place-3">Reteti Elephant Sanctuary</a></h2>
+                <span class="place-type-badge">Community Sanctuary · Indigenous Run</span>
+              </div>
+            </div>
+
+            <div class="place-meta-line">
+              <span class="place-rating"><span class="star-icon">★</span> 4.9</span>
+              <span class="place-review-count">(840)</span>
+              <span class="meta-dot">·</span>
+              <span class="place-status status-closed"><span class="status-indicator"></span>Closed · Opens 08:30</span>
+            </div>
+
+            <p class="place-address">
+              <svg class="icon-tiny" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10Z"/><circle cx="12" cy="11" r="2.5"/></svg>
+              Namunyak Wildlife Conservancy, Samburu County, Kenya
+            </p>
+
+            <div class="place-tags">
+              <span class="tag">Samburu community owned</span>
+              <span class="tag">Rescue & rewilding</span>
+              <span class="tag">Matriarch keepers</span>
+            </div>
+
+            <div class="place-actions">
+              <a class="action-btn primary" href="https://www.openstreetmap.org/directions?to=0.9833,37.3167" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 19-9-9 19-2-8-8-2Z"/></svg>
+                Directions
+              </a>
+              <a class="action-btn" href="https://www.reteti.org" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                Website
+              </a>
+              <button class="action-btn copy-coord-btn" type="button" data-coords="0.9833, 37.3167" title="Copy coordinates">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                Coords
+              </button>
+              <button class="action-btn toggle-details-btn" type="button" aria-expanded="false">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                Details
+              </button>
+            </div>
+
+            <div class="place-expanded-details" hidden>
+              <div class="details-divider"></div>
+              <p class="place-snippet">The first community-owned and operated elephant sanctuary in Africa. Run entirely by indigenous Samburu women and men keepers dedicated to rewilding orphaned calves.</p>
+              <dl class="details-list">
+                <div><dt>Coordinates</dt><dd>0°59'00.0"N 37°19'00.0"E</dd></div>
+                <div><dt>Visiting slots</dt><dd>08:30-10:00, 15:00-16:30</dd></div>
+              </dl>
+            </div>
+          </div>
+          <div class="place-thumbnail">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQMj_Tk8nEiCgdhilk7GHqQmgvXmAa9LE1GtW0U_YvpTmR1ts-_uWroqps" alt="Elephant calves at Reteti" loading="lazy">
+          </div>
+        </article>
+
+        <!-- Place 4 -->
+        <article class="place-card" data-id="4" data-category="sanctuary" data-rating="4.8" data-open="true" data-lat="19.2157" data-lon="98.9281" tabindex="0">
+          <div class="place-card-body">
+            <div class="place-card-top">
+              <span class="place-pin-badge" aria-hidden="true">4</span>
+              <div class="place-title-wrap">
+                <h2 class="place-title"><a href="#place-4">Elephant Nature Park</a></h2>
+                <span class="place-type-badge">Ethical Sanctuary · Asian Elephants</span>
+              </div>
+            </div>
+
+            <div class="place-meta-line">
+              <span class="place-rating"><span class="star-icon">★</span> 4.8</span>
+              <span class="place-review-count">(4,120)</span>
+              <span class="meta-dot">·</span>
+              <span class="place-status status-open"><span class="status-indicator"></span>Open · Closes 17:00</span>
+            </div>
+
+            <p class="place-address">
+              <svg class="icon-tiny" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10Z"/><circle cx="12" cy="11" r="2.5"/></svg>
+              Kuet Chang, Mae Taeng District, Chiang Mai 50150, Thailand
+            </p>
+
+            <div class="place-tags">
+              <span class="tag">Hands-off observation</span>
+              <span class="tag">Volunteer program</span>
+              <span class="tag">Veterinary hospital</span>
+            </div>
+
+            <div class="place-actions">
+              <a class="action-btn primary" href="https://www.openstreetmap.org/directions?to=19.2157,98.9281" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 19-9-9 19-2-8-8-2Z"/></svg>
+                Directions
+              </a>
+              <a class="action-btn" href="https://www.elephantnaturepark.org" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                Website
+              </a>
+              <button class="action-btn copy-coord-btn" type="button" data-coords="19.2157, 98.9281" title="Copy coordinates">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                Coords
+              </button>
+              <button class="action-btn toggle-details-btn" type="button" aria-expanded="false">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                Details
+              </button>
+            </div>
+
+            <div class="place-expanded-details" hidden>
+              <div class="details-divider"></div>
+              <p class="place-snippet">Pioneering sanctuary established by Sangduen 'Lek' Chailert providing natural herd life to over 100 rescued Asian elephants from logging and tourism industries.</p>
+              <dl class="details-list">
+                <div><dt>Coordinates</dt><dd>19°12'56.5"N 98°55'41.2"E</dd></div>
+                <div><dt>Province</dt><dd>Chiang Mai</dd></div>
+              </dl>
+            </div>
+          </div>
+          <div class="place-thumbnail">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR36wDsVljQalPesZK5cprnZ2XSECN0CXvQjcZO_DLzME2HlPi_pEIaT-8" alt="Asian elephants in Chiang Mai" loading="lazy">
+          </div>
+        </article>
+
+        <!-- Place 5 -->
+        <article class="place-card" data-id="5" data-category="park" data-rating="4.7" data-open="true" data-lat="-33.4833" data-lon="25.7500" tabindex="0">
+          <div class="place-card-body">
+            <div class="place-card-top">
+              <span class="place-pin-badge" aria-hidden="true">5</span>
+              <div class="place-title-wrap">
+                <h2 class="place-title"><a href="#place-5">Addo Elephant National Park</a></h2>
+                <span class="place-type-badge">National Park · Wildlife Reserve</span>
+              </div>
+            </div>
+
+            <div class="place-meta-line">
+              <span class="place-rating"><span class="star-icon">★</span> 4.7</span>
+              <span class="place-review-count">(2,650)</span>
+              <span class="meta-dot">·</span>
+              <span class="place-status status-open"><span class="status-indicator"></span>Open · 07:00 - 18:00</span>
+            </div>
+
+            <p class="place-address">
+              <svg class="icon-tiny" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10Z"/><circle cx="12" cy="11" r="2.5"/></svg>
+              R335 Paterson Road, Addo 6105, Eastern Cape, South Africa
+            </p>
+
+            <div class="place-tags">
+              <span class="tag">Over 600 elephants</span>
+              <span class="tag">Self-drive safaris</span>
+              <span class="tag">Big 7 territory</span>
+            </div>
+
+            <div class="place-actions">
+              <a class="action-btn primary" href="https://www.openstreetmap.org/directions?to=-33.4833,25.7500" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 19-9-9 19-2-8-8-2Z"/></svg>
+                Directions
+              </a>
+              <a class="action-btn" href="https://www.sanparks.org/parks/addo" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                Website
+              </a>
+              <button class="action-btn copy-coord-btn" type="button" data-coords="-33.4833, 25.7500" title="Copy coordinates">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                Coords
+              </button>
+              <button class="action-btn toggle-details-btn" type="button" aria-expanded="false">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                Details
+              </button>
+            </div>
+
+            <div class="place-expanded-details" hidden>
+              <div class="details-divider"></div>
+              <p class="place-snippet">South Africa's third largest national park, originally established in 1931 to protect eleven surviving Cape elephants from extinction. Today home to over 600 roaming elephants.</p>
+              <dl class="details-list">
+                <div><dt>Coordinates</dt><dd>33°29'00.0"S 25°45'00.0"E</dd></div>
+                <div><dt>Province</dt><dd>Eastern Cape</dd></div>
+                <div><dt>SANParks Code</dt><dd>ADDO</dd></div>
+              </dl>
+            </div>
+          </div>
+          <div class="place-thumbnail">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/African_Bush_Elephant.jpg/330px-African_Bush_Elephant.jpg" alt="Elephants drinking at Addo waterhole" loading="lazy">
+          </div>
+        </article>
+
+        <!-- Place 6 -->
+        <article class="place-card" data-id="6" data-category="sanctuary" data-rating="4.4" data-open="true" data-lat="7.3011" data-lon="80.3872" tabindex="0">
+          <div class="place-card-body">
+            <div class="place-card-top">
+              <span class="place-pin-badge" aria-hidden="true">6</span>
+              <div class="place-title-wrap">
+                <h2 class="place-title"><a href="#place-6">Pinnawala Elephant Orphanage</a></h2>
+                <span class="place-type-badge">Orphanage · Breeding Nursery</span>
+              </div>
+            </div>
+
+            <div class="place-meta-line">
+              <span class="place-rating"><span class="star-icon">★</span> 4.4</span>
+              <span class="place-review-count">(3,110)</span>
+              <span class="meta-dot">·</span>
+              <span class="place-status status-open"><span class="status-indicator"></span>Open · Closes 17:30</span>
+            </div>
+
+            <p class="place-address">
+              <svg class="icon-tiny" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10Z"/><circle cx="12" cy="11" r="2.5"/></svg>
+              B199 Rambukkana Rd, Pinnawala 71110, Sri Lanka
+            </p>
+
+            <div class="place-tags">
+              <span class="tag">Maha Oya river bath</span>
+              <span class="tag">Nursery care</span>
+              <span class="tag">Historical site</span>
+            </div>
+
+            <div class="place-actions">
+              <a class="action-btn primary" href="https://www.openstreetmap.org/directions?to=7.3011,80.3872" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 19-9-9 19-2-8-8-2Z"/></svg>
+                Directions
+              </a>
+              <a class="action-btn" href="https://nationalzoo.gov.lk/pinnawala" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                Website
+              </a>
+              <button class="action-btn copy-coord-btn" type="button" data-coords="7.3011, 80.3872" title="Copy coordinates">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                Coords
+              </button>
+              <button class="action-btn toggle-details-btn" type="button" aria-expanded="false">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                Details
+              </button>
+            </div>
+
+            <div class="place-expanded-details" hidden>
+              <div class="details-divider"></div>
+              <p class="place-snippet">Established in 1975 by the Sri Lanka Department of Wildlife Conservation to care for unweaned wild calves found wandering in forests. Features daily river bathing sessions.</p>
+              <dl class="details-list">
+                <div><dt>Coordinates</dt><dd>7°18'04.0"N 80°23'13.9"E</dd></div>
+                <div><dt>District</dt><dd>Kegalle, Sabaragamuwa</dd></div>
+              </dl>
+            </div>
+          </div>
+          <div class="place-thumbnail">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQuwbMgHbGm07FEAjNDBwlbhlVdAP5OgvobmoBzo9WpPhnFEmThbkvCsoZL" alt="Elephants bathing in river at Pinnawala" loading="lazy">
+          </div>
+        </article>
+
+        <!-- Place 7 -->
+        <article class="place-card" data-id="7" data-category="sanctuary" data-rating="4.9" data-open="false" data-lat="35.5492" data-lon="-87.4939" tabindex="0">
+          <div class="place-card-body">
+            <div class="place-card-top">
+              <span class="place-pin-badge" aria-hidden="true">7</span>
+              <div class="place-title-wrap">
+                <h2 class="place-title"><a href="#place-7">The Elephant Sanctuary in Tennessee</a></h2>
+                <span class="place-type-badge">Natural Habitat Refuge · Non-Public Habitat</span>
+              </div>
+            </div>
+
+            <div class="place-meta-line">
+              <span class="place-rating"><span class="star-icon">★</span> 4.9</span>
+              <span class="place-review-count">(920)</span>
+              <span class="meta-dot">·</span>
+              <span class="place-status status-closed"><span class="status-indicator"></span>Visitor Center Open Fri-Sat</span>
+            </div>
+
+            <p class="place-address">
+              <svg class="icon-tiny" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10Z"/><circle cx="12" cy="11" r="2.5"/></svg>
+              27 E Main St, Hohenwald, TN 38462, United States
+            </p>
+
+            <div class="place-tags">
+              <span class="tag">3,060 acres refuge</span>
+              <span class="tag">Retired zoo & circus</span>
+              <span class="tag">EleCam live stream</span>
+            </div>
+
+            <div class="place-actions">
+              <a class="action-btn primary" href="https://www.openstreetmap.org/directions?to=35.5492,-87.4939" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 19-9-9 19-2-8-8-2Z"/></svg>
+                Directions
+              </a>
+              <a class="action-btn" href="https://www.elephants.com" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                Website
+              </a>
+              <button class="action-btn copy-coord-btn" type="button" data-coords="35.5492, -87.4939" title="Copy coordinates">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                Coords
+              </button>
+              <button class="action-btn toggle-details-btn" type="button" aria-expanded="false">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                Details
+              </button>
+            </div>
+
+            <div class="place-expanded-details" hidden>
+              <div class="details-divider"></div>
+              <p class="place-snippet">The largest natural habitat sanctuary in North America dedicated exclusively to retired performance and captive elephants. Habitats remain closed to the public to ensure privacy and tranquility.</p>
+              <dl class="details-list">
+                <div><dt>Coordinates</dt><dd>35°32'57.1"N 87°29'38.0"W</dd></div>
+                <div><dt>County</dt><dd>Lewis County, Tennessee</dd></div>
+              </dl>
+            </div>
+          </div>
+          <div class="place-thumbnail">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQMj_Tk8nEiCgdhilk7GHqQmgvXmAa9LE1GtW0U_YvpTmR1ts-_uWroqps" alt="Elephant habitat in Tennessee" loading="lazy">
+          </div>
+        </article>
+
+        <!-- Place 8 -->
+        <article class="place-card" data-id="8" data-category="park" data-rating="4.7" data-open="true" data-lat="-23.8531" data-lon="31.5762" tabindex="0">
+          <div class="place-card-body">
+            <div class="place-card-top">
+              <span class="place-pin-badge" aria-hidden="true">8</span>
+              <div class="place-title-wrap">
+                <h2 class="place-title"><a href="#place-8">Letaba Elephant Hall (Kruger National Park)</a></h2>
+                <span class="place-type-badge">Museum & Reserve · Magnificent Seven</span>
+              </div>
+            </div>
+
+            <div class="place-meta-line">
+              <span class="place-rating"><span class="star-icon">★</span> 4.7</span>
+              <span class="place-review-count">(1,530)</span>
+              <span class="meta-dot">·</span>
+              <span class="place-status status-open"><span class="status-indicator"></span>Open · 08:00 - 18:00</span>
+            </div>
+
+            <p class="place-address">
+              <svg class="icon-tiny" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10Z"/><circle cx="12" cy="11" r="2.5"/></svg>
+              Letaba Rest Camp, Kruger National Park, Limpopo, South Africa
+            </p>
+
+            <div class="place-tags">
+              <span class="tag">Elephant hall museum</span>
+              <span class="tag">Historic tuskers</span>
+              <span class="tag">Kruger wilderness</span>
+            </div>
+
+            <div class="place-actions">
+              <a class="action-btn primary" href="https://www.openstreetmap.org/directions?to=-23.8531,31.5762" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 19-9-9 19-2-8-8-2Z"/></svg>
+                Directions
+              </a>
+              <a class="action-btn" href="https://www.sanparks.org/parks/kruger" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                Website
+              </a>
+              <button class="action-btn copy-coord-btn" type="button" data-coords="-23.8531, 31.5762" title="Copy coordinates">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                Coords
+              </button>
+              <button class="action-btn toggle-details-btn" type="button" aria-expanded="false">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                Details
+              </button>
+            </div>
+
+            <div class="place-expanded-details" hidden>
+              <div class="details-divider"></div>
+              <p class="place-snippet">Dedicated elephant museum at Letaba displaying skeletons, skulls, and enormous tusks of the famous 'Magnificent Seven' bull elephants that roamed Kruger.</p>
+              <dl class="details-list">
+                <div><dt>Coordinates</dt><dd>23°51'11.2"S 31°34'34.3"E</dd></div>
+                <div><dt>Camp</dt><dd>Letaba Rest Camp</dd></div>
+              </dl>
+            </div>
+          </div>
+          <div class="place-thumbnail">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/African_Bush_Elephant.jpg/330px-African_Bush_Elephant.jpg" alt="Elephant museum and bushveld" loading="lazy">
+          </div>
+        </article>
+      </div>
+
+      <div class="places-footer">
+        <p class="attribution-note">Location data via OpenStreetMap & Nominatim</p>
+        <button class="more-places-btn" type="button">Next 8 places</button>
+      </div>
+    </aside>
+
+    <!-- Sidebar collapse toggle tab button -->
+    <button class="sidebar-toggle-btn" id="sidebar-toggle" type="button" aria-label="Collapse results pane" title="Toggle results pane">
+      <svg class="chevron-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+    </button>
+
+    <!-- Right pane: interactive map viewport -->
+    <main class="map-viewport" id="map-viewport" aria-label="Interactive map view">
+      <!-- Floating top bar: region presets & search in area -->
+      <div class="map-top-bar">
+        <button class="map-action-pill search-area-btn" id="search-area-btn" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.6-6.4L21 8M21 3v5h-5"/></svg>
+          <span>Search this area</span>
+        </button>
+
+        <div class="region-chips" role="group" aria-label="Jump to region">
+          <button class="region-chip active" type="button" data-region="world">World</button>
+          <button class="region-chip" type="button" data-region="africa">Africa (5)</button>
+          <button class="region-chip" type="button" data-region="asia">Asia (2)</button>
+          <button class="region-chip" type="button" data-region="americas">Americas (1)</button>
+        </div>
+      </div>
+
+      <!-- Map Canvas: Catppuccin-styled vector cartography -->
+      <div class="map-canvas-container" id="map-canvas-container">
+        <svg class="vector-map" id="map-svg" viewBox="0 0 1000 560" preserveAspectRatio="xMidYMid slice" aria-label="World map showing elephant locations">
+          <defs>
+            <pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" class="grid-line" stroke-width="0.5"/>
+            </pattern>
+            <radialGradient id="pin-glow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="var(--lavender)" stop-opacity="0.55"/>
+              <stop offset="100%" stop-color="var(--lavender)" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+
+          <!-- Water background -->
+          <rect width="1000" height="560" class="map-ocean"/>
+
+          <!-- Graticule grid -->
+          <rect width="1000" height="560" fill="url(#grid-pattern)" class="map-graticule"/>
+
+          <!-- Transformable map layer (for pan & zoom) -->
+          <g id="map-world-layer" class="map-pan-layer">
+            <!-- Landmasses (Vector geometry styled in Catppuccin tokens) -->
+            <!-- North America -->
+            <path class="map-landmass" d="M 120 70 L 190 60 L 250 55 L 290 75 L 310 110 L 290 140 L 275 190 L 250 215 L 215 245 L 205 285 L 185 270 L 160 230 L 135 180 L 115 130 Z"/>
+            <path class="map-landmass" d="M 330 50 L 375 55 L 360 85 L 325 80 Z"/> <!-- Greenland -->
+            
+            <!-- Central America -->
+            <path class="map-landmass" d="M 205 285 L 230 315 L 245 330 L 235 340 L 220 320 L 195 290 Z"/>
+
+            <!-- South America -->
+            <path class="map-landmass" d="M 245 330 L 310 335 L 355 375 L 340 435 L 305 490 L 285 530 L 275 490 L 270 440 L 240 380 L 235 340 Z"/>
+
+            <!-- Europe -->
+            <path class="map-landmass" d="M 450 90 L 490 85 L 535 90 L 560 115 L 540 145 L 515 160 L 485 165 L 460 140 L 440 110 Z"/>
+            <path class="map-landmass" d="M 440 120 L 465 115 L 455 135 L 435 135 Z"/> <!-- UK & Ireland -->
+            <path class="map-landmass" d="M 490 60 L 525 65 L 510 95 L 480 85 Z"/> <!-- Scandinavia -->
+
+            <!-- Africa -->
+            <path class="map-landmass map-land-africa" d="M 455 175 L 530 170 L 585 190 L 635 240 L 620 290 L 615 350 L 600 410 L 580 475 L 555 465 L 530 415 L 515 365 L 485 305 L 450 260 L 440 215 Z"/>
+            <path class="map-landmass" d="M 625 390 L 640 415 L 630 460 L 618 430 Z"/> <!-- Madagascar -->
+
+            <!-- Asia & Middle East -->
+            <path class="map-landmass" d="M 535 90 L 640 80 L 740 75 L 830 80 L 890 100 L 880 150 L 840 180 L 820 220 L 860 250 L 830 280 L 800 280 L 780 240 L 730 240 L 710 290 L 685 270 L 650 250 L 600 230 L 565 180 L 540 145 Z"/>
+            <!-- Indian Subcontinent -->
+            <path class="map-landmass" d="M 685 240 L 735 240 L 735 285 L 715 315 L 695 280 Z"/>
+            <path class="map-landmass" d="M 720 318 L 728 322 L 724 330 L 717 325 Z"/> <!-- Sri Lanka -->
+            <!-- Southeast Asia & Indonesia -->
+            <path class="map-landmass" d="M 760 250 L 795 250 L 785 295 L 775 320 L 765 290 Z"/>
+            <path class="map-landmass" d="M 770 330 L 810 335 L 795 345 L 765 340 Z"/> <!-- Sumatra/Java -->
+            <path class="map-landmass" d="M 815 310 L 840 315 L 835 340 L 810 330 Z"/> <!-- Borneo -->
+            <path class="map-landmass" d="M 865 170 L 880 190 L 870 230 L 855 210 Z"/> <!-- Japan -->
+
+            <!-- Australia & Oceania -->
+            <path class="map-landmass" d="M 810 380 L 880 375 L 910 420 L 895 470 L 835 475 L 800 435 L 805 395 Z"/>
+            <path class="map-landmass" d="M 920 480 L 935 495 L 915 525 L 905 505 Z"/> <!-- New Zealand -->
+
+            <!-- Major geographic rivers & lakes in Catppuccin water accent -->
+            <path class="map-river" d="M 580 335 Q 585 345 588 355"/> <!-- Lake Victoria -->
+            <ellipse cx="586" cy="340" rx="9" ry="11" class="map-lake"/>
+            <ellipse cx="576" cy="370" rx="4" ry="18" class="map-lake"/> <!-- Lake Tanganyika -->
+            <ellipse cx="590" cy="405" rx="4" ry="14" class="map-lake"/> <!-- Lake Malawi -->
+
+            <!-- Protected reserves / green natural areas -->
+            <!-- East Africa reserves (Amboseli, Maasai Mara, Samburu) -->
+            <ellipse cx="604" cy="330" rx="14" ry="10" class="map-reserve-patch"/>
+            <!-- Kruger / South Africa reserves -->
+            <ellipse cx="585" cy="425" rx="12" ry="16" class="map-reserve-patch"/>
+            <!-- Addo reserve -->
+            <ellipse cx="571" cy="454" rx="8" ry="7" class="map-reserve-patch"/>
+            <!-- Northern Thailand elephant sanctuaries -->
+            <ellipse cx="774" cy="245" rx="12" ry="9" class="map-reserve-patch"/>
+            <!-- Sri Lanka central highlands -->
+            <ellipse cx="723" cy="323" rx="7" ry="6" class="map-reserve-patch"/>
+            <!-- Tennessee refuge -->
+            <ellipse cx="257" cy="180" rx="9" ry="8" class="map-reserve-patch"/>
+
+            <!-- Major routes / roads -->
+            <path class="map-highway" d="M 586 332 L 602 326 L 610 345"/> <!-- East Africa corridor -->
+            <path class="map-highway" d="M 570 455 L 585 425 L 575 400"/> <!-- Southern Africa corridor -->
+
+            <!-- Regional labels -->
+            <text x="560" y="270" class="map-region-label">AFRICA</text>
+            <text x="730" y="160" class="map-region-label">ASIA</text>
+            <text x="210" y="150" class="map-region-label">NORTH AMERICA</text>
+            <text x="635" y="325" class="map-water-label">Indian Ocean</text>
+            <text x="390" y="300" class="map-water-label">Atlantic Ocean</text>
+            <text x="890" y="270" class="map-water-label">Pacific Ocean</text>
+
+            <!-- Major cities / location references -->
+            <g class="map-city" transform="translate(602, 326)"><circle r="2.2"/><text x="5" y="3">Nairobi</text></g>
+            <g class="map-city" transform="translate(775, 245)"><circle r="2.2"/><text x="5" y="3">Chiang Mai</text></g>
+            <g class="map-city" transform="translate(723, 318)"><circle r="2.2"/><text x="5" y="3">Colombo</text></g>
+            <g class="map-city" transform="translate(578, 430)"><circle r="2.2"/><text x="5" y="3">Johannesburg</text></g>
+            <g class="map-city" transform="translate(257, 185)"><circle r="2.2"/><text x="5" y="3">Nashville</text></g>
+
+            <!-- ==================== PINS (8 Results) ==================== -->
+            <!-- Pin 1: Sheldrick Wildlife Trust (Nairobi) - Default ACTIVE -->
+            <g class="map-pin active" id="pin-1" data-id="1" transform="translate(602, 325)">
+              <circle class="pin-halo" r="18" fill="url(#pin-glow)"/>
+              <path class="pin-shape" d="M 0 0 C -7 -9 -11 -15 -11 -21 C -11 -27.5 -6 -32.5 0 -32.5 C 6 -32.5 11 -27.5 11 -21 C 11 -15 7 -9 0 0 Z"/>
+              <circle class="pin-center" cx="0" cy="-21" r="7.5"/>
+              <text class="pin-number" x="0" y="-17.5">1</text>
+            </g>
+
+            <!-- Pin 2: Amboseli Elephant Research Trust -->
+            <g class="map-pin" id="pin-2" data-id="2" transform="translate(606, 335)">
+              <circle class="pin-halo" r="16" fill="url(#pin-glow)"/>
+              <path class="pin-shape" d="M 0 0 C -7 -9 -11 -15 -11 -21 C -11 -27.5 -6 -32.5 0 -32.5 C 6 -32.5 11 -27.5 11 -21 C 11 -15 7 -9 0 0 Z"/>
+              <circle class="pin-center" cx="0" cy="-21" r="7.5"/>
+              <text class="pin-number" x="0" y="-17.5">2</text>
+            </g>
+
+            <!-- Pin 3: Reteti Elephant Sanctuary (Samburu) -->
+            <g class="map-pin" id="pin-3" data-id="3" transform="translate(604, 314)">
+              <circle class="pin-halo" r="16" fill="url(#pin-glow)"/>
+              <path class="pin-shape" d="M 0 0 C -7 -9 -11 -15 -11 -21 C -11 -27.5 -6 -32.5 0 -32.5 C 6 -32.5 11 -27.5 11 -21 C 11 -15 7 -9 0 0 Z"/>
+              <circle class="pin-center" cx="0" cy="-21" r="7.5"/>
+              <text class="pin-number" x="0" y="-17.5">3</text>
+            </g>
+
+            <!-- Pin 4: Elephant Nature Park (Chiang Mai, Thailand) -->
+            <g class="map-pin" id="pin-4" data-id="4" transform="translate(775, 243)">
+              <circle class="pin-halo" r="16" fill="url(#pin-glow)"/>
+              <path class="pin-shape" d="M 0 0 C -7 -9 -11 -15 -11 -21 C -11 -27.5 -6 -32.5 0 -32.5 C 6 -32.5 11 -27.5 11 -21 C 11 -15 7 -9 0 0 Z"/>
+              <circle class="pin-center" cx="0" cy="-21" r="7.5"/>
+              <text class="pin-number" x="0" y="-17.5">4</text>
+            </g>
+
+            <!-- Pin 5: Addo Elephant National Park (South Africa) -->
+            <g class="map-pin" id="pin-5" data-id="5" transform="translate(571, 454)">
+              <circle class="pin-halo" r="16" fill="url(#pin-glow)"/>
+              <path class="pin-shape" d="M 0 0 C -7 -9 -11 -15 -11 -21 C -11 -27.5 -6 -32.5 0 -32.5 C 6 -32.5 11 -27.5 11 -21 C 11 -15 7 -9 0 0 Z"/>
+              <circle class="pin-center" cx="0" cy="-21" r="7.5"/>
+              <text class="pin-number" x="0" y="-17.5">5</text>
+            </g>
+
+            <!-- Pin 6: Pinnawala Elephant Orphanage (Sri Lanka) -->
+            <g class="map-pin" id="pin-6" data-id="6" transform="translate(723, 291)">
+              <circle class="pin-halo" r="16" fill="url(#pin-glow)"/>
+              <path class="pin-shape" d="M 0 0 C -7 -9 -11 -15 -11 -21 C -11 -27.5 -6 -32.5 0 -32.5 C 6 -32.5 11 -27.5 11 -21 C 11 -15 7 -9 0 0 Z"/>
+              <circle class="pin-center" cx="0" cy="-21" r="7.5"/>
+              <text class="pin-number" x="0" y="-17.5">6</text>
+            </g>
+
+            <!-- Pin 7: The Elephant Sanctuary in Tennessee (USA) -->
+            <g class="map-pin" id="pin-7" data-id="7" transform="translate(257, 178)">
+              <circle class="pin-halo" r="16" fill="url(#pin-glow)"/>
+              <path class="pin-shape" d="M 0 0 C -7 -9 -11 -15 -11 -21 C -11 -27.5 -6 -32.5 0 -32.5 C 6 -32.5 11 -27.5 11 -21 C 11 -15 7 -9 0 0 Z"/>
+              <circle class="pin-center" cx="0" cy="-21" r="7.5"/>
+              <text class="pin-number" x="0" y="-17.5">7</text>
+            </g>
+
+            <!-- Pin 8: Kruger National Park - Letaba Elephant Hall -->
+            <g class="map-pin" id="pin-8" data-id="8" transform="translate(588, 415)">
+              <circle class="pin-halo" r="16" fill="url(#pin-glow)"/>
+              <path class="pin-shape" d="M 0 0 C -7 -9 -11 -15 -11 -21 C -11 -27.5 -6 -32.5 0 -32.5 C 6 -32.5 11 -27.5 11 -21 C 11 -15 7 -9 0 0 Z"/>
+              <circle class="pin-center" cx="0" cy="-21" r="7.5"/>
+              <text class="pin-number" x="0" y="-17.5">8</text>
+            </g>
+          </g>
+        </svg>
+
+        <!-- Floating Popover Card on Map -->
+        <div class="map-popover" id="map-popover" role="dialog" aria-label="Selected place preview">
+          <button class="popover-close-btn" id="popover-close" type="button" aria-label="Close preview">×</button>
+          <div class="popover-content">
+            <span class="popover-badge">#1 · Wildlife Sanctuary</span>
+            <h3 class="popover-title">Sheldrick Wildlife Trust</h3>
+            <p class="popover-subtitle">Nairobi National Park, Nairobi, Kenya</p>
+            <div class="popover-meta">
+              <span class="rating">★ 4.9 (3,420)</span>
+              <span class="meta-dot">·</span>
+              <span class="status-open">Open · 11:00-12:00</span>
+            </div>
+            <div class="popover-actions">
+              <a class="popover-btn primary" href="https://www.openstreetmap.org/directions?to=-1.3768,36.7758" target="_blank" rel="noopener">Directions</a>
+              <button class="popover-btn" id="popover-focus-card" type="button">View card in list</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating Map Controls (Right side) -->
+      <div class="map-controls-cluster">
+        <!-- Layer switcher -->
+        <div class="layer-switcher" role="group" aria-label="Map layer selector">
+          <button class="layer-btn active" type="button" data-layer="vector" title="Catppuccin vector styling">Vector</button>
+          <button class="layer-btn" type="button" data-layer="terrain" title="Topographic relief view">Terrain</button>
+          <button class="layer-btn" type="button" data-layer="satellite" title="Satellite overlay">Satellite</button>
+        </div>
+
+        <!-- Zoom & Nav tools -->
+        <div class="zoom-controls" role="group" aria-label="Map navigation">
+          <button class="control-btn" id="zoom-in" type="button" aria-label="Zoom in" title="Zoom in (+)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+          <button class="control-btn" id="zoom-out" type="button" aria-label="Zoom out" title="Zoom out (-)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg>
+          </button>
+          <button class="control-btn" id="recenter-btn" type="button" aria-label="Recenter map" title="Fit all results">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+          </button>
+        </div>
+
+        <!-- Scale indicator -->
+        <div class="map-scale-box" aria-hidden="true">
+          <span class="scale-label" id="scale-label">500 km</span>
+          <div class="scale-bar"></div>
+        </div>
+      </div>
+
+      <!-- Map footer / attribution badge -->
+      <div class="map-attribution-badge">
+        <span>© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors · Nominatim</span>
+      </div>
+
+      <!-- Floating mobile toggle button (List / Map) -->
+      <button class="mobile-view-toggle" id="mobile-view-toggle" type="button" aria-label="Switch between map and list view">
+        <svg class="icon-map-toggle" viewBox="0 0 24 24" aria-hidden="true"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/></svg>
+        <span class="toggle-text">Show list</span>
+      </button>
+    </main>
+  </div>
+</body>
+</html>

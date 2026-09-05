@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="en" data-theme="mocha">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>elephants - Files | SearXNG</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#results">Skip to results</a>
+
+  <header class="site-header">
+    <div class="header-row">
+      <a class="brand" href="../05-ddg-results/index.html" aria-label="SearXNG home">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="13" cy="13" r="8.5"/><path d="m19.5 19.5 7 7"/></svg>
+        <span>searxng</span>
+      </a>
+
+      <form class="search-form" role="search">
+        <label class="sr-only" for="search-input">Search</label>
+        <input id="search-input" name="q" type="search" value="elephants" autocomplete="off" spellcheck="false">
+        <button class="search-button" type="submit" aria-label="Search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.7" cy="10.7" r="6.7"/><path d="m16 16 5 5"/></svg>
+        </button>
+        <kbd class="focus-hint" aria-hidden="true">/</kbd>
+      </form>
+
+      <nav class="utility-nav" aria-label="Site">
+        <a href="#about">about</a>
+        <a href="#preferences" aria-label="Preferences" title="Preferences">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/><path d="M19.4 15a1.8 1.8 0 0 0 .36 2l.06.06-2.76 2.76-.06-.06a1.8 1.8 0 0 0-2-.36 1.8 1.8 0 0 0-1.1 1.65V21H10v-.09A1.8 1.8 0 0 0 8.9 19.3a1.8 1.8 0 0 0-2 .36l-.06.06-2.76-2.76.06-.06a1.8 1.8 0 0 0 .36-2A1.8 1.8 0 0 0 2.85 14H2v-4h.85A1.8 1.8 0 0 0 4.5 8.9a1.8 1.8 0 0 0-.36-2l-.06-.06 2.76-2.76.06.06a1.8 1.8 0 0 0 2 .36A1.8 1.8 0 0 0 10 2.85V2h4v.85a1.8 1.8 0 0 0 1.1 1.65 1.8 1.8 0 0 0 2-.36l.06-.06 2.76 2.76-.06.06a1.8 1.8 0 0 0-.36 2 1.8 1.8 0 0 0 1.65 1.1H22v4h-.85A1.8 1.8 0 0 0 19.4 15Z"/></svg>
+        </a>
+        <button class="theme-toggle" type="button" aria-label="Switch to light theme" title="Toggle theme (Alt+T)">
+          <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.3A8.4 8.4 0 0 1 8.7 4 8.5 8.5 0 1 0 20 15.3Z"/></svg>
+          <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"/></svg>
+        </button>
+      </nav>
+    </div>
+
+    <nav class="category-nav" aria-label="Search categories">
+      <a href="../05-ddg-results/index.html">general</a>
+      <a href="../05-ddg-results/index.html#images">images</a>
+      <a href="../tab-videos/index.html">videos</a>
+      <a href="../tab-news/index.html">news</a>
+      <a href="../tab-map/index.html">map</a>
+      <a href="../tab-music/index.html">music</a>
+      <a href="../tab-it/index.html">it</a>
+      <a href="../tab-science/index.html">science</a>
+      <a class="active" href="index.html" aria-current="page">files</a>
+      <a href="../tab-social-media/index.html">social media</a>
+      <button class="filter-button" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M7 12h10M10 17h4"/></svg>
+        filters
+      </button>
+    </nav>
+  </header>
+
+  <main class="results-shell" id="results">
+    <!-- Filter and stats strip -->
+    <div class="filter-strip" aria-label="Search filters">
+      <div class="filter-stats-group">
+        <span class="stat-highlight">48 files found</span>
+        <span aria-hidden="true">·</span>
+        <span>1.18s</span>
+        <span aria-hidden="true">·</span>
+        <span>solidtorrents, archive.org, libgen, academic</span>
+      </div>
+
+      <div class="filter-pill-group" role="tablist" aria-label="Filter by file type">
+        <button class="filter-pill active" type="button" data-filter="all">All <span class="pill-count">48</span></button>
+        <button class="filter-pill" type="button" data-filter="torrent">Torrents <span class="pill-count">22</span></button>
+        <button class="filter-pill" type="button" data-filter="doc">Documents <span class="pill-count">15</span></button>
+        <button class="filter-pill" type="button" data-filter="archive">Archives <span class="pill-count">7</span></button>
+        <button class="filter-pill" type="button" data-filter="iso">Disk images <span class="pill-count">4</span></button>
+      </div>
+
+      <div class="filter-controls-group">
+        <div class="filter-dropdown">
+          <label for="sort-select" class="sr-only">Sort results</label>
+          <select id="sort-select">
+            <option value="seeds" selected>Sort: Swarm health (seeds)</option>
+            <option value="relevance">Sort: Relevance</option>
+            <option value="size-desc">Sort: Size (largest)</option>
+            <option value="size-asc">Sort: Size (smallest)</option>
+            <option value="date">Sort: Date added</option>
+          </select>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+
+        <div class="filter-dropdown">
+          <label for="size-select" class="sr-only">Filter by size</label>
+          <select id="size-select">
+            <option value="all" selected>Size: Any</option>
+            <option value="under-50">Under 50 MB</option>
+            <option value="50-1000">50 MB to 1 GB</option>
+            <option value="1000-5000">1 GB to 5 GB</option>
+            <option value="over-5000">Over 5 GB</option>
+          </select>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+
+        <button class="toggle-verified-btn" type="button" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>
+          <span>Verified only</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Spotlight Torrent Swarm card -->
+    <section class="swarm-spotlight" aria-labelledby="spotlight-title">
+      <div class="spotlight-eyebrow">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span>Spotlight swarm · Verified master</span>
+      </div>
+
+      <div class="spotlight-main">
+        <div class="spotlight-info">
+          <h1 id="spotlight-title">
+            <a href="magnet:?xt=urn:btih:e1e9h4ant5dream4k2006blender0018f92a1bc3&dn=Elephants_Dream_4K_UHD_Master">Elephants Dream (2006) 4K UHD Master [Blender Foundation Open Movie]</a>
+          </h1>
+          <p class="spotlight-desc">
+            The world premiere open movie produced by the Blender Foundation. Includes full 4K UltraHD master encode (AV1 10-bit), 5.1 FLAC surround mix, audio commentary, and high-resolution storyboards.
+          </p>
+
+          <div class="swarm-metrics-row">
+            <span class="metric-pill metric-seeds" title="1,842 active seeders">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
+              <span>1,842 seeds</span>
+            </span>
+
+            <span class="metric-pill metric-leeches" title="126 active leechers">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+              <span>126 leeches</span>
+            </span>
+
+            <div class="health-meter-wrap" title="94% swarm availability">
+              <span>Health</span>
+              <div class="health-meter" aria-hidden="true">
+                <div class="health-fill" style="width: 94%;"></div>
+              </div>
+              <span>94%</span>
+            </div>
+
+            <span class="metric-pill metric-size" title="Total size: 11.4 GB">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>11.4 GB</span>
+            </span>
+
+            <span class="metric-pill metric-files" title="6 files in swarm">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <span>6 files</span>
+            </span>
+
+            <span class="metric-pill" title="Tracked via SolidTorrents">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+              <span>solidtorrents</span>
+            </span>
+          </div>
+
+          <div class="file-actions-bar">
+            <a class="btn-action btn-magnet" href="magnet:?xt=urn:btih:e1e9h4ant5dream4k2006blender0018f92a1bc3&dn=Elephants_Dream_4K_UHD_Master" title="Open magnet URI">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15-3-3 6.36-6.36a4.5 4.5 0 0 1 6.37 0l1.41 1.41a4.5 4.5 0 0 1 0 6.37L13.78 19.7a3 3 0 0 1-4.24 0l-1.42-1.42a3 3 0 0 1 0-4.24l5.66-5.66"/></svg>
+              <span>Magnet link</span>
+            </a>
+
+            <a class="btn-action btn-download" href="#download-torrent" title="Download .torrent file">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Download .torrent</span>
+            </a>
+
+            <button class="btn-action" type="button" data-copy="magnet:?xt=urn:btih:e1e9h4ant5dream4k2006blender0018f92a1bc3" data-copy-label="Magnet link" title="Copy magnet URI to clipboard">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              <span>Copy magnet</span>
+            </button>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- File Results List -->
+    <section class="file-results-feed" aria-label="Search results feed">
+      <!-- Result 1: Documentary Torrent -->
+      <article class="file-result-card" data-type="torrent" data-verified="true">
+        <div class="card-top-row">
+          <div class="source-meta">
+            <span class="engine-icon solidtorrents" title="SolidTorrents">S</span>
+            <div class="source-info">
+              <span class="source-engine">SolidTorrents</span>
+              <span aria-hidden="true">›</span>
+              <span class="source-path">solidtorrents.to › view › bbc-the-elephant-giant-1080p</span>
+            </div>
+          </div>
+          <span class="type-pill type-torrent">TORRENT</span>
+        </div>
+
+        <h2 class="card-title">
+          <a href="magnet:?xt=urn:btih:6a31c8d039fbb24e391104a29ef11a938c2014b1">BBC Natural World - The Elephant: Living Giant of Africa (1080p HDTV x265)</a>
+        </h2>
+
+        <p class="card-snippet">
+          David Attenborough narrates an exploration of African bush <strong>elephants</strong>, covering matriarch leadership, drought memory retention, and low-frequency infrasonic rumbles across Tsavo East.
+        </p>
+
+        <div class="file-meta-row">
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <strong>2.84 GB</strong>
+          </span>
+          <span class="meta-item seed-stat">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
+            <span>942 seeds</span>
+          </span>
+          <span class="meta-item leech-stat">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            <span>38 leeches</span>
+          </span>
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span>3 files</span>
+          </span>
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span>2023-11-12</span>
+          </span>
+        </div>
+
+        <div class="file-actions-bar">
+          <a class="btn-action btn-magnet" href="magnet:?xt=urn:btih:6a31c8d039fbb24e391104a29ef11a938c2014b1">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15-3-3 6.36-6.36a4.5 4.5 0 0 1 6.37 0l1.41 1.41a4.5 4.5 0 0 1 0 6.37L13.78 19.7a3 3 0 0 1-4.24 0l-1.42-1.42a3 3 0 0 1 0-4.24l5.66-5.66"/></svg>
+            <span>Magnet</span>
+          </a>
+          <a class="btn-action btn-download" href="#download-torrent">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>.torrent</span>
+          </a>
+          <button class="btn-action" type="button" data-copy="magnet:?xt=urn:btih:6a31c8d039fbb24e391104a29ef11a938c2014b1" data-copy-label="Magnet link">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            <span>Copy hash</span>
+          </button>
+        </div>
+      </article>
+
+      <!-- Result 2: Research Monograph (PDF Document) -->
+      <article class="file-result-card" data-type="doc" data-verified="true">
+        <div class="card-top-row">
+          <div class="source-meta">
+            <span class="engine-icon archive" title="Internet Archive">A</span>
+            <div class="source-info">
+              <span class="source-engine">Internet Archive</span>
+              <span aria-hidden="true">›</span>
+              <span class="source-path">archive.org › details › amboseli-elephants-40yr-monograph</span>
+            </div>
+          </div>
+          <span class="type-pill type-pdf">PDF</span>
+        </div>
+
+        <h2 class="card-title">
+          <a href="https://archive.org/download/amboseli-elephants-40yr-monograph.pdf">The Amboseli Elephants: A Long-Term Perspective on a Long-Lived Mammal</a>
+        </h2>
+
+        <p class="card-snippet">
+          Cynthia J. Moss, Harvey Croze, and Phyllis C. Lee. Monograph synthesizing 40 years of continuous demographic, genetic, and behavioural field research on wild African savannah <strong>elephants</strong> in Amboseli National Park.
+        </p>
+
+        <div class="file-meta-row">
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <strong>PDF · 412 pages</strong>
+          </span>
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>48.2 MB</span>
+          </span>
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span>Cynthia J. Moss et al.</span>
+          </span>
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span>2011 · Univ. of Chicago Press</span>
+          </span>
+        </div>
+
+        <div class="file-actions-bar">
+          <a class="btn-action btn-download" href="https://archive.org/download/amboseli-elephants-40yr-monograph.pdf">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>Download PDF (48.2 MB)</span>
+          </a>
+          <a class="btn-action" href="#preview-pdf">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <span>Preview in browser</span>
+          </a>
+          <button class="btn-action" type="button" data-copy="@book{moss2011amboseli, title={The Amboseli Elephants}, author={Moss, Cynthia J and Croze, Harvey and Lee, Phyllis C}, year={2011}, publisher={University of Chicago Press}}" data-copy-label="BibTeX citation">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/></svg>
+            <span>Cite (BibTeX)</span>
+          </button>
+        </div>
+      </article>
+
+      <!-- Result 3: IUCN Global Status Report (PDF & Spreadsheets) -->
+      <article class="file-result-card" data-type="doc" data-verified="true">
+        <div class="card-top-row">
+          <div class="source-meta">
+            <span class="engine-icon libgen" title="IUCN / Open Library">I</span>
+            <div class="source-info">
+              <span class="source-engine">IUCN Publications</span>
+              <span aria-hidden="true">›</span>
+              <span class="source-path">portals.iucn.org › library › sites › library › files › documents</span>
+            </div>
+          </div>
+          <span class="type-pill type-pdf">PDF</span>
+        </div>
+
+        <h2 class="card-title">
+          <a href="https://portals.iucn.org/library/node/46380">African Elephant Status Report 2016: Continental Update of the African Elephant Database</a>
+        </h2>
+
+        <p class="card-snippet">
+          IUCN Species Survival Commission. Detailed spatial survey presenting standardized population estimates, poaching mortality rates, and range boundaries across 37 range states in Africa.
+        </p>
+
+        <div class="file-meta-row">
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <strong>PDF · 320 pages</strong>
+          </span>
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>14.8 MB</span>
+          </span>
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
+            <span>IUCN SSC Specialist Group</span>
+          </span>
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span>2016 · Occasional Paper 60</span>
+          </span>
+        </div>
+
+        <div class="file-actions-bar">
+          <a class="btn-action btn-download" href="#download-pdf">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>Download PDF (14.8 MB)</span>
+          </a>
+          <a class="btn-action" href="#download-tables">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
+            <span>Tables (.xlsx, 2.1 MB)</span>
+          </a>
+          <button class="btn-action" type="button" data-copy="https://portals.iucn.org/library/sites/library/files/documents/SSC-OP-060_A.pdf" data-copy-label="Direct PDF link">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            <span>Copy link</span>
+          </button>
+        </div>
+      </article>
+
+      <!-- Result 4: Infrasonic Bioacoustic Dataset (Archive / Torrent) -->
+      <article class="file-result-card" data-type="archive" data-verified="true">
+        <div class="card-top-row">
+          <div class="source-meta">
+            <span class="engine-icon academic" title="Academic Torrents / Zenodo">Z</span>
+            <div class="source-info">
+              <span class="source-engine">Academic Torrents</span>
+              <span aria-hidden="true">›</span>
+              <span class="source-path">academictorrents.com › details › elephant-infrasound-audio</span>
+            </div>
+          </div>
+          <span class="type-pill type-archive">DATASET · TAR.GZ</span>
+        </div>
+
+        <h2 class="card-title">
+          <a href="magnet:?xt=urn:btih:3fa8e1b2890cdfa47120aefbc00192834b9d10e1">ElephantRumble-Audio-Dataset-v3.2: Multichannel Field Recordings (FLAC 24/96)</a>
+        </h2>
+
+        <p class="card-snippet">
+          Standardized bioacoustic library of wild savannah <strong>elephant</strong> infrasonic rumbles, warning vocalizations, and seismic ground waves recorded via synchronized geophone arrays in the Maasai Mara ecosystem.
+        </p>
+
+        <div class="file-meta-row">
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <strong>3.65 GB</strong>
+          </span>
+          <span class="meta-item seed-stat">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
+            <span>184 seeds</span>
+          </span>
+          <span class="meta-item leech-stat">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            <span>12 leeches</span>
+          </span>
+          <span class="meta-item hash-code">
+            <span>SHA-256: 7f8a9e4...b310</span>
+          </span>
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/></svg>
+            <span>CC-BY-4.0</span>
+          </span>
+        </div>
+
+        <div class="file-actions-bar">
+          <a class="btn-action btn-magnet" href="magnet:?xt=urn:btih:3fa8e1b2890cdfa47120aefbc00192834b9d10e1">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15-3-3 6.36-6.36a4.5 4.5 0 0 1 6.37 0l1.41 1.41a4.5 4.5 0 0 1 0 6.37L13.78 19.7a3 3 0 0 1-4.24 0l-1.42-1.42a3 3 0 0 1 0-4.24l5.66-5.66"/></svg>
+            <span>Magnet</span>
+          </a>
+          <a class="btn-action btn-download" href="#http-archive">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>Direct .tar.gz (3.65 GB)</span>
+          </a>
+          <button class="btn-action" type="button" data-copy="7f8a9e4b10284c7a918e38f0d826a7cb8912ef4c1a5b8293746a81923019b310" data-copy-label="SHA-256 hash">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            <span>Copy SHA-256</span>
+          </button>
+        </div>
+      </article>
+
+      <!-- Result 5: Digital E-Book (EPUB) -->
+      <article class="file-result-card" data-type="doc" data-verified="true">
+        <div class="card-top-row">
+          <div class="source-meta">
+            <span class="engine-icon libgen" title="Library Genesis">L</span>
+            <div class="source-info">
+              <span class="source-engine">Libgen</span>
+              <span aria-hidden="true">›</span>
+              <span class="source-path">libgen.is › book › index.php?md5=72B108EAF4C88210</span>
+            </div>
+          </div>
+          <span class="type-pill type-epub">EPUB</span>
+        </div>
+
+        <h2 class="card-title">
+          <a href="#download-epub">Elephant Memories: Thirteen Years in the Life of an Elephant Family (Illustrated Edition)</a>
+        </h2>
+
+        <p class="card-snippet">
+          Cynthia Moss. Classic field memoir documenting the social lives, family bonds, reproductive strategies, and memory networks of matriarch Echo and her extended savannah <strong>elephant</strong> family in Amboseli.
+        </p>
+
+        <div class="file-meta-row">
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10M6 10h10"/></svg>
+            <strong>EPUB · 394 pages</strong>
+          </span>
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>18.4 MB</span>
+          </span>
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span>Cynthia Moss</span>
+          </span>
+          <span class="meta-item">
+            <span>ISBN 978-0226542379</span>
+          </span>
+        </div>
+
+        <div class="file-actions-bar">
+          <a class="btn-action btn-download" href="#download-epub">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>Download EPUB (18.4 MB)</span>
+          </a>
+          <a class="btn-action" href="#download-mobi">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>MOBI (21 MB)</span>
+          </a>
+          <a class="btn-action" href="#read-online">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            <span>Read online</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Result 6: Software Disk Image (ISO) -->
+      <article class="file-result-card" data-type="iso" data-verified="true">
+        <div class="card-top-row">
+          <div class="source-meta">
+            <span class="engine-icon github" title="GitHub Releases">G</span>
+            <div class="source-info">
+              <span class="source-engine">GitHub Releases</span>
+              <span aria-hidden="true">›</span>
+              <span class="source-path">github.com › open-wildlife › bioacoustic-node-os › releases</span>
+            </div>
+          </div>
+          <span class="type-pill type-iso">DISK IMAGE · ISO</span>
+        </div>
+
+        <h2 class="card-title">
+          <a href="#download-iso">BioAcousticNode-OS-2024.08-x86_64-minimal.iso</a>
+        </h2>
+
+        <p class="card-snippet">
+          Tailored embedded Linux appliance image for solar-powered wildlife telemetry towers. Contains pre-trained lightweight models for automated real-time acoustic recognition of forest and bush <strong>elephants</strong>.
+        </p>
+
+        <div class="file-meta-row">
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <strong>980 MB</strong>
+          </span>
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            <span>x86_64 (UEFI)</span>
+          </span>
+          <span class="meta-item hash-code">
+            <span>SHA-256: 3c91d7...a02f</span>
+          </span>
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span>2024-08-28</span>
+          </span>
+        </div>
+
+        <div class="file-actions-bar">
+          <a class="btn-action btn-download" href="#download-iso">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>Download ISO (980 MB)</span>
+          </a>
+          <button class="btn-action" type="button" data-copy="3c91d7a02ff8812c94bb21a78e19b024419adcb615e478201a4e1257129ca02f" data-copy-label="SHA-256 hash">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            <span>Copy SHA-256</span>
+          </button>
+          <a class="btn-action" href="#gpg-signature">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 8 4v6c0 5.25-3.5 10-8 11-4.5-1-8-5.75-8-11V6l8-4Z"/></svg>
+            <span>GPG signature</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Result 7: Low swarm torrent warning showcase -->
+      <article class="file-result-card" data-type="torrent" data-verified="false">
+        <div class="card-top-row">
+          <div class="source-meta">
+            <span class="engine-icon piratebay" title="The Pirate Bay">P</span>
+            <div class="source-info">
+              <span class="source-engine">The Pirate Bay</span>
+              <span aria-hidden="true">›</span>
+              <span class="source-path">thepiratebay.org › description.php?id=9418291</span>
+            </div>
+          </div>
+          <span class="type-pill type-torrent">TORRENT</span>
+        </div>
+
+        <h2 class="card-title">
+          <a href="magnet:?xt=urn:btih:08bf19d832910fa49c18201a938210948bca1948">Namibia - Desert Elephants of the Hoanib River (1989 Archival Broadcast VHS-Rip)</a>
+        </h2>
+
+        <p class="card-snippet">
+          Historical documentary footage recording the behaviour of desert-adapted <strong>elephants</strong> in Namibia's northern Namib desert. Rare analog tape preservation transfer.
+        </p>
+
+        <div class="file-meta-row">
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <strong>720 MB</strong>
+          </span>
+          <span class="meta-item warn-stat">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
+            <span>2 seeds (low swarm)</span>
+          </span>
+          <span class="meta-item leech-stat">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            <span>1 leech</span>
+          </span>
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span>2014-06-04</span>
+          </span>
+        </div>
+
+        <div class="file-actions-bar">
+          <a class="btn-action btn-magnet" href="magnet:?xt=urn:btih:08bf19d832910fa49c18201a938210948bca1948">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15-3-3 6.36-6.36a4.5 4.5 0 0 1 6.37 0l1.41 1.41a4.5 4.5 0 0 1 0 6.37L13.78 19.7a3 3 0 0 1-4.24 0l-1.42-1.42a3 3 0 0 1 0-4.24l5.66-5.66"/></svg>
+            <span>Magnet</span>
+          </a>
+          <button class="btn-action" type="button" data-copy="magnet:?xt=urn:btih:08bf19d832910fa49c18201a938210948bca1948" data-copy-label="Magnet link">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            <span>Copy hash</span>
+          </button>
+          <a class="btn-action" href="#request-dht">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="m12 8 4 4-4 4"/></svg>
+            <span>Request web seed</span>
+          </a>
+        </div>
+      </article>
+    </section>
+
+    <!-- Bottom Related File Searches -->
+    <section class="related-searches" aria-labelledby="related-title">
+      <h2 id="related-title">File searches related to <strong>elephants</strong></h2>
+      <div class="related-searches-grid">
+        <a href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>elephants dream 4k blender source files</a>
+        <a href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>african elephant acoustic dataset zenodo</a>
+        <a href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>wildlife biology field manuals pdf</a>
+        <a href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>iucn red list loxodonta data archive</a>
+        <a href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>davinci resolve open movie master project</a>
+        <a href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>bbc natural world complete series torrent</a>
+      </div>
+    </section>
+
+    <a class="more-results" href="#page-2">Load more files (page 2 of 5)</a>
+  </main>
+
+  <footer class="site-footer">
+    <span>Powered by SearXNG 2026.8.30 · Files category</span>
+    <nav aria-label="Footer">
+      <a href="#source">source</a>
+      <a href="#issues">issues</a>
+      <a href="#stats">file engine stats</a>
+      <a href="#tracker-health">tracker health</a>
+    </nav>
+  </footer>
+
+  <!-- Toast notification banner -->
+  <div class="toast-notice" id="toast-notice" role="status" aria-live="polite">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+    <span id="toast-message">Magnet link copied to clipboard</span>
+  </div>
+</body>
+</html>
