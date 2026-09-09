@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en" data-theme="mocha">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>elephants | social media | SearXNG refined concept</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+  <style>
+    /* ── Social media tab styles ── */
+    .social-results { margin-top: 8px; }
+
+    .social-result {
+      padding: 13px 4px 14px;
+      border-bottom: 1px solid var(--surface-0);
+    }
+
+    .social-result:last-child { border-bottom: 0; }
+
+    .social-head {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .author-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: var(--surface-0);
+      flex-shrink: 0;
+    }
+
+    .author-avatar-fallback {
+      display: grid;
+      width: 32px;
+      height: 32px;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--surface-0);
+      color: var(--lavender);
+      font-size: 13px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .author-info {
+      min-width: 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 5px 8px;
+    }
+
+    .author-name {
+      color: var(--text);
+      font-size: 12.5px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .author-name:hover { text-decoration: underline; }
+
+    .author-handle {
+      color: var(--overlay-1);
+      font-size: 11px;
+    }
+
+    .platform-pill {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 3px;
+      background: var(--surface-0);
+      font-size: 9.5px;
+      font-weight: 500;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+    }
+
+    .platform-pill.mastodon {
+      background: color-mix(in srgb, var(--lavender) 16%, transparent);
+      color: var(--lavender);
+    }
+
+    .platform-pill.bluesky {
+      background: color-mix(in srgb, #89dceb 16%, transparent);
+      color: #89dceb;
+    }
+
+    .platform-pill.reddit {
+      background: color-mix(in srgb, var(--peach) 16%, transparent);
+      color: var(--peach);
+    }
+
+    .platform-pill.lemmy {
+      background: color-mix(in srgb, var(--green) 16%, transparent);
+      color: var(--green);
+    }
+
+    .post-timestamp {
+      color: var(--overlay-1);
+      font-size: 10.5px;
+      margin-left: auto;
+    }
+
+    /* Thread context line */
+    .thread-context {
+      margin: 4px 0 0 41px;
+      color: var(--subtext-0);
+      font-size: 11px;
+    }
+
+    .thread-context a {
+      color: var(--subtext-0);
+      text-decoration: none;
+    }
+
+    .thread-context a:hover {
+      color: var(--lavender);
+      text-decoration: underline;
+    }
+
+    /* Post text */
+    .post-text {
+      margin: 5px 0 0 41px;
+      color: var(--text);
+      font-size: 12.5px;
+      line-height: 1.55;
+    }
+
+    .post-text a {
+      color: var(--lavender);
+      text-decoration: none;
+    }
+
+    .post-text a:hover { text-decoration: underline; }
+
+    /* Capped image preview so multiple posts fit onscreen */
+    .post-media-wrap {
+      margin: 8px 0 0 41px;
+    }
+
+    .post-media {
+      display: block;
+      max-width: 100%;
+      max-height: 150px;
+      border-radius: 6px;
+      object-fit: cover;
+      background: var(--surface-0);
+    }
+
+    /* Secondary engagement footer */
+    .post-footer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin: 8px 0 0 41px;
+      color: var(--overlay-1);
+      font-size: 10.5px;
+    }
+
+    .post-stat {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .post-link {
+      margin-left: auto;
+      color: var(--subtext-0);
+      text-decoration: none;
+    }
+
+    .post-link:hover {
+      color: var(--lavender);
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 620px) {
+      .social-result { padding-block: 12px; }
+      .thread-context,
+      .post-text,
+      .post-media-wrap,
+      .post-footer { margin-left: 0; }
+      .post-media { max-height: 130px; }
+      .post-timestamp { margin-left: 0; }
+      .author-info { justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#results">Skip to results</a>
+
+  <header class="site-header">
+    <div class="header-row">
+      <a class="brand" href="index.html" aria-label="SearXNG home">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="13" cy="13" r="8.5"/><path d="m19.5 19.5 7 7"/></svg>
+        <span>searxng</span>
+      </a>
+
+      <form class="search-form" role="search">
+        <label class="sr-only" for="search-input">Search</label>
+        <input id="search-input" name="q" type="search" value="elephants" autocomplete="off" spellcheck="false">
+        <button class="search-button" type="submit" aria-label="Search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.7" cy="10.7" r="6.7"/><path d="m16 16 5 5"/></svg>
+        </button>
+        <kbd class="focus-hint" aria-hidden="true">/</kbd>
+      </form>
+
+      <nav class="utility-nav" aria-label="Site">
+        <a href="#about">about</a>
+        <a href="#preferences" aria-label="Preferences" title="Preferences">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/><path d="M19.4 15a1.8 1.8 0 0 0 .36 2l.06.06-2.76 2.76-.06-.06a1.8 1.8 0 0 0-2-.36 1.8 1.8 0 0 0-1.1 1.65V21H10v-.09A1.8 1.8 0 0 0 8.9 19.3a1.8 1.8 0 0 0-2 .36l-.06.06-2.76-2.76.06-.06a1.8 1.8 0 0 0 .36-2A1.8 1.8 0 0 0 2.85 14H2v-4h.85A1.8 1.8 0 0 0 4.5 8.9a1.8 1.8 0 0 0-.36-2l-.06-.06 2.76-2.76.06.06a1.8 1.8 0 0 0 2 .36A1.8 1.8 0 0 0 10 2.85V2h4v.85a1.8 1.8 0 0 0 1.1 1.65 1.8 1.8 0 0 0 2-.36l.06-.06 2.76 2.76-.06.06a1.8 1.8 0 0 0-.36 2 1.8 1.8 0 0 0 1.65 1.1H22v4h-.85A1.8 1.8 0 0 0 19.4 15Z"/></svg>
+        </a>
+        <button class="theme-toggle" type="button" aria-label="Switch to light theme" title="Toggle theme (Alt+T)">
+          <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.3A8.4 8.4 0 0 1 8.7 4 8.5 8.5 0 1 0 20 15.3Z"/></svg>
+          <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"/></svg>
+        </button>
+      </nav>
+    </div>
+
+    <nav class="category-nav" aria-label="Search categories">
+      <a href="index.html">general</a>
+      <a href="index.html#images">images</a>
+      <a href="videos.html">videos</a>
+      <a href="news.html">news</a>
+      <a href="map.html">map</a>
+      <a href="music.html">music</a>
+      <a href="it.html">it</a>
+      <a href="science.html">science</a>
+      <a href="files.html">files</a>
+      <a class="active" href="social.html" aria-current="page">social media</a>
+      <button class="filter-button" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M7 12h10M10 17h4"/></svg>
+        filters
+      </button>
+    </nav>
+  </header>
+
+  <main class="results-shell" id="results">
+    <div class="filter-strip" aria-label="Search filters">
+      <span>184 posts</span>
+      <span aria-hidden="true">&middot;</span>
+      <span>0.35s</span>
+
+      <div class="dropdown-wrapper">
+        <button type="button" aria-haspopup="listbox" aria-expanded="false">
+          <span class="filter-val">all platforms</span> <span aria-hidden="true">&#8964;</span>
+        </button>
+        <ul role="listbox" hidden>
+          <li role="option" class="active" aria-selected="true">all platforms</li>
+          <li role="option">Mastodon</li>
+          <li role="option">Bluesky</li>
+          <li role="option">Reddit</li>
+          <li role="option">Lemmy</li>
+        </ul>
+      </div>
+
+      <div class="dropdown-wrapper">
+        <button type="button" aria-haspopup="listbox" aria-expanded="false">
+          <span class="filter-val">any time</span> <span aria-hidden="true">&#8964;</span>
+        </button>
+        <ul role="listbox" hidden>
+          <li role="option" class="active" aria-selected="true">any time</li>
+          <li role="option">past 24h</li>
+          <li role="option">past week</li>
+          <li role="option">past month</li>
+        </ul>
+      </div>
+
+      <div class="dropdown-wrapper">
+        <button type="button" aria-haspopup="listbox" aria-expanded="false">
+          <span class="filter-val">sorted by date</span> <span aria-hidden="true">&#8964;</span>
+        </button>
+        <ul role="listbox" hidden>
+          <li role="option" class="active" aria-selected="true">sorted by date</li>
+          <li role="option">sorted by relevance</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Ordinary social results start immediately, no giant profile card -->
+    <section class="social-results" aria-label="Social media posts">
+
+      <!-- Post 1: Mastodon - with capped image preview -->
+      <article class="social-result">
+        <div class="social-head">
+          <img class="author-avatar" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/African_Bush_Elephant.jpg/330px-African_Bush_Elephant.jpg" alt="Save the Elephants avatar">
+          <div class="author-info">
+            <a class="author-name" href="https://mastodon.world/@savetheelephants" target="_blank" rel="noopener">Save the Elephants</a>
+            <span class="author-handle">@savetheelephants@mastodon.world</span>
+            <span class="platform-pill mastodon">Mastodon</span>
+            <span class="post-timestamp">2h ago</span>
+          </div>
+        </div>
+        <p class="post-text">
+          Camera traps in Samburu National Reserve recorded three family herds reuniting at the Ewaso Nyiro river yesterday. The dry season has been severe, but recent upstream rains brought fresh water back to the riverbeds.
+        </p>
+        <div class="post-media-wrap">
+          <img class="post-media" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Elephants_at_Amboseli_national_park_against_Mount_Kilimanjaro.jpg/320px-Elephants_at_Amboseli_national_park_against_Mount_Kilimanjaro.jpg" alt="Elephants drinking at river">
+        </div>
+        <div class="post-footer">
+          <span class="post-stat">14 replies</span>
+          <span>&middot;</span>
+          <span class="post-stat">86 boosts</span>
+          <span>&middot;</span>
+          <span class="post-stat">210 likes</span>
+          <a class="post-link" href="https://mastodon.world/@savetheelephants/1120584920" target="_blank" rel="noopener">view post</a>
+        </div>
+      </article>
+
+      <!-- Post 2: Bluesky - thread context, text only -->
+      <article class="social-result">
+        <div class="social-head">
+          <img class="author-avatar" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Elephant_near_nridge.jpg/320px-Elephant_near_nridge.jpg" alt="Kenya Wildlife Trust avatar">
+          <div class="author-info">
+            <a class="author-name" href="https://bsky.app/profile/kenyawildlife.bsky.social" target="_blank" rel="noopener">Kenya Wildlife Trust</a>
+            <span class="author-handle">@kenyawildlife.bsky.social</span>
+            <span class="platform-pill bluesky">Bluesky</span>
+            <span class="post-timestamp">4h ago</span>
+          </div>
+        </div>
+        <div class="thread-context">
+          <span>Replying to <a href="#">@nairobinp</a></span>
+        </div>
+        <p class="post-text">
+          GPS collar data from the Amboseli northern corridor confirms 42 elephants crossed the highway buffer zone overnight with zero conflict reports. Dedicated wildlife corridors make coexistence achievable.
+        </p>
+        <div class="post-footer">
+          <span class="post-stat">6 replies</span>
+          <span>&middot;</span>
+          <span class="post-stat">34 reposts</span>
+          <span>&middot;</span>
+          <span class="post-stat">98 likes</span>
+          <a class="post-link" href="https://bsky.app/profile/kenyawildlife.bsky.social/post/3kqj82" target="_blank" rel="noopener">view thread</a>
+        </div>
+      </article>
+
+      <!-- Post 3: Reddit - with subreddit context and capped photo -->
+      <article class="social-result">
+        <div class="social-head">
+          <div class="author-avatar-fallback">F</div>
+          <div class="author-info">
+            <a class="author-name" href="https://reddit.com/user/field_biologist" target="_blank" rel="noopener">u/field_biologist</a>
+            <span class="platform-pill reddit">Reddit</span>
+            <span class="post-timestamp">6h ago</span>
+          </div>
+        </div>
+        <div class="thread-context">
+          <span>in <a href="https://reddit.com/r/biology" target="_blank" rel="noopener">r/biology</a></span>
+        </div>
+        <p class="post-text">
+          Field observation: Asian elephants in Western Ghats adapting foraging times to avoid truck traffic on State Highway 181. They consistently wait until vehicle frequency drops after 2 AM before crossing open corridors.
+        </p>
+        <div class="post-media-wrap">
+          <img class="post-media" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Asian_Elephant%2C_Kaziranga.jpg/320px-Asian_Elephant%2C_Kaziranga.jpg" alt="Asian elephant near forest edge">
+        </div>
+        <div class="post-footer">
+          <span class="post-stat">320 points</span>
+          <span>&middot;</span>
+          <span class="post-stat">42 comments</span>
+          <a class="post-link" href="https://reddit.com/r/biology/comments/elephants_crossing" target="_blank" rel="noopener">view discussion</a>
+        </div>
+      </article>
+
+      <!-- Post 4: Lemmy - text only, community context -->
+      <article class="social-result">
+        <div class="social-head">
+          <div class="author-avatar-fallback">E</div>
+          <div class="author-info">
+            <a class="author-name" href="https://lemmy.world/u/eco_watcher" target="_blank" rel="noopener">eco_watcher@lemmy.world</a>
+            <span class="platform-pill lemmy">Lemmy</span>
+            <span class="post-timestamp">11h ago</span>
+          </div>
+        </div>
+        <div class="thread-context">
+          <span>in <a href="https://lemmy.world/c/conservation" target="_blank" rel="noopener">!conservation@lemmy.world</a></span>
+        </div>
+        <p class="post-text">
+          Preliminary numbers from Kenya Wildlife Service 2026 census show regional elephant populations growing at 5.4% annually across Tsavo-Amboseli. Coordinated anti-poaching enforcement continues to yield measurable results.
+        </p>
+        <div class="post-footer">
+          <span class="post-stat">18 upvotes</span>
+          <span>&middot;</span>
+          <span class="post-stat">6 comments</span>
+          <a class="post-link" href="https://lemmy.world/post/89201" target="_blank" rel="noopener">view post</a>
+        </div>
+      </article>
+
+      <!-- Post 5: Mastodon - with photo -->
+      <article class="social-result">
+        <div class="social-head">
+          <img class="author-avatar" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Afrikanischer_Waldelefant%2C_6_Monate.jpg/320px-Afrikanischer_Waldelefant%2C_6_Monate.jpg" alt="Amboseli Trust avatar">
+          <div class="author-info">
+            <a class="author-name" href="https://ecoevo.social/@amboseli_elephants" target="_blank" rel="noopener">Amboseli Trust</a>
+            <span class="author-handle">@amboseli_elephants@ecoevo.social</span>
+            <span class="platform-pill mastodon">Mastodon</span>
+            <span class="post-timestamp">1d ago</span>
+          </div>
+        </div>
+        <p class="post-text">
+          Remembering Echo: 15 years since the matriarch of the EB family passed away. Her daughter Enid still leads the family group today, illustrating multi-generational social transmission in wild populations.
+        </p>
+        <div class="post-media-wrap">
+          <img class="post-media" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Elephant_Diversity.jpg/320px-Elephant_Diversity.jpg" alt="Elephant family herd in grassland">
+        </div>
+        <div class="post-footer">
+          <span class="post-stat">8 replies</span>
+          <span>&middot;</span>
+          <span class="post-stat">124 boosts</span>
+          <span>&middot;</span>
+          <span class="post-stat">310 likes</span>
+          <a class="post-link" href="https://ecoevo.social/@amboseli_elephants/112042" target="_blank" rel="noopener">view post</a>
+        </div>
+      </article>
+
+      <!-- Post 6: Bluesky - text only -->
+      <article class="social-result">
+        <div class="social-head">
+          <div class="author-avatar-fallback">J</div>
+          <div class="author-info">
+            <a class="author-name" href="https://bsky.app/profile/elephantvoices.bsky.social" target="_blank" rel="noopener">Dr. Joyce Poole</a>
+            <span class="author-handle">@elephantvoices.bsky.social</span>
+            <span class="platform-pill bluesky">Bluesky</span>
+            <span class="post-timestamp">2d ago</span>
+          </div>
+        </div>
+        <p class="post-text">
+          Spectrogram analysis of seismic rumbles recorded in Gorongosa reveals distinct low-frequency harmonic peaks for predator warnings compared with family reunion greeting calls.
+        </p>
+        <div class="post-footer">
+          <span class="post-stat">12 replies</span>
+          <span>&middot;</span>
+          <span class="post-stat">48 reposts</span>
+          <span>&middot;</span>
+          <span class="post-stat">175 likes</span>
+          <a class="post-link" href="https://bsky.app/profile/elephantvoices.bsky.social/post/3kqb91" target="_blank" rel="noopener">view post</a>
+        </div>
+      </article>
+
+      <!-- Post 7: Reddit - missing avatar, missing engagement stats (realistic incomplete metadata) -->
+      <article class="social-result">
+        <div class="social-head">
+          <div class="author-avatar-fallback">R</div>
+          <div class="author-info">
+            <a class="author-name" href="https://reddit.com/user/ranger_sam" target="_blank" rel="noopener">u/ranger_sam</a>
+            <span class="platform-pill reddit">Reddit</span>
+            <span class="post-timestamp">3d ago</span>
+          </div>
+        </div>
+        <div class="thread-context">
+          <span>in <a href="https://reddit.com/r/wildlife" target="_blank" rel="noopener">r/wildlife</a></span>
+        </div>
+        <p class="post-text">
+          Quick patrol log update from the western border fence: solar sensor beacons operational across sectors 4 through 9 following scheduled battery replacement.
+        </p>
+        <div class="post-footer">
+          <!-- No engagement metrics returned by instance -->
+          <a class="post-link" href="https://reddit.com/r/wildlife/comments/patrol_log" target="_blank" rel="noopener">view post</a>
+        </div>
+      </article>
+
+    </section>
+
+    <a class="more-results" href="#page-2">More results</a>
+  </main>
+
+  <footer class="site-footer">
+    <span>Powered by SearXNG 2026.8.30</span>
+    <nav aria-label="Footer"><a href="#source">source</a><a href="#issues">issues</a><a href="#stats">engine stats</a></nav>
+  </footer>
+</body>
+</html>

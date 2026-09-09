@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="en" data-theme="mocha">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>elephant cognition and communication | science | SearXNG refined concept</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+  <style>
+    /* ── Science tab styles ── */
+    .science-results { margin-top: 8px; }
+
+    .paper-result {
+      padding: 13px 4px 14px;
+      border-bottom: 1px solid var(--surface-0);
+    }
+
+    .paper-result:last-child { border-bottom: 0; }
+
+    .paper-head {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--overlay-1);
+      font-size: 11px;
+    }
+
+    .paper-source {
+      color: var(--subtext-0);
+      font-weight: 500;
+    }
+
+    .paper-result h2 {
+      margin: 4px 0 3px;
+      font-size: 15.5px;
+      font-weight: 400;
+      line-height: 1.4;
+    }
+
+    .paper-result h2 a {
+      color: var(--lavender);
+      text-decoration: none;
+    }
+
+    .paper-result h2 a:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .paper-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px 14px;
+      margin: 3px 0 0;
+      color: var(--subtext-0);
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    .paper-authors { color: var(--text); }
+    .paper-year { color: var(--overlay-1); }
+    .paper-journal { color: var(--subtext-1); font-style: italic; }
+
+    .paper-doi {
+      color: var(--overlay-1);
+    }
+
+    .paper-doi a {
+      color: var(--subtext-0);
+      text-decoration: none;
+    }
+
+    .paper-doi a:hover {
+      color: var(--lavender);
+      text-decoration: underline;
+    }
+
+    .paper-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin: 6px 0 0;
+    }
+
+    .action-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 7px;
+      border: 1px solid var(--surface-1);
+      border-radius: 4px;
+      background: transparent;
+      color: var(--subtext-0);
+      font-size: 10.5px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
+    }
+
+    .action-badge:hover {
+      border-color: var(--lavender);
+      color: var(--lavender);
+    }
+
+    .action-badge.pdf {
+      border-color: color-mix(in srgb, var(--red) 40%, var(--surface-1));
+      color: var(--red);
+    }
+
+    .action-badge.pdf:hover {
+      background: color-mix(in srgb, var(--red) 14%, transparent);
+      border-color: var(--red);
+    }
+
+    .action-badge svg {
+      width: 11px;
+      height: 11px;
+    }
+
+    .cite-btn {
+      padding: 2px 7px;
+      border: 1px solid var(--surface-1);
+      border-radius: 4px;
+      background: transparent;
+      color: var(--overlay-1);
+      font-family: var(--font);
+      font-size: 10.5px;
+      cursor: pointer;
+    }
+
+    .cite-btn:hover {
+      border-color: var(--subtext-0);
+      color: var(--text);
+    }
+
+    .abstract-toggle {
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: var(--overlay-1);
+      font-size: 10.5px;
+      cursor: pointer;
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      text-underline-offset: 3px;
+    }
+
+    .abstract-toggle:hover { color: var(--lavender); }
+
+    .paper-abstract {
+      margin: 6px 0 0;
+      color: var(--subtext-1);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .paper-abstract.collapsed {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .full-abstract {
+      margin: 6px 0 0;
+      padding: 8px 12px;
+      border-left: 2px solid var(--surface-1);
+      background: color-mix(in srgb, var(--surface-0) 30%, var(--mantle));
+      border-radius: 0 5px 5px 0;
+      color: var(--subtext-1);
+      font-size: 11.5px;
+      line-height: 1.6;
+    }
+
+    /* Responsive */
+    @media (max-width: 620px) {
+      .paper-result { padding-block: 12px; }
+      .paper-result h2 { font-size: 14.5px; }
+      .paper-meta { gap: 4px 10px; }
+      .full-abstract { padding: 6px 10px; font-size: 11px; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#results">Skip to results</a>
+
+  <header class="site-header">
+    <div class="header-row">
+      <a class="brand" href="index.html" aria-label="SearXNG home">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="13" cy="13" r="8.5"/><path d="m19.5 19.5 7 7"/></svg>
+        <span>searxng</span>
+      </a>
+
+      <form class="search-form" role="search">
+        <label class="sr-only" for="search-input">Search</label>
+        <input id="search-input" name="q" type="search" value="elephant cognition and communication" autocomplete="off" spellcheck="false">
+        <button class="search-button" type="submit" aria-label="Search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.7" cy="10.7" r="6.7"/><path d="m16 16 5 5"/></svg>
+        </button>
+        <kbd class="focus-hint" aria-hidden="true">/</kbd>
+      </form>
+
+      <nav class="utility-nav" aria-label="Site">
+        <a href="#about">about</a>
+        <a href="#preferences" aria-label="Preferences" title="Preferences">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/><path d="M19.4 15a1.8 1.8 0 0 0 .36 2l.06.06-2.76 2.76-.06-.06a1.8 1.8 0 0 0-2-.36 1.8 1.8 0 0 0-1.1 1.65V21H10v-.09A1.8 1.8 0 0 0 8.9 19.3a1.8 1.8 0 0 0-2 .36l-.06.06-2.76-2.76.06-.06a1.8 1.8 0 0 0 .36-2A1.8 1.8 0 0 0 2.85 14H2v-4h.85A1.8 1.8 0 0 0 4.5 8.9a1.8 1.8 0 0 0-.36-2l-.06-.06 2.76-2.76.06.06a1.8 1.8 0 0 0 2 .36A1.8 1.8 0 0 0 10 2.85V2h4v.85a1.8 1.8 0 0 0 1.1 1.65 1.8 1.8 0 0 0 2-.36l.06-.06 2.76 2.76-.06.06a1.8 1.8 0 0 0-.36 2 1.8 1.8 0 0 0 1.65 1.1H22v4h-.85A1.8 1.8 0 0 0 19.4 15Z"/></svg>
+        </a>
+        <button class="theme-toggle" type="button" aria-label="Switch to light theme" title="Toggle theme (Alt+T)">
+          <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.3A8.4 8.4 0 0 1 8.7 4 8.5 8.5 0 1 0 20 15.3Z"/></svg>
+          <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"/></svg>
+        </button>
+      </nav>
+    </div>
+
+    <nav class="category-nav" aria-label="Search categories">
+      <a href="index.html">general</a>
+      <a href="index.html#images">images</a>
+      <a href="videos.html">videos</a>
+      <a href="news.html">news</a>
+      <a href="map.html">map</a>
+      <a href="music.html">music</a>
+      <a href="it.html">it</a>
+      <a class="active" href="science.html" aria-current="page">science</a>
+      <a href="files.html">files</a>
+      <a href="social.html">social media</a>
+      <button class="filter-button" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M7 12h10M10 17h4"/></svg>
+        filters
+      </button>
+    </nav>
+  </header>
+
+  <main class="results-shell" id="results">
+    <div class="filter-strip" aria-label="Search filters">
+      <span>1,280 papers</span>
+      <span aria-hidden="true">&middot;</span>
+      <span>0.38s</span>
+
+      <div class="dropdown-wrapper">
+        <button type="button" aria-haspopup="listbox" aria-expanded="false">
+          <span class="filter-val">any year</span> <span aria-hidden="true">&#8964;</span>
+        </button>
+        <ul role="listbox" hidden>
+          <li role="option" class="active" aria-selected="true">any year</li>
+          <li role="option">since 2024</li>
+          <li role="option">since 2022</li>
+          <li role="option">since 2020</li>
+        </ul>
+      </div>
+
+      <div class="dropdown-wrapper">
+        <button type="button" aria-haspopup="listbox" aria-expanded="false">
+          <span class="filter-val">sorted by relevance</span> <span aria-hidden="true">&#8964;</span>
+        </button>
+        <ul role="listbox" hidden>
+          <li role="option" class="active" aria-selected="true">sorted by relevance</li>
+          <li role="option">sorted by date</li>
+          <li role="option">most cited</li>
+        </ul>
+      </div>
+
+      <div class="dropdown-wrapper">
+        <button type="button" aria-haspopup="listbox" aria-expanded="false">
+          <span class="filter-val">all disciplines</span> <span aria-hidden="true">&#8964;</span>
+        </button>
+        <ul role="listbox" hidden>
+          <li role="option" class="active" aria-selected="true">all disciplines</li>
+          <li role="option">Ethology &amp; Cognition</li>
+          <li role="option">Bioacoustics</li>
+          <li role="option">Genomics</li>
+          <li role="option">Conservation</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Ordinary paper search results start immediately -->
+    <section class="science-results" aria-label="Academic paper results">
+
+      <!-- Paper 1: Full data + PDF + DOI + abstract -->
+      <article class="paper-result">
+        <div class="paper-head">
+          <span class="paper-source">PNAS</span>
+          <span>&middot;</span>
+          <span>pnas.org &#8250; doi &#8250; 10.1073/pnas.0608062103</span>
+        </div>
+        <h2><a href="https://www.pnas.org/doi/10.1073/pnas.0608062103" target="_blank" rel="noopener">Self-recognition in an Asian elephant</a></h2>
+        <div class="paper-meta">
+          <span class="paper-authors">Joshua M. Plotnik, Frans B. M. de Waal, Diana Reiss</span>
+          <span class="paper-year">(2006)</span>
+          <span class="paper-journal">Proc. Natl. Acad. Sci. USA 103 (45) 17053-17057</span>
+          <span class="paper-doi">DOI: <a href="https://doi.org/10.1073/pnas.0608062103" target="_blank" rel="noopener">10.1073/pnas.0608062103</a></span>
+        </div>
+        <p class="paper-abstract collapsed">Mirror self-recognition is regarded as a hallmark of self-awareness and higher-order cognition, previously demonstrated systematically only in humans and great apes. Here we report an Asian elephant passing the mirror mark test.</p>
+        <div class="paper-actions">
+          <a class="action-badge pdf" href="https://www.pnas.org/doi/pdf/10.1073/pnas.0608062103" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            PDF
+          </a>
+          <a class="action-badge" href="https://www.pnas.org/doi/10.1073/pnas.0608062103" target="_blank" rel="noopener">HTML</a>
+          <button class="cite-btn" type="button" data-cite-btn data-citations='{"apa":"Plotnik, J. M., de Waal, F. B. M., &amp; Reiss, D. (2006). Self-recognition in an Asian elephant. Proceedings of the National Academy of Sciences, 103(45), 17053-17057.","chicago":"Plotnik, Joshua M., Frans B. M. de Waal, and Diana Reiss. "Self-recognition in an Asian Elephant." Proceedings of the National Academy of Sciences 103, no. 45 (2006): 17053-17057.","bibtex":"@article{plotnik2006self,
+  title={Self-recognition in an Asian elephant},
+  author={Plotnik, Joshua M and de Waal, Frans BM and Reiss, Diana},
+  journal={Proceedings of the National Academy of Sciences},
+  volume={103},
+  number={45},
+  pages={17053--17057},
+  year={2006}
+}"}'>cite</button>
+          <button class="abstract-toggle" type="button" data-collapse-toggle="abstract-1" aria-expanded="false" data-collapsed-text="show abstract" data-expanded-text="hide abstract">
+            <span>show abstract</span>
+          </button>
+        </div>
+        <div class="full-abstract" id="abstract-1" hidden>
+          Mirror self-recognition is regarded as a hallmark of self-awareness and higher-order cognition, previously demonstrated systematically only in humans and great apes. Here we report an Asian elephant passing the mirror mark test. In front of an 8x8 foot mirror, an elephant named Happy repeatedly applied self-directed trunk touches to an invisible sham mark and a visible painted mark above her right eye, without tactile cues, demonstrating convergent cognitive evolution between primates and proboscideans.
+        </div>
+      </article>
+
+      <!-- Paper 2: Paywalled / No direct PDF link (realistic missing data) -->
+      <article class="paper-result">
+        <div class="paper-head">
+          <span class="paper-source">JASA</span>
+          <span>&middot;</span>
+          <span>asa.scitation.org &#8250; doi &#8250; 10.1121/1.2025732</span>
+        </div>
+        <h2><a href="https://doi.org/10.1121/1.2025732" target="_blank" rel="noopener">Infrasonic calls in African elephants: frequency characteristics and ground propagation</a></h2>
+        <div class="paper-meta">
+          <span class="paper-authors">P. O. Poole, K. Payne, W. R. Langbauer, C. J. Moss</span>
+          <span class="paper-year">(1988)</span>
+          <span class="paper-journal">J. Acoust. Soc. Am. 83 (S1) S80</span>
+          <span class="paper-doi">DOI: <a href="https://doi.org/10.1121/1.2025732" target="_blank" rel="noopener">10.1121/1.2025732</a></span>
+        </div>
+        <p class="paper-abstract collapsed">Field recordings in Amboseli National Park confirmed low-frequency acoustic emissions between 14 Hz and 24 Hz, below human hearing thresholds, enabling long-range coordination among scattered herds.</p>
+        <div class="paper-actions">
+          <a class="action-badge" href="https://doi.org/10.1121/1.2025732" target="_blank" rel="noopener">HTML</a>
+          <button class="cite-btn" type="button" data-cite-btn data-citations='{"apa":"Poole, P. O., Payne, K., Langbauer, W. R., &amp; Moss, C. J. (1988). Infrasonic calls in African elephants. Journal of the Acoustical Society of America, 83(S1), S80.","chicago":"Poole, P. O., K. Payne, W. R. Langbauer, and C. J. Moss. "Infrasonic Calls in African Elephants." Journal of the Acoustical Society of America 83, no. S1 (1988): S80.","bibtex":"@article{poole1988infrasonic,
+  title={Infrasonic calls in African elephants},
+  author={Poole, PO and Payne, K and Langbauer, WR and Moss, CJ},
+  journal={Journal of the Acoustical Society of America},
+  volume={83},
+  pages={S80},
+  year={1988}
+}"}'>cite</button>
+          <button class="abstract-toggle" type="button" data-collapse-toggle="abstract-2" aria-expanded="false" data-collapsed-text="show abstract" data-expanded-text="hide abstract">
+            <span>show abstract</span>
+          </button>
+        </div>
+        <div class="full-abstract" id="abstract-2" hidden>
+          Field recordings in Amboseli National Park confirmed low-frequency acoustic emissions between 14 Hz and 24 Hz, below human hearing thresholds. Seismic ground attenuation measurements showed that ground roll Rayleigh waves generated by these rumbles propagate up to 16 km, providing a secondary acoustic channel through elephant footpad mechanoreceptors.
+        </div>
+      </article>
+
+      <!-- Paper 3: Preprint (arXiv) - no journal volume, direct PDF link -->
+      <article class="paper-result">
+        <div class="paper-head">
+          <span class="paper-source">arXiv</span>
+          <span>&middot;</span>
+          <span>arxiv.org &#8250; abs &#8250; 2308.11429</span>
+        </div>
+        <h2><a href="https://arxiv.org/abs/2308.11429" target="_blank" rel="noopener">Can elephants crack the mirror test? Critical re-examination and replication attempts</a></h2>
+        <div class="paper-meta">
+          <span class="paper-authors">M. R. Gallagher, E. H. Thorne</span>
+          <span class="paper-year">(2023)</span>
+          <span class="paper-journal">arXiv:2308.11429 [q-bio.NC]</span>
+          <span class="paper-doi">DOI: <a href="https://doi.org/10.48550/arXiv.2308.11429" target="_blank" rel="noopener">10.48550/arXiv.2308.11429</a></span>
+        </div>
+        <p class="paper-abstract collapsed">We review three replication attempts of the mirror self-recognition protocol across Asian and African elephant facilities, examining whether methodological differences in mirror size and tactile distraction account for varying success rates.</p>
+        <div class="paper-actions">
+          <a class="action-badge pdf" href="https://arxiv.org/pdf/2308.11429" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            PDF
+          </a>
+          <a class="action-badge" href="https://arxiv.org/abs/2308.11429" target="_blank" rel="noopener">HTML</a>
+          <button class="cite-btn" type="button" data-cite-btn data-citations='{"apa":"Gallagher, M. R., &amp; Thorne, E. H. (2023). Can elephants crack the mirror test? arXiv preprint arXiv:2308.11429.","chicago":"Gallagher, M. R., and E. H. Thorne. "Can Elephants Crack the Mirror Test?" arXiv preprint arXiv:2308.11429 (2023).","bibtex":"@article{gallagher2023mirror,
+  title={Can elephants crack the mirror test? Critical re-examination and replication attempts},
+  author={Gallagher, MR and Thorne, EH},
+  journal={arXiv preprint arXiv:2308.11429},
+  year={2023}
+}"}'>cite</button>
+          <button class="abstract-toggle" type="button" data-collapse-toggle="abstract-3" aria-expanded="false" data-collapsed-text="show abstract" data-expanded-text="hide abstract">
+            <span>show abstract</span>
+          </button>
+        </div>
+        <div class="full-abstract" id="abstract-3" hidden>
+          We review three replication attempts of the mirror self-recognition protocol across Asian and African elephant facilities. While earlier experiments highlighted individual success, variable outcomes suggest that tactile, olfactory, and motor modalities dominate elephant self-awareness far more than purely visual feedback, requiring cross-modal testing frameworks.
+        </div>
+      </article>
+
+      <!-- Paper 4: Long paper title + 4 authors -->
+      <article class="paper-result">
+        <div class="paper-head">
+          <span class="paper-source">PNAS</span>
+          <span>&middot;</span>
+          <span>pnas.org &#8250; doi &#8250; 10.1073/pnas.1101765108</span>
+        </div>
+        <h2><a href="https://www.pnas.org/doi/10.1073/pnas.1101765108" target="_blank" rel="noopener">Elephants know when they need a helping hand: cooperation and partner awareness in Asian elephants during loose-string pulling tasks</a></h2>
+        <div class="paper-meta">
+          <span class="paper-authors">Joshua M. Plotnik, Richard Lair, Wirot Suphachoksahakun, Frans B. M. de Waal</span>
+          <span class="paper-year">(2011)</span>
+          <span class="paper-journal">Proc. Natl. Acad. Sci. USA 108 (12) 5116-5121</span>
+          <span class="paper-doi">DOI: <a href="https://doi.org/10.1073/pnas.1101765108" target="_blank" rel="noopener">10.1073/pnas.1101765108</a></span>
+        </div>
+        <p class="paper-abstract collapsed">Using a modified cooperative apparatus, pairs of Asian elephants were presented with two ends of a single rope threaded around a baited table. Elephants waited for their partner before pulling, demonstrating understanding of cooperative roles.</p>
+        <div class="paper-actions">
+          <a class="action-badge pdf" href="https://www.pnas.org/doi/pdf/10.1073/pnas.1101765108" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            PDF
+          </a>
+          <a class="action-badge" href="https://www.pnas.org/doi/10.1073/pnas.1101765108" target="_blank" rel="noopener">HTML</a>
+          <button class="cite-btn" type="button" data-cite-btn data-citations='{"apa":"Plotnik, J. M., Lair, R., Suphachoksahakun, W., &amp; de Waal, F. B. M. (2011). Elephants know when they need a helping hand. Proceedings of the National Academy of Sciences, 108(12), 5116-5121.","chicago":"Plotnik, Joshua M., Richard Lair, Wirot Suphachoksahakun, and Frans B. M. de Waal. "Elephants Know When They Need a Helping Hand." Proceedings of the National Academy of Sciences 108, no. 12 (2011): 5116-5121.","bibtex":"@article{plotnik2011elephants,
+  title={Elephants know when they need a helping hand: cooperation and partner awareness},
+  author={Plotnik, Joshua M and Lair, Richard and Suphachoksahakun, Wirot and de Waal, Frans BM},
+  journal={Proceedings of the National Academy of Sciences},
+  volume={108},
+  number={12},
+  pages={5116--5121},
+  year={2011}
+}"}'>cite</button>
+          <button class="abstract-toggle" type="button" data-collapse-toggle="abstract-4" aria-expanded="false" data-collapsed-text="show abstract" data-expanded-text="hide abstract">
+            <span>show abstract</span>
+          </button>
+        </div>
+        <div class="full-abstract" id="abstract-4" hidden>
+          Using a modified cooperative apparatus, pairs of Asian elephants were presented with two ends of a single rope threaded around a baited table. Pulling one rope end without a partner causes the rope to unthread and renders the food unreachable. Elephants rapidly learned to wait up to 45 seconds for a delayed partner before pulling, demonstrating partner awareness on par with chimpanzees.
+        </div>
+      </article>
+
+      <!-- Paper 5: No abstract provided (realistic missing metadata) -->
+      <article class="paper-result">
+        <div class="paper-head">
+          <span class="paper-source">Bioacoustics</span>
+          <span>&middot;</span>
+          <span>tandfonline.com &#8250; doi &#8250; 10.1080/09524622.2007.9753846</span>
+        </div>
+        <h2><a href="https://doi.org/10.1080/09524622.2007.9753846" target="_blank" rel="noopener">Auditory and seismic sensitivity in elephants</a></h2>
+        <div class="paper-meta">
+          <span class="paper-authors">Caitlin E. O&apos;Connell-Rodwell</span>
+          <span class="paper-year">(2007)</span>
+          <span class="paper-journal">Bioacoustics 17 (1-3) 140-142</span>
+          <span class="paper-doi">DOI: <a href="https://doi.org/10.1080/09524622.2007.9753846" target="_blank" rel="noopener">10.1080/09524622.2007.9753846</a></span>
+        </div>
+        <div class="paper-actions">
+          <a class="action-badge" href="https://doi.org/10.1080/09524622.2007.9753846" target="_blank" rel="noopener">HTML</a>
+          <button class="cite-btn" type="button" data-cite-btn data-citations='{"apa":"O'Connell-Rodwell, C. E. (2007). Auditory and seismic sensitivity in elephants. Bioacoustics, 17(1-3), 140-142.","chicago":"O'Connell-Rodwell, Caitlin E. "Auditory and Seismic Sensitivity in Elephants." Bioacoustics 17, no. 1-3 (2007): 140-142.","bibtex":"@article{oconnell2007auditory,
+  title={Auditory and seismic sensitivity in elephants},
+  author={O'Connell-Rodwell, Caitlin E},
+  journal={Bioacoustics},
+  volume={17},
+  number={1-3},
+  pages={140--142},
+  year={2007}
+}"}'>cite</button>
+        </div>
+      </article>
+
+      <!-- Paper 6: Nature paper with vocal imitation -->
+      <article class="paper-result">
+        <div class="paper-head">
+          <span class="paper-source">Nature</span>
+          <span>&middot;</span>
+          <span>nature.com &#8250; articles &#8250; 434455a</span>
+        </div>
+        <h2><a href="https://www.nature.com/articles/434455a" target="_blank" rel="noopener">Vocal learning in the African elephant</a></h2>
+        <div class="paper-meta">
+          <span class="paper-authors">Joyce H. Poole, Peter L. Tyack, Angela S. Stoeger, et al.</span>
+          <span class="paper-year">(2005)</span>
+          <span class="paper-journal">Nature 434 455-456</span>
+          <span class="paper-doi">DOI: <a href="https://doi.org/10.1038/434455a" target="_blank" rel="noopener">10.1038/434455a</a></span>
+        </div>
+        <p class="paper-abstract collapsed">We describe vocal imitation of truck noises by an adolescent African elephant in Kenya and Asian elephant vocal mimicry of human speech in South Korea, demonstrating that vocal production learning is not restricted to primates, cetaceans, and birds.</p>
+        <div class="paper-actions">
+          <a class="action-badge pdf" href="https://www.nature.com/articles/434455a.pdf" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            PDF
+          </a>
+          <a class="action-badge" href="https://www.nature.com/articles/434455a" target="_blank" rel="noopener">HTML</a>
+          <button class="cite-btn" type="button" data-cite-btn data-citations='{"apa":"Poole, J. H., Tyack, P. L., &amp; Stoeger, A. S. (2005). Vocal learning in the African elephant. Nature, 434, 455-456.","chicago":"Poole, Joyce H., Peter L. Tyack, and Angela S. Stoeger. "Vocal Learning in the African Elephant." Nature 434 (2005): 455-456.","bibtex":"@article{poole2005vocal,
+  title={Vocal learning in the African elephant},
+  author={Poole, Joyce H and Tyack, Peter L and Stoeger, Angela S},
+  journal={Nature},
+  volume={434},
+  pages={455--456},
+  year={2005}
+}"}'>cite</button>
+          <button class="abstract-toggle" type="button" data-collapse-toggle="abstract-6" aria-expanded="false" data-collapsed-text="show abstract" data-expanded-text="hide abstract">
+            <span>show abstract</span>
+          </button>
+        </div>
+        <div class="full-abstract" id="abstract-6" hidden>
+          Acoustic analysis shows that an African elephant living near a highway synthesized truck noise signatures in its night shelter, and an Asian elephant in a zoo mimicked Korean vocalizations spoken by its trainers. Vocal production learning provides an evolutionary mechanism for individualized greeting ceremonies and matriarch-led clan identifiers.
+        </div>
+      </article>
+
+      <!-- Paper 7: Missing DOI (older classic paper, realistic incomplete metadata) -->
+      <article class="paper-result">
+        <div class="paper-head">
+          <span class="paper-source">ScienceDirect</span>
+          <span>&middot;</span>
+          <span>sciencedirect.com &#8250; science &#8250; article</span>
+        </div>
+        <h2><a href="https://www.sciencedirect.com/science/article/pii/0003347284900018" target="_blank" rel="noopener">Social organization in the African elephant: the matriarch as repository of ecological knowledge</a></h2>
+        <div class="paper-meta">
+          <span class="paper-authors">Cynthia J. Moss, Joyce H. Poole</span>
+          <span class="paper-year">(1984)</span>
+          <span class="paper-journal">Animal Behaviour 32 (2) 538-548</span>
+        </div>
+        <p class="paper-abstract collapsed">Thirty years of demographic observation in Amboseli indicates that family units led by older matriarchs exhibit significantly higher calf survival rates during severe droughts, highlighting the survival value of institutional memory in long-lived mammals.</p>
+        <div class="paper-actions">
+          <a class="action-badge pdf" href="https://www.sciencedirect.com/science/article/pii/0003347284900018/pdf" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            PDF
+          </a>
+          <a class="action-badge" href="https://www.sciencedirect.com/science/article/pii/0003347284900018" target="_blank" rel="noopener">HTML</a>
+          <button class="cite-btn" type="button" data-cite-btn data-citations='{"apa":"Moss, C. J., &amp; Poole, J. H. (1984). Social organization in the African elephant. Animal Behaviour, 32(2), 538-548.","chicago":"Moss, Cynthia J., and Joyce H. Poole. "Social Organization in the African Elephant." Animal Behaviour 32, no. 2 (1984): 538-548.","bibtex":"@article{moss1984social,
+  title={Social organization in the African elephant},
+  author={Moss, Cynthia J and Poole, Joyce H},
+  journal={Animal Behaviour},
+  volume={32},
+  number={2},
+  pages={538--548},
+  year={1984}
+}"}'>cite</button>
+          <button class="abstract-toggle" type="button" data-collapse-toggle="abstract-7" aria-expanded="false" data-collapsed-text="show abstract" data-expanded-text="hide abstract">
+            <span>show abstract</span>
+          </button>
+        </div>
+        <div class="full-abstract" id="abstract-7" hidden>
+          Long-term records from Amboseli show matriarch age correlates directly with herd responsiveness to unfamiliar contact calls and distant thunder. Herds led by matriarchs over 50 years old navigate directly to historical dry-season springs unknown to younger generations, demonstrating cultural transmission of survival knowledge.
+        </div>
+      </article>
+
+    </section>
+
+    <a class="more-results" href="#page-2">More results</a>
+  </main>
+
+  <!-- Citation Modal: kept closed until requested by user -->
+  <div class="modal-backdrop" id="cite-modal" hidden>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="cite-modal-title">
+      <div class="modal-header">
+        <h3 class="modal-title" id="cite-modal-title">Cite paper</h3>
+        <button class="modal-close" type="button" data-modal-close aria-label="Close dialog">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <div class="modal-tabs">
+        <button class="modal-tab active" type="button" data-format="apa">APA</button>
+        <button class="modal-tab" type="button" data-format="chicago">Chicago</button>
+        <button class="modal-tab" type="button" data-format="bibtex">BibTeX</button>
+      </div>
+
+      <div class="modal-content-box" id="cite-text"></div>
+
+      <div class="modal-actions">
+        <button class="modal-btn" type="button" data-modal-close>Close</button>
+        <button class="modal-btn primary" type="button" id="cite-copy-btn">Copy citation</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <span>Powered by SearXNG 2026.8.30</span>
+    <nav aria-label="Footer"><a href="#source">source</a><a href="#issues">issues</a><a href="#stats">engine stats</a></nav>
+  </footer>
+</body>
+</html>

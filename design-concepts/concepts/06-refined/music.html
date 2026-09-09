@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="en" data-theme="mocha">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>daft punk | music | SearXNG refined concept</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+  <style>
+    /* ── Music tab styles ── */
+    .music-results { margin-top: 8px; }
+
+    /* Compact artist overview for relevant searches */
+    .artist-card {
+      display: grid;
+      grid-template-columns: 88px minmax(0, 1fr);
+      gap: 16px;
+      margin: 14px 0 10px;
+      padding: 14px 16px 14px;
+      border: 1px solid var(--surface-0);
+      border-radius: 7px;
+      background: color-mix(in srgb, var(--surface-0) 35%, var(--mantle));
+    }
+
+    .artist-card img {
+      width: 88px;
+      height: 88px;
+      border-radius: 6px;
+      object-fit: cover;
+      background: var(--surface-0);
+    }
+
+    .artist-copy { min-width: 0; }
+
+    .artist-kicker {
+      margin: 0;
+      color: var(--overlay-1);
+      font-size: 10.5px;
+    }
+
+    .artist-title {
+      margin: 2px 0 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .artist-subtitle {
+      margin: 2px 0 0;
+      color: var(--subtext-0);
+      font-size: 11px;
+    }
+
+    .artist-bio {
+      margin: 6px 0 0;
+      color: var(--subtext-1);
+      font-size: 12px;
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .artist-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 8px;
+      font-size: 11px;
+    }
+
+    .artist-links a {
+      color: var(--lavender);
+      text-decoration: none;
+    }
+
+    .artist-links a:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .artist-extra {
+      grid-column: 1 / -1;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid var(--surface-0);
+      color: var(--subtext-0);
+      font-size: 11px;
+    }
+
+    .artist-extra dl {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 18px;
+      margin: 0;
+    }
+
+    .artist-extra dt { color: var(--overlay-1); }
+    .artist-extra dd { margin: 0; }
+
+    .artist-toggle {
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: var(--overlay-1);
+      font-size: 10.5px;
+      cursor: pointer;
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      text-underline-offset: 3px;
+    }
+
+    .artist-toggle:hover { color: var(--lavender); }
+
+    /* Track result row */
+    .music-result {
+      padding: 11px 4px;
+      border-bottom: 1px solid var(--surface-0);
+    }
+
+    .music-result:last-child { border-bottom: 0; }
+
+    .track-row {
+      display: grid;
+      grid-template-columns: 48px minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .track-art {
+      width: 48px;
+      height: 48px;
+      border-radius: 5px;
+      object-fit: cover;
+      background: var(--surface-0);
+      flex-shrink: 0;
+    }
+
+    .track-art-placeholder {
+      display: grid;
+      width: 48px;
+      height: 48px;
+      place-items: center;
+      border-radius: 5px;
+      background: var(--surface-0);
+      color: var(--overlay-1);
+      flex-shrink: 0;
+    }
+
+    .track-art-placeholder svg {
+      width: 22px;
+      height: 22px;
+      stroke-width: 1.6;
+    }
+
+    .track-info { min-width: 0; }
+
+    .track-source {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin: 0;
+      color: var(--overlay-1);
+      font-size: 10.5px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .track-source strong {
+      color: var(--subtext-0);
+      font-weight: 500;
+    }
+
+    .track-title {
+      margin: 2px 0 0;
+      font-size: 14.5px;
+      font-weight: 400;
+      line-height: 1.35;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .track-title a {
+      color: var(--lavender);
+      text-decoration: none;
+    }
+
+    .track-title a:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .track-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+      margin: 3px 0 0;
+      color: var(--subtext-0);
+      font-size: 11px;
+    }
+
+    .track-artist {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .track-album {
+      color: var(--overlay-1);
+    }
+
+    .track-snippet {
+      margin: 3px 0 0;
+      color: var(--subtext-1);
+      font-size: 11.5px;
+      line-height: 1.45;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .track-action {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 5px;
+      flex-shrink: 0;
+    }
+
+    .track-duration {
+      color: var(--overlay-1);
+      font-size: 11px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .preview-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      border: 1px solid var(--surface-1);
+      border-radius: 4px;
+      background: transparent;
+      color: var(--lavender);
+      font-family: var(--font);
+      font-size: 10.5px;
+      cursor: pointer;
+      transition: background 120ms ease, border-color 120ms ease;
+    }
+
+    .preview-btn:hover {
+      border-color: var(--lavender);
+      background: color-mix(in srgb, var(--lavender) 12%, transparent);
+    }
+
+    .preview-btn[aria-expanded="true"] {
+      background: var(--surface-0);
+      border-color: var(--surface-2);
+    }
+
+    .preview-btn svg {
+      width: 10px;
+      height: 10px;
+      fill: currentColor;
+      stroke: none;
+    }
+
+    /* Embedded player container (collapsed by default) */
+    .inline-player-box {
+      margin-top: 10px;
+      margin-left: 60px;
+      padding: 10px;
+      border: 1px solid var(--surface-0);
+      border-radius: 6px;
+      background: var(--mantle);
+    }
+
+    .inline-player-box iframe,
+    .inline-player-box audio {
+      display: block;
+      width: 100%;
+      border: 0;
+      border-radius: 4px;
+    }
+
+    .inline-player-box audio {
+      height: 36px;
+    }
+
+    /* Responsive */
+    @media (max-width: 620px) {
+      .artist-card {
+        grid-template-columns: 64px minmax(0, 1fr);
+        gap: 12px;
+        padding: 12px;
+      }
+      .artist-card img { width: 64px; height: 64px; }
+      .track-row {
+        grid-template-columns: 40px minmax(0, 1fr);
+      }
+      .track-art,
+      .track-art-placeholder {
+        width: 40px;
+        height: 40px;
+      }
+      .track-action {
+        grid-column: 2;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 4px;
+      }
+      .inline-player-box {
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#results">Skip to results</a>
+
+  <header class="site-header">
+    <div class="header-row">
+      <a class="brand" href="index.html" aria-label="SearXNG home">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="13" cy="13" r="8.5"/><path d="m19.5 19.5 7 7"/></svg>
+        <span>searxng</span>
+      </a>
+
+      <form class="search-form" role="search">
+        <label class="sr-only" for="search-input">Search</label>
+        <input id="search-input" name="q" type="search" value="daft punk" autocomplete="off" spellcheck="false">
+        <button class="search-button" type="submit" aria-label="Search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.7" cy="10.7" r="6.7"/><path d="m16 16 5 5"/></svg>
+        </button>
+        <kbd class="focus-hint" aria-hidden="true">/</kbd>
+      </form>
+
+      <nav class="utility-nav" aria-label="Site">
+        <a href="#about">about</a>
+        <a href="#preferences" aria-label="Preferences" title="Preferences">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/><path d="M19.4 15a1.8 1.8 0 0 0 .36 2l.06.06-2.76 2.76-.06-.06a1.8 1.8 0 0 0-2-.36 1.8 1.8 0 0 0-1.1 1.65V21H10v-.09A1.8 1.8 0 0 0 8.9 19.3a1.8 1.8 0 0 0-2 .36l-.06.06-2.76-2.76.06-.06a1.8 1.8 0 0 0 .36-2A1.8 1.8 0 0 0 2.85 14H2v-4h.85A1.8 1.8 0 0 0 4.5 8.9a1.8 1.8 0 0 0-.36-2l-.06-.06 2.76-2.76.06.06a1.8 1.8 0 0 0 2 .36A1.8 1.8 0 0 0 10 2.85V2h4v.85a1.8 1.8 0 0 0 1.1 1.65 1.8 1.8 0 0 0 2-.36l.06-.06 2.76 2.76-.06.06a1.8 1.8 0 0 0-.36 2 1.8 1.8 0 0 0 1.65 1.1H22v4h-.85A1.8 1.8 0 0 0 19.4 15Z"/></svg>
+        </a>
+        <button class="theme-toggle" type="button" aria-label="Switch to light theme" title="Toggle theme (Alt+T)">
+          <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.3A8.4 8.4 0 0 1 8.7 4 8.5 8.5 0 1 0 20 15.3Z"/></svg>
+          <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"/></svg>
+        </button>
+      </nav>
+    </div>
+
+    <nav class="category-nav" aria-label="Search categories">
+      <a href="index.html">general</a>
+      <a href="index.html#images">images</a>
+      <a href="videos.html">videos</a>
+      <a href="news.html">news</a>
+      <a href="map.html">map</a>
+      <a class="active" href="music.html" aria-current="page">music</a>
+      <a href="it.html">it</a>
+      <a href="science.html">science</a>
+      <a href="files.html">files</a>
+      <a href="social.html">social media</a>
+      <button class="filter-button" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M7 12h10M10 17h4"/></svg>
+        filters
+      </button>
+    </nav>
+  </header>
+
+  <main class="results-shell" id="results">
+    <div class="filter-strip" aria-label="Search filters">
+      <span>64 results</span>
+      <span aria-hidden="true">&middot;</span>
+      <span>0.4s</span>
+
+      <div class="dropdown-wrapper">
+        <button type="button" aria-haspopup="listbox" aria-expanded="false">
+          <span class="filter-val">all sources</span> <span aria-hidden="true">&#8964;</span>
+        </button>
+        <ul role="listbox" hidden>
+          <li role="option" class="active" aria-selected="true">all sources</li>
+          <li role="option">Bandcamp</li>
+          <li role="option">SoundCloud</li>
+          <li role="option">Spotify</li>
+          <li role="option">Deezer</li>
+          <li role="option">Genius</li>
+        </ul>
+      </div>
+
+      <div class="dropdown-wrapper">
+        <button type="button" aria-haspopup="listbox" aria-expanded="false">
+          <span class="filter-val">any duration</span> <span aria-hidden="true">&#8964;</span>
+        </button>
+        <ul role="listbox" hidden>
+          <li role="option" class="active" aria-selected="true">any duration</li>
+          <li role="option">under 3 min</li>
+          <li role="option">3 to 5 min</li>
+          <li role="option">over 5 min</li>
+        </ul>
+      </div>
+
+      <div class="dropdown-wrapper">
+        <button type="button" aria-haspopup="listbox" aria-expanded="false">
+          <span class="filter-val">sorted by relevance</span> <span aria-hidden="true">&#8964;</span>
+        </button>
+        <ul role="listbox" hidden>
+          <li role="option" class="active" aria-selected="true">sorted by relevance</li>
+          <li role="option">sorted by date</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Artist overview card: compact, shown for artist searches -->
+    <section class="artist-card" aria-labelledby="artist-heading">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Daft_Punk_in_2013_2-_centered.jpg/330px-Daft_Punk_in_2013_2-_centered.jpg" alt="Daft Punk in robot helmets">
+      <div class="artist-copy">
+        <p class="artist-kicker">MusicBrainz</p>
+        <h1 class="artist-title" id="artist-heading">Daft Punk</h1>
+        <p class="artist-subtitle">Electronic duo &middot; Paris, France &middot; 1993 to 2021</p>
+        <p class="artist-bio">French electronic music duo formed by Thomas Bangalter and Guy-Manuel de Homem-Christo. Known for influential synthpop, French house, and distinctive robot personas.</p>
+        <div class="artist-links">
+          <a href="https://musicbrainz.org/artist/056e4ea3-da26-43a9-b63d-472e811b7b75" target="_blank" rel="noopener">MusicBrainz</a>
+          <a href="https://open.spotify.com/artist/4tZwfgrHOc3mvqYxwDoOD1" target="_blank" rel="noopener">Spotify</a>
+          <a href="https://daftpunk.bandcamp.com" target="_blank" rel="noopener">Bandcamp</a>
+          <button class="artist-toggle" type="button" data-collapse-toggle="artist-details" aria-expanded="false">
+            <span>show details</span>
+          </button>
+        </div>
+      </div>
+      <div class="artist-extra" id="artist-details" hidden>
+        <dl>
+          <div><dt>Members:</dt><dd>Thomas Bangalter, Guy-Manuel de Homem-Christo</dd></div>
+          <div><dt>Labels:</dt><dd>Virgin, Daft Life, Columbia, Soma</dd></div>
+          <div><dt>Active:</dt><dd>1993 to 2021</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- Music search results list -->
+    <section class="music-results" aria-label="Music results">
+
+      <!-- Result 1: Spotify - external link only (no free embed) -->
+      <article class="music-result">
+        <div class="track-row">
+          <img class="track-art" src="https://upload.wikimedia.org/wikipedia/en/2/26/Daft_Punk_-_Random_Access_Memories.png" alt="Random Access Memories cover">
+          <div class="track-info">
+            <p class="track-source"><strong>Spotify</strong> &middot; open.spotify.com &#8250; track</p>
+            <h2 class="track-title"><a href="https://open.spotify.com/track/69kOkLUCkxIZYexIgSG8rq" target="_blank" rel="noopener">Get Lucky</a></h2>
+            <div class="track-meta">
+              <span class="track-artist">Daft Punk ft. Pharrell Williams &amp; Nile Rodgers</span>
+              <span class="track-album">&middot; Random Access Memories (2013)</span>
+            </div>
+          </div>
+          <div class="track-action">
+            <span class="track-duration">4:08</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Result 2: SoundCloud - with playable inline preview -->
+      <article class="music-result">
+        <div class="track-row">
+          <img class="track-art" src="https://upload.wikimedia.org/wikipedia/en/2/26/Daft_Punk_-_Random_Access_Memories.png" alt="Discovery album artwork">
+          <div class="track-info">
+            <p class="track-source"><strong>SoundCloud</strong> &middot; soundcloud.com &#8250; daftpunkofficial</p>
+            <h2 class="track-title"><a href="https://soundcloud.com/daftpunkofficial/one-more-time" target="_blank" rel="noopener">One More Time</a></h2>
+            <div class="track-meta">
+              <span class="track-artist">Daft Punk</span>
+              <span class="track-album">&middot; Discovery (2001)</span>
+            </div>
+            <p class="track-snippet">Lead single from the second studio album Discovery, featuring Romanthony on vocals.</p>
+          </div>
+          <div class="track-action">
+            <span class="track-duration">5:20</span>
+            <button class="preview-btn" type="button" data-preview-toggle="player-track-2" aria-expanded="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="6,3 20,12 6,21"/></svg>
+              <span>preview</span>
+            </button>
+          </div>
+        </div>
+        <div class="inline-player-box" id="player-track-2" hidden>
+          <audio controls preload="none">
+            <source src="https://example.org/audio/one-more-time-sample.mp3" type="audio/mpeg">
+            Audio preview is not supported by your browser.
+          </audio>
+        </div>
+      </article>
+
+      <!-- Result 3: Bandcamp - with playable inline preview -->
+      <article class="music-result">
+        <div class="track-row">
+          <img class="track-art" src="https://upload.wikimedia.org/wikipedia/en/2/26/Daft_Punk_-_Random_Access_Memories.png" alt="Discovery album cover">
+          <div class="track-info">
+            <p class="track-source"><strong>Bandcamp</strong> &middot; daftpunk.bandcamp.com &#8250; track</p>
+            <h2 class="track-title"><a href="https://daftpunk.bandcamp.com/track/harder-better-faster-stronger" target="_blank" rel="noopener">Harder, Better, Faster, Stronger</a></h2>
+            <div class="track-meta">
+              <span class="track-artist">Daft Punk</span>
+              <span class="track-album">&middot; Discovery</span>
+            </div>
+          </div>
+          <div class="track-action">
+            <span class="track-duration">3:44</span>
+            <button class="preview-btn" type="button" data-preview-toggle="player-track-3" aria-expanded="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="6,3 20,12 6,21"/></svg>
+              <span>preview</span>
+            </button>
+          </div>
+        </div>
+        <div class="inline-player-box" id="player-track-3" hidden>
+          <audio controls preload="none">
+            <source src="https://example.org/audio/hbfs-sample.mp3" type="audio/mpeg">
+            Audio preview is not supported by your browser.
+          </audio>
+        </div>
+      </article>
+
+      <!-- Result 4: Deezer - missing artwork (realistic missing data) -->
+      <article class="music-result">
+        <div class="track-row">
+          <div class="track-art-placeholder" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          </div>
+          <div class="track-info">
+            <p class="track-source"><strong>Deezer</strong> &middot; deezer.com &#8250; track</p>
+            <h2 class="track-title"><a href="https://www.deezer.com/track/3135556" target="_blank" rel="noopener">Around the World</a></h2>
+            <div class="track-meta">
+              <span class="track-artist">Daft Punk</span>
+              <span class="track-album">&middot; Homework (1997)</span>
+            </div>
+          </div>
+          <div class="track-action">
+            <span class="track-duration">7:09</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Result 5: SoundCloud - with playable preview -->
+      <article class="music-result">
+        <div class="track-row">
+          <img class="track-art" src="https://upload.wikimedia.org/wikipedia/en/2/26/Daft_Punk_-_Random_Access_Memories.png" alt="Homework cover">
+          <div class="track-info">
+            <p class="track-source"><strong>SoundCloud</strong> &middot; soundcloud.com &#8250; daftpunkofficial</p>
+            <h2 class="track-title"><a href="https://soundcloud.com/daftpunkofficial/da-funk" target="_blank" rel="noopener">Da Funk</a></h2>
+            <div class="track-meta">
+              <span class="track-artist">Daft Punk</span>
+              <span class="track-album">&middot; Homework</span>
+            </div>
+            <p class="track-snippet">Instrumental dance track first released on Soma Quality Recordings in 1995.</p>
+          </div>
+          <div class="track-action">
+            <span class="track-duration">5:28</span>
+            <button class="preview-btn" type="button" data-preview-toggle="player-track-5" aria-expanded="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="6,3 20,12 6,21"/></svg>
+              <span>preview</span>
+            </button>
+          </div>
+        </div>
+        <div class="inline-player-box" id="player-track-5" hidden>
+          <audio controls preload="none">
+            <source src="https://example.org/audio/da-funk-sample.mp3" type="audio/mpeg">
+            Audio preview is not supported by your browser.
+          </audio>
+        </div>
+      </article>
+
+      <!-- Result 6: long title -->
+      <article class="music-result">
+        <div class="track-row">
+          <img class="track-art" src="https://upload.wikimedia.org/wikipedia/en/2/26/Daft_Punk_-_Random_Access_Memories.png" alt="Random Access Memories cover">
+          <div class="track-info">
+            <p class="track-source"><strong>YouTube Music</strong> &middot; music.youtube.com</p>
+            <h2 class="track-title"><a href="https://music.youtube.com/watch?v=a5uQMwRMHcs" target="_blank" rel="noopener">Instant Crush (feat. Julian Casablancas) [Official Audio with Extended Synthesizer Outro]</a></h2>
+            <div class="track-meta">
+              <span class="track-artist">Daft Punk ft. Julian Casablancas</span>
+              <span class="track-album">&middot; 2013</span>
+            </div>
+          </div>
+          <div class="track-action">
+            <span class="track-duration">5:37</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Result 7: Genius lyrics result (no duration, realistic incomplete metadata) -->
+      <article class="music-result">
+        <div class="track-row">
+          <img class="track-art" src="https://upload.wikimedia.org/wikipedia/en/2/26/Daft_Punk_-_Random_Access_Memories.png" alt="Song art thumbnail">
+          <div class="track-info">
+            <p class="track-source"><strong>Genius</strong> &middot; genius.com &#8250; Daft-punk-get-lucky-lyrics</p>
+            <h2 class="track-title"><a href="https://genius.com/Daft-punk-get-lucky-lyrics" target="_blank" rel="noopener">Get Lucky (Lyrics)</a></h2>
+            <div class="track-meta">
+              <span class="track-artist">Daft Punk ft. Pharrell Williams &amp; Nile Rodgers</span>
+              <span class="track-album">&middot; Lyrics</span>
+            </div>
+            <p class="track-snippet">Like the legend of the phoenix, all ends with beginnings. What keeps the planet spinning, the force from the beginning. We have come too far to give up who we are.</p>
+          </div>
+          <div class="track-action">
+            <!-- No duration returned for lyrics -->
+          </div>
+        </div>
+      </article>
+
+      <!-- Result 8: Bandcamp - missing description (realistic) -->
+      <article class="music-result">
+        <div class="track-row">
+          <img class="track-art" src="https://upload.wikimedia.org/wikipedia/en/2/26/Daft_Punk_-_Random_Access_Memories.png" alt="Human After All cover">
+          <div class="track-info">
+            <p class="track-source"><strong>Bandcamp</strong> &middot; daftpunk.bandcamp.com &#8250; track</p>
+            <h2 class="track-title"><a href="https://daftpunk.bandcamp.com/track/robot-rock" target="_blank" rel="noopener">Robot Rock</a></h2>
+            <div class="track-meta">
+              <span class="track-artist">Daft Punk</span>
+              <span class="track-album">&middot; Human After All (2005)</span>
+            </div>
+          </div>
+          <div class="track-action">
+            <span class="track-duration">4:47</span>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <a class="more-results" href="#page-2">More results</a>
+  </main>
+
+  <footer class="site-footer">
+    <span>Powered by SearXNG 2026.8.30</span>
+    <nav aria-label="Footer"><a href="#source">source</a><a href="#issues">issues</a><a href="#stats">engine stats</a></nav>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en" data-theme="mocha">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>elasticsearch python | SearXNG refined concept</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+  <style>
+    /* ── IT tab specific styles ── */
+
+    /* Type filter pills */
+    .type-pills {
+      display: flex;
+      gap: 5px;
+      margin-left: auto;
+    }
+
+    .type-pills button {
+      padding: 3px 9px;
+      border: 1px solid var(--surface-1);
+      border-radius: 4px;
+      background: transparent;
+      color: var(--subtext-0);
+      font-size: 11px;
+      cursor: pointer;
+      transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
+    }
+
+    .type-pills button:hover {
+      border-color: var(--lavender);
+      color: var(--lavender);
+    }
+
+    .type-pills button.active {
+      border-color: var(--lavender);
+      background: color-mix(in srgb, var(--lavender) 14%, transparent);
+      color: var(--lavender);
+      font-weight: 600;
+    }
+
+    /* Result type badge, small pill in top-right */
+    .result-type {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 3px;
+      background: var(--surface-0);
+      color: var(--overlay-1);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      vertical-align: middle;
+    }
+
+    .result-type.repo { color: var(--lavender); }
+    .result-type.package { color: var(--peach); }
+    .result-type.code { color: var(--green); }
+    .result-type.qa { color: var(--yellow); }
+
+    /* Language dot for repos */
+    .lang-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      vertical-align: middle;
+    }
+
+    .lang-dot.python { background: #3572a5; }
+    .lang-dot.javascript { background: #f1e05a; }
+    .lang-dot.go { background: #00add8; }
+
+    /* Repo/package metadata line */
+    .result-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 14px;
+      margin: 4px 0 0 34px;
+      color: var(--overlay-1);
+      font-size: 11px;
+    }
+
+    .result-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    /* Details toggle for secondary stats */
+    .details-toggle {
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: var(--overlay-1);
+      font-size: 10px;
+      cursor: pointer;
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      text-underline-offset: 3px;
+    }
+
+    .details-toggle:hover {
+      color: var(--lavender);
+    }
+
+    .details-extra {
+      margin: 4px 0 0 34px;
+      padding: 6px 10px;
+      border-radius: 4px;
+      background: color-mix(in srgb, var(--surface-0) 50%, var(--mantle));
+      font-size: 11px;
+      color: var(--subtext-0);
+    }
+
+    .details-extra .copy-cmd {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 4px;
+      padding: 3px 8px;
+      border: 1px solid var(--surface-1);
+      border-radius: 4px;
+      background: var(--mantle);
+      color: var(--text);
+      font-size: 11px;
+      font-family: var(--font);
+      cursor: pointer;
+      user-select: all;
+    }
+
+    .details-extra .copy-cmd:hover {
+      border-color: var(--lavender);
+    }
+
+    /* Code preview block */
+    .code-preview {
+      margin: 6px 0 0 34px;
+      padding: 8px 10px;
+      overflow-x: auto;
+      border: 1px solid var(--surface-0);
+      border-radius: 5px;
+      background: var(--mantle);
+      font-size: 11.5px;
+      line-height: 1.55;
+    }
+
+    .code-preview code {
+      display: block;
+      white-space: pre;
+      color: var(--text);
+      tab-size: 4;
+    }
+
+    .code-preview .line-num {
+      display: inline-block;
+      width: 24px;
+      margin-right: 10px;
+      color: var(--overlay-0);
+      text-align: right;
+      user-select: none;
+    }
+
+    /* Syntax highlighting via CSS classes */
+    .syn-kw { color: var(--lavender); }      /* keywords */
+    .syn-str { color: var(--green); }         /* strings */
+    .syn-fn { color: var(--peach); }          /* function/method names */
+    .syn-cls { color: var(--yellow); }        /* class names */
+    .syn-cmt { color: var(--overlay-1); font-style: italic; } /* comments */
+    .syn-num { color: var(--peach); }         /* numbers */
+    .syn-op { color: var(--subtext-0); }      /* operators */
+    .syn-dec { color: var(--red); }           /* decorators */
+    .syn-arg { color: var(--text); }          /* arguments/params */
+
+    /* Code file path line */
+    .code-file {
+      margin: 4px 0 0 34px;
+      color: var(--overlay-1);
+      font-size: 10.5px;
+    }
+
+    .code-file a {
+      color: var(--lavender);
+      text-decoration: none;
+    }
+
+    .code-file a:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* Q&A result styling */
+    .qa-stats {
+      display: flex;
+      gap: 10px;
+      margin: 4px 0 0 34px;
+      font-size: 11px;
+    }
+
+    .qa-stat {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      color: var(--overlay-1);
+    }
+
+    .qa-stat.accepted {
+      padding: 1px 6px;
+      border-radius: 3px;
+      background: color-mix(in srgb, var(--green) 16%, transparent);
+      color: var(--green);
+    }
+
+    .qa-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin: 6px 0 0 34px;
+    }
+
+    .qa-tag {
+      padding: 1px 6px;
+      border-radius: 3px;
+      background: color-mix(in srgb, var(--lavender) 12%, transparent);
+      color: var(--lavender);
+      font-size: 10px;
+    }
+
+    /* Divider between result groups */
+    .web-result + .web-result {
+      border-top: 1px solid color-mix(in srgb, var(--surface-0) 60%, transparent);
+    }
+
+    /* Responsive adjustments for IT results */
+    @media (max-width: 620px) {
+      .result-meta { margin-left: 0; }
+      .details-extra { margin-left: 0; }
+      .code-preview { margin-left: 0; }
+      .code-file { margin-left: 0; }
+      .qa-stats { margin-left: 0; }
+      .qa-tags { margin-left: 0; }
+      .type-pills { margin-left: 0; margin-top: 6px; }
+      .filter-strip { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#results">Skip to results</a>
+
+  <header class="site-header">
+    <div class="header-row">
+      <a class="brand" href="index.html" aria-label="SearXNG home">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="13" cy="13" r="8.5"/><path d="m19.5 19.5 7 7"/></svg>
+        <span>searxng</span>
+      </a>
+
+      <form class="search-form" role="search">
+        <label class="sr-only" for="search-input">Search</label>
+        <input id="search-input" name="q" type="search" value="elasticsearch python" autocomplete="off" spellcheck="false">
+        <button class="search-button" type="submit" aria-label="Search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.7" cy="10.7" r="6.7"/><path d="m16 16 5 5"/></svg>
+        </button>
+        <kbd class="focus-hint" aria-hidden="true">/</kbd>
+      </form>
+
+      <nav class="utility-nav" aria-label="Site">
+        <a href="#about">about</a>
+        <a href="#preferences" aria-label="Preferences" title="Preferences">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/><path d="M19.4 15a1.8 1.8 0 0 0 .36 2l.06.06-2.76 2.76-.06-.06a1.8 1.8 0 0 0-2-.36 1.8 1.8 0 0 0-1.1 1.65V21H10v-.09A1.8 1.8 0 0 0 8.9 19.3a1.8 1.8 0 0 0-2 .36l-.06.06-2.76-2.76.06-.06a1.8 1.8 0 0 0 .36-2A1.8 1.8 0 0 0 2.85 14H2v-4h.85A1.8 1.8 0 0 0 4.5 8.9a1.8 1.8 0 0 0-.36-2l-.06-.06 2.76-2.76.06.06a1.8 1.8 0 0 0 2 .36A1.8 1.8 0 0 0 10 2.85V2h4v.85a1.8 1.8 0 0 0 1.1 1.65 1.8 1.8 0 0 0 2-.36l.06-.06 2.76 2.76-.06.06a1.8 1.8 0 0 0-.36 2 1.8 1.8 0 0 0 1.65 1.1H22v4h-.85A1.8 1.8 0 0 0 19.4 15Z"/></svg>
+        </a>
+        <button class="theme-toggle" type="button" aria-label="Switch to light theme" title="Toggle theme (Alt+T)">
+          <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.3A8.4 8.4 0 0 1 8.7 4 8.5 8.5 0 1 0 20 15.3Z"/></svg>
+          <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"/></svg>
+        </button>
+      </nav>
+    </div>
+
+    <nav class="category-nav" aria-label="Search categories">
+      <a href="index.html">general</a>
+      <a href="index.html#images">images</a>
+      <a href="videos.html">videos</a>
+      <a href="news.html">news</a>
+      <a href="map.html">map</a>
+      <a href="music.html">music</a>
+      <a class="active" href="it.html" aria-current="page">it</a>
+      <a href="science.html">science</a>
+      <a href="files.html">files</a>
+      <a href="social.html">social media</a>
+      <button class="filter-button" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M7 12h10M10 17h4"/></svg>
+        filters
+      </button>
+    </nav>
+  </header>
+
+  <main class="results-shell" id="results">
+    <div class="filter-strip" aria-label="Search filters">
+      <span>64 results</span>
+      <span aria-hidden="true">&middot;</span>
+      <span>2.1s</span>
+      <div class="type-pills">
+        <button type="button" class="active">All</button>
+        <button type="button">Repos</button>
+        <button type="button">Packages</button>
+        <button type="button">Code</button>
+        <button type="button">Q&amp;A</button>
+      </div>
+    </div>
+
+    <section class="web-results" aria-label="IT results">
+
+      <!-- ═══ REPO 1 ═══ -->
+      <article class="web-result">
+        <div class="result-head">
+          <span class="source-icon" style="color: var(--lavender);">G</span>
+          <div><strong>GitHub</strong><span>github.com &#8250; elastic &#8250; elasticsearch-py</span></div>
+        </div>
+        <h2>
+          <a href="https://github.com/elastic/elasticsearch-py">elastic / elasticsearch-py</a>
+          <span class="result-type repo">repo</span>
+        </h2>
+        <p>Official Python client for Elasticsearch. Low-level client that provides a straightforward mapping from Python to the REST endpoints.</p>
+        <div class="result-meta">
+          <span><span class="lang-dot python"></span> Python</span>
+          <span>Apache-2.0</span>
+          <button class="details-toggle" type="button" data-collapse-toggle="repo1-details" aria-expanded="false"><span>show details</span></button>
+        </div>
+        <div class="details-extra" id="repo1-details" hidden>
+          4.2k stars, 1.2k forks, last commit 3 days ago
+        </div>
+      </article>
+
+      <!-- ═══ REPO 2 ═══ -->
+      <article class="web-result">
+        <div class="result-head">
+          <span class="source-icon" style="color: var(--lavender);">G</span>
+          <div><strong>GitHub</strong><span>github.com &#8250; elastic &#8250; elasticsearch-dsl-py</span></div>
+        </div>
+        <h2>
+          <a href="https://github.com/elastic/elasticsearch-dsl-py">elastic / elasticsearch-dsl-py</a>
+          <span class="result-type repo">repo</span>
+        </h2>
+        <p>High-level Python library for writing and running queries against Elasticsearch. Provides a more convenient and idiomatic way to build queries.</p>
+        <div class="result-meta">
+          <span><span class="lang-dot python"></span> Python</span>
+          <span>Apache-2.0</span>
+          <button class="details-toggle" type="button" data-collapse-toggle="repo2-details" aria-expanded="false"><span>show details</span></button>
+        </div>
+        <div class="details-extra" id="repo2-details" hidden>
+          3.8k stars, 810 forks, last commit 2 weeks ago
+        </div>
+      </article>
+
+      <!-- ═══ PACKAGE 1 ═══ -->
+      <article class="web-result">
+        <div class="result-head">
+          <span class="source-icon" style="color: var(--peach);">P</span>
+          <div><strong>PyPI</strong><span>pypi.org &#8250; project &#8250; elasticsearch</span></div>
+        </div>
+        <h2>
+          <a href="https://pypi.org/project/elasticsearch/">elasticsearch 8.17.1</a>
+          <span class="result-type package">package</span>
+        </h2>
+        <p>Official low-level client for Elasticsearch. Provides a straightforward mapping from Python to ES REST endpoints with persistent connections and load balancing.</p>
+        <div class="result-meta">
+          <span>Python 3.8+</span>
+          <span>v8.17.1</span>
+          <button class="details-toggle" type="button" data-collapse-toggle="pkg1-details" aria-expanded="false"><span>show details</span></button>
+        </div>
+        <div class="details-extra" id="pkg1-details" hidden>
+          <div>36M downloads/month</div>
+          <code class="copy-cmd">pip install elasticsearch</code>
+        </div>
+      </article>
+
+      <!-- ═══ PACKAGE 2 ═══ -->
+      <article class="web-result">
+        <div class="result-head">
+          <span class="source-icon" style="color: var(--peach);">P</span>
+          <div><strong>PyPI</strong><span>pypi.org &#8250; project &#8250; elasticsearch-dsl</span></div>
+        </div>
+        <h2>
+          <a href="https://pypi.org/project/elasticsearch-dsl/">elasticsearch-dsl 8.17.1</a>
+          <span class="result-type package">package</span>
+        </h2>
+        <p>High-level library for Elasticsearch queries. Built on top of elasticsearch-py, adds a Pythonic query builder, persistence layer, and faceted search helpers.</p>
+        <div class="result-meta">
+          <span>Python 3.8+</span>
+          <span>v8.17.1</span>
+          <button class="details-toggle" type="button" data-collapse-toggle="pkg2-details" aria-expanded="false"><span>show details</span></button>
+        </div>
+        <div class="details-extra" id="pkg2-details" hidden>
+          <div>8.4M downloads/month</div>
+          <code class="copy-cmd">pip install elasticsearch-dsl</code>
+        </div>
+      </article>
+
+      <!-- ═══ CODE SNIPPET 1 ═══ -->
+      <article class="web-result">
+        <div class="result-head">
+          <span class="source-icon" style="color: var(--green);">C</span>
+          <div><strong>GitHub Code</strong><span>github.com &#8250; elastic &#8250; elasticsearch-py</span></div>
+        </div>
+        <h2>
+          <a href="https://github.com/elastic/elasticsearch-py/blob/main/examples/bulk_index.py">bulk_index.py</a>
+          <span class="result-type code">code</span>
+        </h2>
+        <div class="code-file">in <a href="https://github.com/elastic/elasticsearch-py">elastic/elasticsearch-py</a> &middot; examples/bulk_index.py</div>
+        <div class="code-preview">
+          <code><span class="line-num">12</span><span class="syn-kw">from</span> elasticsearch <span class="syn-kw">import</span> <span class="syn-cls">Elasticsearch</span>
+<span class="line-num">13</span><span class="syn-kw">from</span> elasticsearch.helpers <span class="syn-kw">import</span> <span class="syn-fn">bulk</span>
+<span class="line-num">14</span>
+<span class="line-num">15</span>es <span class="syn-op">=</span> <span class="syn-cls">Elasticsearch</span>(<span class="syn-str">"http://localhost:9200"</span>)
+<span class="line-num">16</span><span class="syn-fn">bulk</span>(es, actions, index<span class="syn-op">=</span><span class="syn-str">"my-index"</span>, chunk_size<span class="syn-op">=</span><span class="syn-num">500</span>)</code>
+        </div>
+      </article>
+
+      <!-- ═══ CODE SNIPPET 2 ═══ -->
+      <article class="web-result">
+        <div class="result-head">
+          <span class="source-icon" style="color: var(--green);">C</span>
+          <div><strong>GitHub Code</strong><span>github.com &#8250; elastic &#8250; elasticsearch-dsl-py</span></div>
+        </div>
+        <h2>
+          <a href="https://github.com/elastic/elasticsearch-dsl-py/blob/main/examples/search.py">search.py</a>
+          <span class="result-type code">code</span>
+        </h2>
+        <div class="code-file">in <a href="https://github.com/elastic/elasticsearch-dsl-py">elastic/elasticsearch-dsl-py</a> &middot; examples/search.py</div>
+        <div class="code-preview">
+          <code><span class="line-num"> 8</span><span class="syn-kw">from</span> elasticsearch_dsl <span class="syn-kw">import</span> <span class="syn-cls">Search</span>
+<span class="line-num"> 9</span>
+<span class="line-num">10</span>s <span class="syn-op">=</span> <span class="syn-cls">Search</span>(index<span class="syn-op">=</span><span class="syn-str">"articles"</span>)
+<span class="line-num">11</span>s <span class="syn-op">=</span> s.<span class="syn-fn">query</span>(<span class="syn-str">"match"</span>, title<span class="syn-op">=</span><span class="syn-str">"elasticsearch python"</span>)
+<span class="line-num">12</span>response <span class="syn-op">=</span> s.<span class="syn-fn">execute</span>()</code>
+        </div>
+      </article>
+
+      <!-- ═══ Q&A 1 ═══ -->
+      <article class="web-result">
+        <div class="result-head">
+          <span class="source-icon" style="color: var(--yellow);">S</span>
+          <div><strong>Stack Overflow</strong><span>stackoverflow.com &#8250; questions &#8250; 19645092</span></div>
+        </div>
+        <h2>
+          <a href="https://stackoverflow.com/questions/19645092">How to use Elasticsearch with Python?</a>
+          <span class="result-type qa">q&amp;a</span>
+        </h2>
+        <p>I want to use <strong>elasticsearch</strong> in my <strong>python</strong> project. What is the recommended way to connect, index documents, and run queries using the official client?</p>
+        <div class="qa-stats">
+          <span class="qa-stat">142 votes</span>
+          <span class="qa-stat">8 answers</span>
+          <span class="qa-stat accepted">&#10003; accepted</span>
+        </div>
+        <div class="qa-tags">
+          <span class="qa-tag">python</span>
+          <span class="qa-tag">elasticsearch</span>
+          <span class="qa-tag">search</span>
+        </div>
+      </article>
+
+      <!-- ═══ Q&A 2 ═══ -->
+      <article class="web-result">
+        <div class="result-head">
+          <span class="source-icon" style="color: var(--yellow);">S</span>
+          <div><strong>Stack Overflow</strong><span>stackoverflow.com &#8250; questions &#8250; 53828891</span></div>
+        </div>
+        <h2>
+          <a href="https://stackoverflow.com/questions/53828891">Elasticsearch bulk indexing with Python: best practices</a>
+          <span class="result-type qa">q&amp;a</span>
+        </h2>
+        <p>I'm trying to bulk index a large dataset into <strong>Elasticsearch</strong> from <strong>Python</strong>. What's the recommended chunk size and error handling approach?</p>
+        <div class="qa-stats">
+          <span class="qa-stat">87 votes</span>
+          <span class="qa-stat">5 answers</span>
+          <span class="qa-stat accepted">&#10003; accepted</span>
+        </div>
+        <div class="qa-tags">
+          <span class="qa-tag">python</span>
+          <span class="qa-tag">elasticsearch</span>
+          <span class="qa-tag">bulk</span>
+          <span class="qa-tag">indexing</span>
+        </div>
+      </article>
+
+    </section>
+
+    <section class="related-searches" aria-labelledby="related-title">
+      <h2 id="related-title">Searches related to <strong>elasticsearch python</strong></h2>
+      <div>
+        <a href="#"><span aria-hidden="true">&#8981;</span> elasticsearch python async client</a>
+        <a href="#"><span aria-hidden="true">&#8981;</span> elasticsearch dsl django integration</a>
+        <a href="#"><span aria-hidden="true">&#8981;</span> opensearch python client</a>
+        <a href="#"><span aria-hidden="true">&#8981;</span> elasticsearch bulk index example</a>
+        <a href="#"><span aria-hidden="true">&#8981;</span> elasticsearch python connection pool</a>
+        <a href="#"><span aria-hidden="true">&#8981;</span> elasticsearch python aggregations</a>
+      </div>
+    </section>
+
+    <a class="more-results" href="#page-2">More results</a>
+  </main>
+
+  <footer class="site-footer">
+    <span>Powered by SearXNG 2026.8.30</span>
+    <nav aria-label="Footer"><a href="#source">source</a><a href="#issues">issues</a><a href="#stats">engine stats</a></nav>
+  </footer>
+</body>
+</html>

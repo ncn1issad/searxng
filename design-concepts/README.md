@@ -55,6 +55,12 @@ design rather than content.
 - `tab-music` is a dedicated Music category concept referencing concept 05. It features
   verified artist spotlight cards, playable track previews with waveforms, discography release grids,
   lyrics drawers, streaming service badges, and a persistent bottom playback bar.
+- `06-refined` refines the search tabs based on design critique of concept 05 and
+  the initial tab concepts. It keeps the 05-ddg visual language, Catppuccin palette,
+  and shared header while reducing oversized featured sections, badges, and repeated actions.
+  It models realistic SearXNG fields, handles missing metadata cleanly, keeps categories
+  accessible on mobile with horizontal scrolling, and covers General, Videos, News, Map,
+  Music, IT, Science, Files, and Social Media.
 
 Open `index.html` to compare the concepts. Each page includes Latte and Mocha
 themes and adapts to desktop and mobile widths.
