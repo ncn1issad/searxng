@@ -35,6 +35,43 @@ const imageLoader = (resultElement: HTMLElement): void => {
   }, 1000) as unknown as number;
 };
 
+// Limit general-search previews by rendered rows, regardless of thumbnail proportions.
+const imagePreviews = document.querySelectorAll<HTMLElement>(".image-media-preview");
+let imagePreviewFrame = 0;
+const updateImagePreviews = (): void => {
+  if (imagePreviewFrame) return;
+  imagePreviewFrame = requestAnimationFrame(() => {
+    imagePreviewFrame = 0;
+    for (const preview of imagePreviews) {
+      const cards = [...preview.querySelectorAll<HTMLElement>(".opportunistic-image-card")];
+      for (const card of cards) card.hidden = false;
+      let row = 0;
+      let previousTop = Number.NEGATIVE_INFINITY;
+      const overflow = cards.filter((card) => {
+        const { top } = card.getBoundingClientRect();
+        if (Math.abs(top - previousTop) > 1) {
+          row += 1;
+          previousTop = top;
+        }
+        return row > 2;
+      });
+      for (const card of overflow) card.hidden = true;
+    }
+  });
+};
+const previewWidths = new WeakMap<Element, number>();
+const imagePreviewObserver = new ResizeObserver((entries) => {
+  for (const entry of entries) {
+    const { width } = entry.contentRect;
+    if (previewWidths.get(entry.target) !== width) {
+      previewWidths.set(entry.target, width);
+      updateImagePreviews();
+    }
+  }
+});
+for (const preview of imagePreviews) imagePreviewObserver.observe(preview);
+updateImagePreviews();
+
 // Use each thumbnail's proportions to size the justified image rows.
 for (const image of document.querySelectorAll<HTMLImageElement>(".opportunistic-image-card img")) {
   const updateImageRatio = (): void => {
@@ -42,9 +79,11 @@ for (const image of document.querySelectorAll<HTMLImageElement>(".opportunistic-
     image
       .closest<HTMLElement>(".opportunistic-image-card")
       ?.style.setProperty("--image-ratio", String(Math.max(1, image.naturalWidth / image.naturalHeight)));
+    updateImagePreviews();
   };
   const removeFailedImage = (): void => {
     image.closest(".opportunistic-image-card")?.remove();
+    updateImagePreviews();
   };
   image.addEventListener("load", updateImageRatio);
   image.addEventListener("error", removeFailedImage);

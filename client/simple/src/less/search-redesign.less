@@ -2517,7 +2517,7 @@ body.results_endpoint {
     scroll-snap-type: none;
   }
 
-  .image-media-preview > .opportunistic-image-card:nth-child(n + 9) {
+  .image-media-preview > .opportunistic-image-card[hidden] {
     display: none;
   }
 
@@ -2820,14 +2820,6 @@ body.results_endpoint {
   }
 }
 
-@media screen and (width <= 900px) {
-  body.results_endpoint {
-    .image-media-preview > .opportunistic-image-card:nth-child(n + 7) {
-      display: none;
-    }
-  }
-}
-
 @media screen and (width <= 780px) {
   body.results_endpoint {
     .opportunistic-video-card {
@@ -2841,10 +2833,6 @@ body.results_endpoint {
 
     .image-media-track {
       --image-row-height: 120px;
-    }
-
-    .image-media-preview > .opportunistic-image-card:nth-child(n + 5) {
-      display: none;
     }
 
   }
