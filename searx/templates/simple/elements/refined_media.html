@@ -5,48 +5,64 @@
 {% if result.publishedDate %}<time datetime="{{ result.publishedDate.isoformat() if result.publishedDate.isoformat is defined else result.pubdate }}">{{ result.publishedDate.strftime('%Y-%m-%d') if result.publishedDate.strftime is defined else result.publishedDate }}</time>{% endif %}
 {%- endmacro %}
 
-{% macro media_control(result, index) -%}
-{% if result.iframe_src %}
-<button type="button" class="refined-media-button btn-collapse collapsed media-loader hide_if_nojs" data-target="#refined-media-{{ pageno }}-{{ index }}" data-btn-text-collapsed="{{ _('show media') }}" data-btn-text-not-collapsed="{{ _('hide media') }}" aria-controls="refined-media-{{ pageno }}-{{ index }}" aria-expanded="false">{{ icon_small('play') }} {{ _('show media') }}</button>
-<div id="refined-media-{{ pageno }}-{{ index }}" class="refined-embed invisible">{{ iframe(result.iframe_src, result) }}</div>
+{% macro media_control(result, index, button_only=false) -%}
+{% set hostname = result.parsed_url.hostname or '' %}
+{% set blocked_player = hostname == 'genius.com' or hostname.endswith('.genius.com') %}
+{% set youtube_player = result.iframe_src and (result.iframe_src.startswith('https://www.youtube-nocookie.com/embed/') or result.iframe_src.startswith('https://www.youtube.com/embed/') or result.iframe_src.startswith('https://youtube.com/embed/')) %}
+{% if not blocked_player and (result.iframe_src or result.audio_src) %}
+{% if button_only %}
+<button type="button" class="refined-media-button hide_if_nojs" data-btn-text-collapsed="{{ _('show media') }}" data-btn-text-not-collapsed="{{ _('Show track details') }}" aria-controls="refined-media-{{ pageno }}-{{ index }}" aria-expanded="false">{{ icon_small('play') }} <span>{{ _('show media') }}</span></button>
+{% else %}
+<div id="refined-media-{{ pageno }}-{{ index }}" class="refined-embed{% if youtube_player %} refined-youtube-embed{% endif %}" hidden>
+  {% if result.iframe_src %}{{ iframe(result.iframe_src, result) }}{% else %}<audio controls preload="metadata" aria-label="{{ result.title|striptags }}" data-src="{{ result.audio_src }}"></audio>{% endif %}
+</div>
 {% endif %}
-{% if result.audio_src %}<audio controls preload="none" aria-label="{{ result.title|striptags }}" src="{{ result.audio_src }}"></audio>{% endif %}
+{% endif %}
 {%- endmacro %}
 
 {% macro video_result(result, index) -%}
 <article class="result result-videos refined-video">
-  {{ result_open_link(result.url, 'refined-video-thumb') }}
+  {% if result.iframe_src %}<template class="refined-video-template">{{ iframe(result.iframe_src, result) }}</template>{% endif %}
+  {{ result_open_link(result.url, 'refined-video-thumb' ~ (' refined-video-trigger' if result.iframe_src else '')) }}
     {% if result.thumbnail or result.img_src %}<img loading="lazy" src="{{ image_proxify(result.thumbnail or result.img_src) }}" alt="{{ result.title|striptags }}">{% else %}{{ icon_small('film') }}<span class="refined-sr-only">{{ result.title|striptags }}</span>{% endif %}
+    <span class="refined-video-action">{% if result.iframe_src %}<span class="hide_if_nojs">{{ icon_small('play') }} {{ _('Preview') }}</span><span class="refined-nojs-label">{{ _('Watch on %(site)s', site=result.parsed_url.netloc|replace('www.', '')) }}</span>{% else %}{{ _('Watch on %(site)s', site=result.parsed_url.netloc|replace('www.', '')) }}{% endif %}</span>
     {% if result.length %}<span class="refined-duration">{{ result.length }}</span>{% endif %}
   {{ result_close_link() }}
   <div class="refined-video-body">
     <h3>{{ result_link(result.url, result.title|safe) }}</h3>
-    {% if result.content %}<p class="content">{{ result.content|safe }}</p>{% endif %}
     <div class="refined-meta">
       {{ result_link(result.url, result.parsed_url.netloc|replace('www.', '')) }}
-      {% if result.author %}<span>{{ result.author }}</span>{% endif %}
+      {% if result.author %}<span class="refined-video-author">{{ result.author }}</span>{% endif %}
       {{ published_time(result) }}
       {% if result.views %}<span>{{ result.views }} {{ _('Views') }}</span>{% endif %}
     </div>
-    {{ media_control(result, index) }}
     {{ result_sub_footer(result) }}
   </div>
 </article>
 {%- endmacro %}
 
 {% macro music_result(result, index) -%}
+{% set hostname = result.parsed_url.hostname or '' %}
+{% set youtube_music = hostname in ('youtube.com', 'www.youtube.com', 'm.youtube.com', 'music.youtube.com') and result.parsed_url.path == '/watch' %}
+{% set track_url = result.parsed_url._replace(scheme='https', netloc='music.youtube.com').geturl() if youtube_music else result.url %}
 <article class="result result-default refined-track">
-  {{ result_open_link(result.url, 'refined-track-art') }}
+  <div class="refined-track-details">
+  {{ result_open_link(track_url, 'refined-track-art') }}
     {% if result.thumbnail or result.img_src %}<img loading="lazy" src="{{ image_proxify(result.thumbnail or result.img_src) }}" alt="{{ result.title|striptags }}">{% else %}{{ icon_small('musical-notes') }}<span class="refined-sr-only">{{ result.title|striptags }}</span>{% endif %}
   {{ result_close_link() }}
   <div class="refined-track-body">
-    <div class="refined-meta">{{ result_link(result.url, result.parsed_url.netloc|replace('www.', '')) }}{% if result.author %}<span>{{ result.author }}</span>{% endif %}</div>
-    <h3>{{ result_link(result.url, result.title|safe) }}</h3>
+    <div class="refined-meta">{{ result_link(track_url, 'YouTube Music' if youtube_music else result.parsed_url.netloc|replace('www.', '')) }}{% if result.author %}<span>{{ result.author }}</span>{% endif %}</div>
+    <h3>{{ result_link(track_url, result.title|safe) }}</h3>
     {% if result.content %}<p class="content">{{ result.content|safe }}</p>{% endif %}
     {% if result.publishedDate or result.metadata %}<div class="refined-meta">{{ published_time(result) }}{% if result.metadata %}<span>{{ result.metadata }}</span>{% endif %}</div>{% endif %}
-    {{ media_control(result, index) }}
+    {% if hostname == 'genius.com' or hostname.endswith('.genius.com') %}
+    {{ result_link(result.url, _('Open on %(site)s', site='Genius'), 'refined-media-button') }}
+    {% endif %}
+    {{ media_control(result, index, button_only=true) }}
     {{ result_sub_footer(result) }}
   </div>
   {% if result.length %}<span class="refined-track-length">{{ result.length }}</span>{% endif %}
+  </div>
+  {{ media_control(result, index) }}
 </article>
 {%- endmacro %}

@@ -87,6 +87,12 @@
       {%- include 'simple/elements/corrections.html' -%}
     {%- endif -%}
 
+    {% if active_category == 'videos' %}
+    <section id="video-preview" hidden aria-label="{{ _('Video preview') }}" tabindex="-1">
+      <button type="button" class="video-preview-close">{{ _('Close') }}</button>
+      <div class="video-preview-player"></div>
+    </section>
+    {% endif %}
     <div id="urls" role="main">
     {% if refined_category %}
       {% for result in results %}
