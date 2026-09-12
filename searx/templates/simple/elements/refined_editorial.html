@@ -1,0 +1,34 @@
+{% from 'simple/macros.html' import result_link, result_open_link, result_close_link, result_sub_footer with context %}
+{% from 'simple/elements/refined_media.html' import media_control, published_time with context %}
+
+{% macro news_result(result, index) -%}
+<article class="result result-default refined-news{% if result.thumbnail %} with-thumb{% endif %}">
+  <div class="refined-news-body">
+    <div class="refined-meta">{{ result_link(result.url, result.parsed_url.netloc|replace('www.', '')) }}{{ published_time(result) }}</div>
+    <h3>{{ result_link(result.url, result.title|safe) }}</h3>
+    {% if result.content %}<p class="content">{{ result.content|safe }}</p>{% endif %}
+    {% if result.author %}<div class="refined-meta">{{ result.author }}</div>{% endif %}
+    {{ media_control(result, index) }}
+    {{ result_sub_footer(result) }}
+  </div>
+  {% if result.thumbnail %}{{ result_open_link(result.url, 'refined-news-thumb') }}<img loading="lazy" src="{{ image_proxify(result.thumbnail) }}" alt="{{ result.title|striptags }}">{{ result_close_link() }}{% endif %}
+</article>
+{%- endmacro %}
+
+{% macro social_result(result, index) -%}
+{% set source = result.parsed_url.netloc|replace('www.', '') %}
+<article class="result result-default refined-social">
+  <div class="refined-social-head">
+    <span class="refined-avatar" aria-hidden="true">{{ (result.author or source)[:1]|upper }}</span>
+    <div class="refined-meta">{% if result.author %}<span class="refined-author">{{ result.author }}</span>{% endif %}{{ result_link(result.url, source) }}{{ published_time(result) }}</div>
+  </div>
+  <div class="refined-social-body">
+    <h3>{{ result_link(result.url, result.title|safe) }}</h3>
+    {% if result.content %}<p class="content">{{ result.content|safe }}</p>{% endif %}
+    {% if result.thumbnail %}{{ result_open_link(result.url, 'refined-social-media') }}<img loading="lazy" src="{{ image_proxify(result.thumbnail) }}" alt="{{ result.title|striptags }}">{{ result_close_link() }}{% endif %}
+    {% if result.metadata %}<div class="refined-meta">{{ result.metadata }}</div>{% endif %}
+    {{ media_control(result, index) }}
+    {{ result_sub_footer(result) }}
+  </div>
+</article>
+{%- endmacro %}

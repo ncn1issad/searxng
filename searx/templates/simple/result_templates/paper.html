@@ -77,7 +77,9 @@
   {% endif -%}
 </div>
 {%- if result.content -%}
-  <p class="content">{{- result.content | safe -}}</p>
+  {% if selected_categories == ['science'] %}
+  <details class="paper-abstract"><summary>{{ _('Abstract') }}<span class="abstract-preview">{{ result.content|striptags|truncate(220) }}</span></summary><p class="content">{{ result.content|safe }}</p></details>
+  {% else %}<p class="content">{{- result.content | safe -}}</p>{% endif %}
 {%- endif -%}
 {%- if result.comments -%}
   <p class="comments">{{- result.comments -}}</p>

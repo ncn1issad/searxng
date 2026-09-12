@@ -3,6 +3,7 @@
 
 {{ result_header(result, favicons, image_proxify, show_result_thumbnail|default(true)) }}
 {{ result_sub_header(result) }}
+{% if selected_categories == ['files'] and result.mimetype %}<span class="file-type">{{ result.mimetype.rsplit('/', 1)[-1]|upper }}</span>{% endif %}
 
 {% if result.abstract %}
   <p class="abstract">{{ result.abstract|safe }}</p>
@@ -48,7 +49,7 @@
 {% if result.embedded %}
   {% if result.mtype in ("audio", "video") %}
     <p class="altlink">
-      <a class="btn-collapse collapsed media-loader disabled_if_nojs"
+      <a class="btn-collapse collapsed{% if selected_categories != ['files'] %} media-loader{% endif %} disabled_if_nojs"
         data-target="#result-media-{{ index }}"
         data-btn-text-collapsed="{{ _("show media") }}"
         data-btn-text-not-collapsed="{{ _("hide media") }}"

@@ -2,6 +2,7 @@
 
 {{ result_header(result, favicons, image_proxify, show_result_thumbnail|default(true)) -}}
 {{- result_sub_header(result) -}}
+{% if selected_categories == ['files'] %}<span class="file-type">{{ _('Torrent') }}</span>{% endif %}
 
 <p class="altlink">
     {%- if result.magnetlink %}{{ result_link(result.magnetlink, icon_big('magnet') + _('magnet link'), "magnetlink") }}{%- endif -%}
@@ -10,12 +11,12 @@
 
 <p class="stat">
     {%- if result.seed is defined %}
-        {{ icon_big('seeder') }} <span class="badge">{{ result.seed }} {{ _('Seeder') }} </span>
+        {{ icon_big('seeder') }} <span class="badge seeds-count">{{ result.seed }} {{ _('Seeder') }} </span>
         {{ icon_big('leecher') }} <span class="badge">{{ result.leech }} {{ _('Leecher') }}</span>
     {% endif %}
 </p>
 <p class="stat">
-    {%- if result.filesize %}{{ icon_big('save') }} <span class="badge">{{ result.filesize }} {{ _('Filesize') }}</span>{%- endif -%}
+    {%- if result.filesize %}{{ icon_big('save') }} <span class="badge">{% if selected_categories == ['files'] and result.filesize is number %}{{ result.filesize|filesizeformat }}{% else %}{{ result.filesize }}{% endif %} {{ _('Filesize') }}</span>{%- endif -%}
     {%- if result.files %}{{ icon_big('file') }} <span class="badge">{{ result.files }} {{ _('Number of Files') }}</span>{%- endif -%}
 </p>
 {%- if result.content %}<p class="content">{{ result.content|safe }}</p>{%- endif -%}

@@ -1,0 +1,30 @@
+{% from 'simple/macros.html' import result_link, result_sub_footer with context %}
+{% macro place_result(result, index) -%}
+<article class="result result-map refined-place" id="place-{{ index }}" data-place-number="{{ index }}"{% if result.latitude is defined and result.latitude is not none and result.longitude is defined and result.longitude is not none %} data-lat="{{ result.latitude }}" data-lon="{{ result.longitude }}"{% endif %}{% if result.boundingbox %} data-bounds='{{ result.boundingbox|tojson }}'{% endif %}>
+  <button class="place-marker hide_if_nojs" type="button" aria-label="{{ _('show map') }}: {{ result.title|striptags }}">{{ index }}</button>
+  <div class="place-info">
+    <h3>{{ result_link(result.url, result.title|safe) }}</h3>
+    {% if result.address %}
+    <p class="place-address">
+      {% if result.address.road %}{{ result.address.road }}{% if result.address.house_number %} {{ result.address.house_number }}{% endif %}<br>{% endif %}
+      {% if result.address.locality %}{{ result.address.locality }}{% if result.address.postcode %} {{ result.address.postcode }}{% endif %}{% endif %}
+      {% if result.address.country %}{% if result.address.locality %}, {% endif %}{{ result.address.country }}{% endif %}
+    </p>
+    {% endif %}
+    {% if result.content %}<p class="content">{{ result.content|safe }}</p>{% endif %}
+    {% if result.latitude is defined and result.latitude is not none and result.longitude is defined and result.longitude is not none %}
+      <div class="place-directions">{{ result_link('https://www.openstreetmap.org/directions?to=' ~ result.latitude ~ '%2C' ~ result.longitude, _('Get directions')) }}</div>
+    {% endif %}
+    {% if result.data or result.links %}
+    <details class="place-details">
+      <summary>{{ _('More information') }}</summary>
+      <dl>
+        {% for info in result.data %}<dt>{{ info.label }}</dt><dd>{{ info.value }}</dd>{% endfor %}
+        {% for link in result.links %}<dt>{{ link.label }}</dt><dd>{{ result_link(link.url, link.url_label) }}</dd>{% endfor %}
+      </dl>
+    </details>
+    {% endif %}
+    {{ result_sub_footer(result) }}
+  </div>
+</article>
+{%- endmacro %}

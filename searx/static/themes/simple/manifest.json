@@ -3,6 +3,13 @@
     "file": "chunk/BuurKv-k.min.js",
     "name": "plugin"
   },
+  "_D7AW1ded.min.js": {
+    "file": "chunk/D7AW1ded.min.js",
+    "name": "osm",
+    "css": [
+      "sxng-osm.min.css"
+    ]
+  },
   "_DK4yUVpy.min.js": {
     "file": "chunk/DK4yUVpy.min.js",
     "name": "assertelement"
@@ -13,6 +20,10 @@
     "imports": [
       "_DK4yUVpy.min.js"
     ]
+  },
+  "_sxng-osm.min.css": {
+    "file": "sxng-osm.min.css",
+    "src": "_sxng-osm.min.css"
   },
   "src/js/index.ts": {
     "file": "sxng-core.min.js",
@@ -27,6 +38,8 @@
       "src/js/main/search.ts",
       "src/js/main/autocomplete.ts",
       "src/js/main/results.ts",
+      "src/js/main/refined-tabs.ts",
+      "src/js/main/refined-map.ts",
       "src/js/main/preferences.ts"
     ]
   },
@@ -59,6 +72,21 @@
       "src/js/index.ts",
       "_DK4yUVpy.min.js"
     ]
+  },
+  "src/js/main/refined-map.ts": {
+    "file": "chunk/BJWGkIWu.min.js",
+    "name": "refined-map",
+    "src": "src/js/main/refined-map.ts",
+    "isDynamicEntry": true,
+    "imports": [
+      "_D7AW1ded.min.js"
+    ]
+  },
+  "src/js/main/refined-tabs.ts": {
+    "file": "chunk/BBviC0f_.min.js",
+    "name": "refined-tabs",
+    "src": "src/js/main/refined-tabs.ts",
+    "isDynamicEntry": true
   },
   "src/js/main/results.ts": {
     "file": "chunk/DHBFZOSA.min.js",
@@ -103,15 +131,13 @@
     ]
   },
   "src/js/plugin/MapView.ts": {
-    "file": "chunk/Dms-nhjX.min.js",
+    "file": "chunk/JRN_fGe3.min.js",
     "name": "mapview",
     "src": "src/js/plugin/MapView.ts",
     "isDynamicEntry": true,
     "imports": [
-      "_BuurKv-k.min.js"
-    ],
-    "css": [
-      "sxng-mapview.min.css"
+      "_BuurKv-k.min.js",
+      "_D7AW1ded.min.js"
     ]
   },
   "src/less/rss.less": {

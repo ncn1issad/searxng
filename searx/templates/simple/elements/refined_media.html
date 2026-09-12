@@ -1,0 +1,52 @@
+{% from 'simple/macros.html' import result_link, result_open_link, result_close_link, result_sub_footer, iframe with context %}
+{% from 'simple/icons.html' import icon_small %}
+
+{% macro published_time(result) -%}
+{% if result.publishedDate %}<time datetime="{{ result.publishedDate.isoformat() if result.publishedDate.isoformat is defined else result.pubdate }}">{{ result.publishedDate.strftime('%Y-%m-%d') if result.publishedDate.strftime is defined else result.publishedDate }}</time>{% endif %}
+{%- endmacro %}
+
+{% macro media_control(result, index) -%}
+{% if result.iframe_src %}
+<button type="button" class="refined-media-button btn-collapse collapsed media-loader hide_if_nojs" data-target="#refined-media-{{ pageno }}-{{ index }}" data-btn-text-collapsed="{{ _('show media') }}" data-btn-text-not-collapsed="{{ _('hide media') }}" aria-controls="refined-media-{{ pageno }}-{{ index }}" aria-expanded="false">{{ icon_small('play') }} {{ _('show media') }}</button>
+<div id="refined-media-{{ pageno }}-{{ index }}" class="refined-embed invisible">{{ iframe(result.iframe_src, result) }}</div>
+{% endif %}
+{% if result.audio_src %}<audio controls preload="none" aria-label="{{ result.title|striptags }}" src="{{ result.audio_src }}"></audio>{% endif %}
+{%- endmacro %}
+
+{% macro video_result(result, index) -%}
+<article class="result result-videos refined-video">
+  {{ result_open_link(result.url, 'refined-video-thumb') }}
+    {% if result.thumbnail or result.img_src %}<img loading="lazy" src="{{ image_proxify(result.thumbnail or result.img_src) }}" alt="{{ result.title|striptags }}">{% else %}{{ icon_small('film') }}<span class="refined-sr-only">{{ result.title|striptags }}</span>{% endif %}
+    {% if result.length %}<span class="refined-duration">{{ result.length }}</span>{% endif %}
+  {{ result_close_link() }}
+  <div class="refined-video-body">
+    <h3>{{ result_link(result.url, result.title|safe) }}</h3>
+    {% if result.content %}<p class="content">{{ result.content|safe }}</p>{% endif %}
+    <div class="refined-meta">
+      {{ result_link(result.url, result.parsed_url.netloc|replace('www.', '')) }}
+      {% if result.author %}<span>{{ result.author }}</span>{% endif %}
+      {{ published_time(result) }}
+      {% if result.views %}<span>{{ result.views }} {{ _('Views') }}</span>{% endif %}
+    </div>
+    {{ media_control(result, index) }}
+    {{ result_sub_footer(result) }}
+  </div>
+</article>
+{%- endmacro %}
+
+{% macro music_result(result, index) -%}
+<article class="result result-default refined-track">
+  {{ result_open_link(result.url, 'refined-track-art') }}
+    {% if result.thumbnail or result.img_src %}<img loading="lazy" src="{{ image_proxify(result.thumbnail or result.img_src) }}" alt="{{ result.title|striptags }}">{% else %}{{ icon_small('musical-notes') }}<span class="refined-sr-only">{{ result.title|striptags }}</span>{% endif %}
+  {{ result_close_link() }}
+  <div class="refined-track-body">
+    <div class="refined-meta">{{ result_link(result.url, result.parsed_url.netloc|replace('www.', '')) }}{% if result.author %}<span>{{ result.author }}</span>{% endif %}</div>
+    <h3>{{ result_link(result.url, result.title|safe) }}</h3>
+    {% if result.content %}<p class="content">{{ result.content|safe }}</p>{% endif %}
+    {% if result.publishedDate or result.metadata %}<div class="refined-meta">{{ published_time(result) }}{% if result.metadata %}<span>{{ result.metadata }}</span>{% endif %}</div>{% endif %}
+    {{ media_control(result, index) }}
+    {{ result_sub_footer(result) }}
+  </div>
+  {% if result.length %}<span class="refined-track-length">{{ result.length }}</span>{% endif %}
+</article>
+{%- endmacro %}

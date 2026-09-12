@@ -52,6 +52,8 @@ ready(
   () => {
     void import("./main/keyboard.ts");
     void import("./main/results.ts");
+    if (document.querySelector("#results.refined-tab")) void import("./main/refined-tabs.ts");
+    if (document.getElementById("refined-map")) void import("./main/refined-map.ts");
     void import("./main/search.ts");
 
     if (settings.autocomplete) {

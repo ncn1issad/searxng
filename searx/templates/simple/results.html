@@ -1,6 +1,9 @@
 {% extends "simple/base.html" %}
 {% from 'simple/icons.html' import icon, icon_big, icon_small %}
 {% from 'simple/elements/media_carousels.html' import media_carousels with context %}
+{% from 'simple/elements/refined_map.html' import place_result with context %}
+{% from 'simple/elements/refined_media.html' import video_result, music_result with context %}
+{% from 'simple/elements/refined_editorial.html' import news_result, social_result with context %}
 {% macro engine_data_form(engine_data) -%}
     {% for engine_name, kv_data in engine_data.items() %}
         {% for k, v in kv_data.items() %}
@@ -19,6 +22,10 @@
   {% set only_template = '' %}
 {% endif %}
 
+{% set active_category = selected_categories[0] if selected_categories|length == 1 else '' %}
+{% set refined_category = active_category in ('videos', 'news', 'map', 'music', 'it', 'science', 'files', 'social media') %}
+{% set category_class = active_category|replace('social media', 'social') %}
+
 {% set media = namespace(videos=[], images=[], web=[]) %}
 {% for result in results %}
   {% set is_video = result.iframe_src or result['template'] == 'videos.html' %}
@@ -34,7 +41,7 @@
   {% endif %}
 {% endfor %}
 
-<div id="results" class="{{ only_template }}">
+<div id="results" class="{{ only_template }}{% if refined_category %} category-{{ category_class }} refined-tab{% endif %}">
 
   {%- if answers -%}
     {%- include 'simple/elements/answers.html' -%}
@@ -57,6 +64,12 @@
             {% include 'simple/filters/languages.html' %}
             <span aria-hidden="true">⌄</span>
           </label>
+          {% if active_category == 'videos' %}
+          <div class="refined-view-toggle hide_if_nojs" role="group" aria-label="{{ _('View') }}">
+            <button type="button" data-video-view="grid" aria-pressed="true">{{ _('Grid') }}</button>
+            <button type="button" data-video-view="list" aria-pressed="false">{{ _('List') }}</button>
+          </div>
+          {% endif %}
           <input type="hidden" name="safesearch" value="{{ safesearch }}" form="search">
         </div>
       </div>
@@ -75,6 +88,25 @@
     {%- endif -%}
 
     <div id="urls" role="main">
+    {% if refined_category %}
+      {% for result in results %}
+        {% set index = loop.index %}
+        {% set show_result_thumbnail = true %}
+        {% if active_category == 'videos' %}
+          {{ video_result(result, index) }}
+        {% elif active_category == 'music' and result['template'] in ('default.html', 'videos.html', none, '') %}
+          {{ music_result(result, index) }}
+        {% elif active_category == 'news' and result['template'] in ('default.html', 'videos.html', none, '') %}
+          {{ news_result(result, index) }}
+        {% elif active_category == 'social media' and result['template'] in ('default.html', 'videos.html', none, '') %}
+          {{ social_result(result, index) }}
+        {% elif active_category == 'map' and result['template'] == 'map.html' %}
+          {{ place_result(result, index) }}
+        {% else %}
+          {% include get_result_template('simple', result['template']) %}
+        {% endif %}
+      {% endfor %}
+    {% else %}
     {% set media_sections = namespace(images_rendered=false, videos_rendered=false) %}
     {% for result in media.web %}
         {% set index = loop.index %}
@@ -95,10 +127,18 @@
     {% if media.videos and not media_sections.videos_rendered %}
       {{ media_carousels(video_results=media.videos) }}
     {% endif %}
+    {% endif %}
     {% if not results and not answers %}
         {% include 'simple/messages/no_results.html' %}
     {% endif %}
     </div>
+
+    {% if active_category == 'map' and results|selectattr('template', 'equalto', 'map.html')|list %}
+      <section id="refined-map-panel" class="hide_if_nojs" aria-label="{{ _('Map') }}">
+        <div id="refined-map" tabindex="0" aria-label="{{ _('Map') }}"></div>
+      </section>
+      <button type="button" id="refined-map-toggle" class="hide_if_nojs" aria-controls="refined-map-panel" aria-expanded="false" data-show-map="{{ _('show map') }}" data-show-list="{{ _('Search results') }}">{{ _('show map') }}</button>
+    {% endif %}
 
     {%- if suggestions -%}
       {%- include 'simple/elements/suggestions.html' -%}
