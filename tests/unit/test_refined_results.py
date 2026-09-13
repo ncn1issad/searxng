@@ -59,6 +59,30 @@ class RefinedResultsTestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         return html.fromstring(response.data)
 
+    def test_it_types_and_optional_details(self):
+        tree = self.render_results(['it'], [
+            {'engine': 'github', 'url': 'https://github.com/elastic/client',
+             'template': 'packages.html', 'package_name': 'client', 'popularity': 0},
+            {'url': 'https://pypi.org/project/client/', 'template': 'packages.html',
+             'package_name': 'client', 'version': '2.0',
+             'source_code_url': 'https://github.com/elastic/client'},
+            {'url': 'https://stackoverflow.com/questions/123', 'content': 'Existing Q&A summary'},
+            {},
+        ])
+        rows = tree.cssselect('[data-it-type]')
+        self.assertEqual([row.get('data-it-type') for row in rows], ['repo', 'package', 'qa', 'other'])
+        self.assertIn('Stars: 0', rows[0].text_content())
+        self.assertTrue(rows[0].cssselect('details:not([open]) summary'))
+        self.assertTrue(rows[1].xpath('.//a[@href="https://github.com/elastic/client"]'))
+        self.assertIn('v2.0', rows[1].text_content())
+        self.assertIn('Existing Q&A summary', rows[2].text_content())
+        self.assertFalse(rows[2].cssselect('details'))
+        self.assertEqual(len(tree.cssselect('[data-it-filter]')), 5)
+        self.assertFalse(tree.cssselect('.attributes'))
+        general = self.render_results(['general'], [{'template': 'packages.html', 'package_name': 'client'}])
+        self.assertFalse(general.cssselect('[data-it-type]'))
+        self.assertTrue(general.cssselect('.attributes'))
+
     def test_dedicated_tabs_keep_media_in_the_result_list(self):
         for category, css_class in [
             ('videos', 'refined-video'),

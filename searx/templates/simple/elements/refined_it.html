@@ -1,0 +1,50 @@
+{% from 'simple/macros.html' import result_link, result_sub_footer with context %}
+{% from 'simple/elements/refined_media.html' import published_time with context %}
+
+{% macro it_result(result) -%}
+{% set host = result.parsed_url.netloc|replace('www.', '') %}
+{% set is_qa = host in ('stackoverflow.com', 'superuser.com', 'serverfault.com', 'askubuntu.com') or host.endswith('.stackexchange.com') %}
+{% set is_repo = result.engine in ('github', 'gitlab', 'gitea', 'codeberg', 'sourcehut', 'bitbucket') or host in ('github.com', 'gitlab.com', 'codeberg.org', 'bitbucket.org', 'sr.ht') or host.endswith('.sr.ht') %}
+{% set kind = 'code' if result.template == 'code.html' else 'qa' if is_qa else 'repo' if is_repo else 'package' if result.template == 'packages.html' else 'other' %}
+{% set labels = {'repo': _('repo'), 'package': _('package'), 'code': _('code'), 'qa': _('Q&A'), 'other': _('web')} %}
+<article class="result result-default refined-it" data-it-type="{{ kind }}">
+  {% if kind in ('repo', 'package') %}<div class="it-primary">{% endif %}
+  <a class="url_header" href="{{ result.url }}"{% if results_on_new_tab %} target="_blank" rel="noopener noreferrer"{% else %} rel="noreferrer"{% endif %}>
+    <span class="source_mark it-{{ kind }}" aria-hidden="true">{{ host[:1]|upper }}</span>
+    <span class="url_wrapper"><span class="result_site_name">{{ result.engine }}</span><span class="result_breadcrumb">{{ host }}{{ result.parsed_url.path|replace('/', ' › ') }}</span></span>
+  </a>
+  <h3>{{ result_link(result.url, result.title|safe) }} <span class="it-badge it-{{ kind }}">{{ labels[kind] }}</span></h3>
+  {% if result.content %}<p class="content">{{ result.content|safe }}</p>{% endif %}
+  {% if kind in ('repo', 'package') %}</div><div class="it-secondary">{% endif %}
+  {% if kind == 'code' %}
+    {% if result.repository or result.filename %}<div class="it-meta">{% if result.repository %}{{ result_link(result.repository, result.repository) }}{% endif %}{% if result.filename %}<span>{{ result.filename }}</span>{% endif %}</div>{% endif %}
+    <div dir="ltr" class="codelines">{{ result.HTML()|safe }}</div>
+  {% else %}
+    {% if result.version or result.license_name %}
+    <div class="it-meta">
+      {% if result.version %}<span>v{{ result.version }}</span>{% endif %}
+      {% if result.license_name %}<span>{% if result.license_url %}{{ result_link(result.license_url, result.license_name) }}{% else %}{{ result.license_name }}{% endif %}</span>{% endif %}
+    </div>
+    {% endif %}
+    {% if result.tags %}<div class="it-tags">{% for tag in result.tags %}<span>{{ tag }}</span>{% endfor %}</div>{% endif %}
+    {% if result.maintainer or result.publishedDate or (result.popularity is defined and result.popularity is not none) or result.homepage or result.source_code_url or result.links or result.package_name %}
+    <details class="it-details">
+      <summary><span class="it-show">{{ _('show details') }}</span><span class="it-hide">{{ _('hide details') }}</span></summary>
+      <div class="it-details-body">
+        {% if result.package_name %}<div>{{ _('Name') }}: <code>{{ result.package_name }}</code></div>{% endif %}
+        {% if result.maintainer %}<div>{{ _('Maintainer') }}: {{ result.maintainer }}</div>{% endif %}
+        {% if result.popularity is defined and result.popularity is not none %}<div>{{ _('Stars') if kind == 'repo' else _('Popularity') }}: {{ result.popularity }}</div>{% endif %}
+        {% if result.publishedDate %}<div>{{ _('Updated at') }} {{ published_time(result) }}</div>{% endif %}
+        <div class="it-project-links">
+          {% if result.homepage %}{{ result_link(result.homepage, _('Project homepage')) }}{% endif %}
+          {% if result.source_code_url %}{{ result_link(result.source_code_url, _('Source code')) }}{% endif %}
+          {% if result.links %}{% for label, url in result.links.items() %}{{ result_link(url, _(label)) }}{% endfor %}{% endif %}
+        </div>
+      </div>
+    </details>
+    {% endif %}
+  {% endif %}
+  {% if kind in ('repo', 'package') %}</div>{% endif %}
+  {{ result_sub_footer(result) }}
+</article>
+{%- endmacro %}

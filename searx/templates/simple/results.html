@@ -4,6 +4,8 @@
 {% from 'simple/elements/refined_map.html' import place_result with context %}
 {% from 'simple/elements/refined_media.html' import video_result, music_result with context %}
 {% from 'simple/elements/refined_editorial.html' import news_result, social_result with context %}
+{% from 'simple/elements/refined_apps.html' import app_result, app_stores with context %}
+{% from 'simple/elements/refined_it.html' import it_result with context %}
 {% macro engine_data_form(engine_data) -%}
     {% for engine_name, kv_data in engine_data.items() %}
         {% for k, v in kv_data.items() %}
@@ -64,6 +66,13 @@
             {% include 'simple/filters/languages.html' %}
             <span aria-hidden="true">⌄</span>
           </label>
+          {% if active_category == 'it' %}
+          <div class="it-type-pills hide_if_nojs" role="group" aria-label="{{ _('Filter results on this page') }}">
+            {% for kind, label in [('all', _('All')), ('repo', _('Repos')), ('package', _('Packages')), ('code', _('Code')), ('qa', _('Q&A'))] %}
+            <button type="button" data-it-filter="{{ kind }}" aria-pressed="{{ 'true' if kind == 'all' else 'false' }}" aria-controls="urls">{{ label }}</button>
+            {% endfor %}
+          </div>
+          {% endif %}
           {% if active_category == 'videos' %}
           <div class="refined-view-toggle hide_if_nojs" role="group" aria-label="{{ _('View') }}">
             <button type="button" data-video-view="grid" aria-pressed="true">{{ _('Grid') }}</button>
@@ -93,12 +102,15 @@
       <div class="video-preview-player"></div>
     </section>
     {% endif %}
+    {% if active_category == 'it' %}<p class="it-filter-status" role="status" hidden>{{ _('No matching results on this page. Try another type or load more results.') }}</p>{% endif %}
     <div id="urls" role="main">
     {% if refined_category %}
       {% for result in results %}
         {% set index = loop.index %}
         {% set show_result_thumbnail = true %}
-        {% if active_category == 'videos' %}
+        {% if active_category == 'it' %}
+          {{ it_result(result) }}
+        {% elif active_category == 'videos' %}
           {{ video_result(result, index) }}
         {% elif active_category == 'music' and result['template'] in ('default.html', 'videos.html', none, '') %}
           {{ music_result(result, index) }}
@@ -106,6 +118,8 @@
           {{ news_result(result, index) }}
         {% elif active_category == 'social media' and result['template'] in ('default.html', 'videos.html', none, '') %}
           {{ social_result(result, index) }}
+        {% elif active_category == 'files' and result.engine in app_stores %}
+          {{ app_result(result, app_stores[result.engine]) }}
         {% elif active_category == 'map' and result['template'] == 'map.html' %}
           {{ place_result(result, index) }}
         {% else %}

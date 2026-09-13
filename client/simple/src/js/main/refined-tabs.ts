@@ -74,6 +74,31 @@ results?.addEventListener("click", (event) => {
   }
 });
 
+// Keep the selected type when infinite scrolling appends another page.
+let itType = "all";
+function filterITResults() {
+  if (!results?.classList.contains("category-it")) return;
+  let visible = 0;
+  for (const row of results.querySelectorAll<HTMLElement>("[data-it-type]")) {
+    row.hidden = itType !== "all" && row.dataset.itType !== itType;
+    if (!row.hidden) visible += 1;
+  }
+  const status = results.querySelector<HTMLElement>(".it-filter-status");
+  if (status) status.hidden = visible > 0;
+}
+results?.addEventListener("click", (event) => {
+  if (!(event.target instanceof Element)) return;
+  const selected = event.target.closest<HTMLButtonElement>("[data-it-filter]");
+  if (!selected) return;
+  itType = selected.dataset.itFilter || "all";
+  for (const button of results.querySelectorAll("[data-it-filter]")) {
+    button.setAttribute("aria-pressed", String(button === selected));
+  }
+  filterITResults();
+});
+const itRows = results?.classList.contains("category-it") ? results.querySelector("#urls") : null;
+if (itRows) new MutationObserver(filterITResults).observe(itRows, { childList: true });
+
 const preview = document.querySelector<HTMLElement>("#video-preview");
 const player = preview?.querySelector<HTMLElement>(".video-preview-player");
 const closeButton = preview?.querySelector<HTMLButtonElement>(".video-preview-close");

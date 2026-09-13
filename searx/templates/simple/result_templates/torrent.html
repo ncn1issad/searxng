@@ -1,8 +1,29 @@
 {% from 'simple/macros.html' import result_header, result_sub_header, result_sub_footer, result_footer, result_link with context %}
 
-{{ result_header(result, favicons, image_proxify, show_result_thumbnail|default(true)) -}}
-{{- result_sub_header(result) -}}
-{% if selected_categories == ['files'] %}<span class="file-type">{{ _('Torrent') }}</span>{% endif %}
+{% from 'simple/elements/refined_files.html' import file_header with context %}
+{% if selected_categories == ['files'] %}
+{{ file_header(result, _('Torrent')) }}
+<div class="file-meta">
+  {% if result.filesize %}<span class="file-size">{% if result.filesize is number %}{{ result.filesize|filesizeformat }}{% else %}{{ result.filesize }}{% endif %}</span>{% endif %}
+  {% if result.files %}<span>{{ _('Number of Files') }}: {{ result.files }}</span>{% endif %}
+  {% if result.seed is defined or result.leech is defined %}
+  <span class="swarm-counts">
+    {% if result.seed is defined %}<span class="seeds-count">{{ result.seed }} {{ _('Seeder') }}</span>{% endif %}
+    {% if result.leech is defined %}<span>{{ result.leech }} {{ _('Leecher') }}</span>{% endif %}
+  </span>
+  {% endif %}
+  {% if result.publishedDate %}<time datetime="{{ result.pubdate }}">{{ result.publishedDate }}</time>{% endif %}
+</div>
+{% if result.content %}<p class="content">{{ result.content|safe }}</p>{% endif %}
+{% if result.magnetlink or result.torrentfile %}
+<p class="altlink">
+  {% if result.magnetlink %}{{ result_link(result.magnetlink, icon_big('magnet') + _('magnet link'), 'magnetlink') }}{% endif %}
+  {% if result.torrentfile %}{{ result_link(result.torrentfile, icon_big('download-alt') + _('torrent file'), 'torrentfile') }}{% endif %}
+</p>
+{% endif %}
+{% else %}
+{{ result_header(result, favicons, image_proxify, show_result_thumbnail|default(true)) }}
+{{ result_sub_header(result) }}
 
 <p class="altlink">
     {%- if result.magnetlink %}{{ result_link(result.magnetlink, icon_big('magnet') + _('magnet link'), "magnetlink") }}{%- endif -%}
@@ -20,5 +41,6 @@
     {%- if result.files %}{{ icon_big('file') }} <span class="badge">{{ result.files }} {{ _('Number of Files') }}</span>{%- endif -%}
 </p>
 {%- if result.content %}<p class="content">{{ result.content|safe }}</p>{%- endif -%}
+{% endif %}
 {{- result_sub_footer(result) -}}
 {{- result_footer(result) -}}

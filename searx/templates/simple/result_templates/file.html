@@ -1,10 +1,16 @@
 {% from "simple/macros.html" import result_header, result_sub_header, result_sub_footer, result_footer, result_link with context %}
 {% from "simple/icons.html" import icon_small %}
 
+{% from 'simple/elements/refined_files.html' import file_header with context %}
+{% set files_tab = selected_categories == ['files'] %}
+{% if files_tab %}
+{{ file_header(result, result.mimetype.rsplit('/', 1)[-1]|upper if result.mimetype else '') }}
+{% else %}
 {{ result_header(result, favicons, image_proxify, show_result_thumbnail|default(true)) }}
 {{ result_sub_header(result) }}
-{% if selected_categories == ['files'] and result.mimetype %}<span class="file-type">{{ result.mimetype.rsplit('/', 1)[-1]|upper }}</span>{% endif %}
+{% endif %}
 
+{% if not files_tab %}
 {% if result.abstract %}
   <p class="abstract">{{ result.abstract|safe }}</p>
 {% endif -%}
@@ -13,6 +19,15 @@
   <p class="content">{{ result.content|safe }}</p>
 {% endif -%}
 
+{% endif %}
+{% if files_tab %}
+<div class="file-meta">
+  {% if result.size %}<span class="file-size">{{ result.size }}</span>{% endif %}
+  {% if result.author %}<span>{{ _('Author') }}: {{ result.author }}</span>{% endif %}
+  {% if result.time %}<span>{{ result.time }}</span>{% endif %}
+  {% if result.filename and result.filename != result.title|striptags %}<span>{{ _('Filename') }}: {{ result.filename }}</span>{% endif %}
+</div>
+{% else %}
 <div class="attributes">
   {% if result.author %}
   <div>
@@ -45,6 +60,18 @@
     </div>
   {% endif %}
 </div>
+
+{% endif %}
+{% if files_tab %}
+{% if result.abstract %}
+  <p class="abstract">{{ result.abstract|safe }}</p>
+{% endif -%}
+
+{%- if result.content %}
+  <p class="content">{{ result.content|safe }}</p>
+{% endif -%}
+
+{% endif %}
 
 {% if result.embedded %}
   {% if result.mtype in ("audio", "video") %}

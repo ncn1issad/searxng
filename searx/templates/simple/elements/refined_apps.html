@@ -1,0 +1,31 @@
+{% from 'simple/macros.html' import result_link, result_sub_footer with context %}
+{% from 'simple/elements/refined_media.html' import published_time with context %}
+
+{% set app_stores = {
+  'apple app store': {'name': 'App Store', 'platform': 'Apple'},
+  'google play apps': {'name': 'Google Play', 'platform': 'Android'},
+  'fdroid': {'name': 'F-Droid', 'platform': 'Android'},
+  'apk mirror': {'name': 'APKMirror', 'platform': 'Android'}
+} %}
+
+{% macro app_result(result, store) -%}
+{% set app_icon = result.thumbnail or result.img_src %}
+<article class="result result-default refined-app">
+  <div class="app-icon" aria-hidden="true">
+    {% if app_icon %}<img src="{{ image_proxify(app_icon) }}" alt="" width="48" height="48" loading="lazy">{% else %}<span>{{ (result.title|striptags)[:1]|upper }}</span>{% endif %}
+  </div>
+  <div class="app-body">
+    <div class="file-head"><span class="file-type">{{ store.platform }}</span><span class="file-source">{{ store.name }}</span></div>
+    <h3>{{ result_link(result.url, result.title|safe) }}</h3>
+    {% if result.content %}<p class="content">{{ result.content|safe }}</p>{% endif %}
+    {% if result.author or result.publishedDate %}
+    <div class="file-meta">
+      {% if result.author %}<span>{{ result.author }}</span>{% endif %}
+      {% if result.publishedDate %}<span>{{ _('Updated') }} {{ published_time(result) }}</span>{% endif %}
+    </div>
+    {% endif %}
+    <p class="altlink">{{ result_link(result.url, _('View on %(store)s', store=store.name)) }}</p>
+    {{ result_sub_footer(result) }}
+  </div>
+</article>
+{%- endmacro %}

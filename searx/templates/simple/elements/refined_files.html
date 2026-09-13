@@ -1,0 +1,11 @@
+{% from 'simple/macros.html' import result_link with context %}
+
+{% macro file_header(result, file_type='') -%}
+<article class="result result-{{ result.template|replace('.html', '') }}">
+  <div class="file-head">
+    {% if file_type %}<span class="file-type{% if result.template == 'torrent.html' %} torrent{% endif %}">{{ file_type }}</span>{% endif %}
+    {{ result_link(result.url, result.parsed_url.netloc|replace('www.', ''), 'file-source') }}
+    <span class="file-path">{{ result.parsed_url.path }}</span>
+  </div>
+  <h3>{{ result_link(result.url, result.title|safe) }}</h3>
+{%- endmacro %}
