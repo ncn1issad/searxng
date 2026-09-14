@@ -3,6 +3,22 @@
 import { http, listen, settings } from "../toolkit.ts";
 import { assertElement } from "../util/assertElement.ts";
 
+// Preview the selected flavor without saving the rest of the preferences.
+const themeStyle = document.querySelector<HTMLSelectElement>('select[name="simple_style"]');
+if (themeStyle) {
+  const previewThemeStyle = (): void => {
+    const root = document.documentElement;
+    for (const className of Array.from(root.classList)) {
+      if (className.startsWith("theme-")) root.classList.remove(className);
+    }
+    root.classList.add(`theme-${themeStyle.value}`);
+  };
+  listen("change", themeStyle, previewThemeStyle);
+  // Also handle a selection restored by the browser after navigating back.
+  window.addEventListener("pageshow", previewThemeStyle);
+  previewThemeStyle();
+}
+
 let engineDescriptions: Record<string, [string, string]> | undefined;
 
 const loadEngineDescriptions = async (): Promise<void> => {

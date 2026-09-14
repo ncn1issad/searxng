@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html class="no-js theme-{{ preferences.get_value('simple_style') or 'auto' }} center-alignment-{{ preferences.get_value('center_alignment') and 'yes' or 'no' }} endpoint-{{ endpoint }}" lang="{{ locale_rfc5646 }}" {% if rtl %} dir="rtl"{% endif %}>
+{% set saved_style = preferences.get_value('simple_style') %}
+{% set catppuccin_style = {'light': 'latte', 'dark': 'mocha', 'black': 'mocha', 'auto': 'mocha', '': 'mocha'}.get(saved_style, saved_style) or 'mocha' %}
+<html class="no-js theme-{{ catppuccin_style }} center-alignment-{{ preferences.get_value('center_alignment') and 'yes' or 'no' }} endpoint-{{ endpoint }}" lang="{{ locale_rfc5646 }}" {% if rtl %} dir="rtl"{% endif %}>
 <head>
   <meta charset="UTF-8">
   <meta name="endpoint" content="{{ endpoint }}">

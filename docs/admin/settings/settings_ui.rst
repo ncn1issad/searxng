@@ -16,7 +16,7 @@
      cache_url: https://web.archive.org/web/
      default_theme: simple
      theme_args:
-       simple_style: auto
+       simple_style: mocha
      search_on_category_select: true
      hotkeys: default
      url_formatting: pretty
@@ -49,7 +49,9 @@
   Name of the theme you want to use by default on your SearXNG instance.
 
 ``theme_args.simple_style``:
-  Style of simple theme: ``auto``, ``light``, ``dark``, ``black``
+  Catppuccin flavor: ``mocha`` (default), ``latte``, ``frappe``, ``macchiato``.
+  The internal theme name remains ``simple``. Legacy ``light`` maps to Latte;
+  ``auto``, ``dark``, and ``black`` map to Mocha.
 
 ``results_on_new_tab``:
   Open result links in a new tab by default.

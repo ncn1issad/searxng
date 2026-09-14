@@ -62,5 +62,10 @@ design rather than content.
   accessible on mobile with horizontal scrolling, and covers General, Videos, News, Map,
   Music, IT, Science, Files, and Social Media.
 
+- `instant-answers` is a dedicated instant answer card concept for existing
+  SearXNG text answers, translations, and weather data. It features a spacious
+  editorial layout with clear typography, quiet source attribution, progressive
+  disclosure via semantic details drawers, and all four Catppuccin flavors.
+
 Open `index.html` to compare the concepts. Each page includes Latte and Mocha
 themes and adapts to desktop and mobile widths.

@@ -22,7 +22,7 @@ searx_dir = abspath(dirname(__file__))
 logger = logging.getLogger('searx')
 OUTPUT_FORMATS = ['html', 'csv', 'json', 'rss']
 SXNG_LOCALE_TAGS = ['all', 'auto'] + list(l[0] for l in sxng_locales)
-SIMPLE_STYLE = ('auto', 'light', 'dark', 'black')
+SIMPLE_STYLE = ('auto', 'light', 'dark', 'black', 'mocha', 'latte', 'frappe', 'macchiato')
 CATEGORIES_AS_TABS: dict[str, dict[str, t.Any]] = {
     'general': {},
     'images': {},
@@ -235,7 +235,7 @@ SCHEMA: dict[str, t.Any] = {
         'default_theme': SettingsValue(str, 'simple'),
         'default_locale': SettingsValue(str, ''),
         'theme_args': {
-            'simple_style': SettingsValue(SIMPLE_STYLE, 'auto'),
+            'simple_style': SettingsValue(SIMPLE_STYLE, 'mocha'),
         },
         'center_alignment': SettingsValue(bool, False),
         'results_on_new_tab': SettingsValue(bool, False),

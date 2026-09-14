@@ -31,6 +31,7 @@
     "src": "src/js/index.ts",
     "isEntry": true,
     "dynamicImports": [
+      "src/js/main/select-popup.ts",
       "src/js/plugin/MapView.ts",
       "src/js/plugin/InfiniteScroll.ts",
       "src/js/plugin/Calculator.ts",
@@ -64,7 +65,7 @@
     ]
   },
   "src/js/main/preferences.ts": {
-    "file": "chunk/e2-9fzwE.min.js",
+    "file": "chunk/D604Akjw.min.js",
     "name": "preferences",
     "src": "src/js/main/preferences.ts",
     "isDynamicEntry": true,
@@ -107,6 +108,12 @@
       "src/js/index.ts",
       "_DcK-mo-Y.min.js"
     ]
+  },
+  "src/js/main/select-popup.ts": {
+    "file": "chunk/DWXSymct.min.js",
+    "name": "select-popup",
+    "src": "src/js/main/select-popup.ts",
+    "isDynamicEntry": true
   },
   "src/js/plugin/Calculator.ts": {
     "file": "chunk/BhYx0_Gb.min.js",

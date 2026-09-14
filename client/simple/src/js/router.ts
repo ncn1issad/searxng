@@ -6,6 +6,7 @@ import { Endpoints, endpoint, listen, ready, settings } from "./toolkit.ts";
 ready(() => {
   document.documentElement.classList.remove("no-js");
   document.documentElement.classList.add("js");
+  if (document.querySelector("select")) void import("./main/select-popup.ts");
 
   listen("click", ".close", function (this: HTMLElement) {
     (this.parentNode as HTMLElement)?.classList.add("invisible");

@@ -377,6 +377,7 @@ select {
     }
 
     option {
+      color: var(--color-base-font);
       background-color: var(--color-base-background);
     }
   }
@@ -391,7 +392,10 @@ select {
     }
   }
 
-  html.theme-dark select {
+  html.theme-dark select,
+  html.theme-mocha select,
+  html.theme-frappe select,
+  html.theme-macchiato select {
     background-image: data-uri(
       "image/svg+xml;charset=UTF-8",
       @select-dark-svg-path
@@ -637,4 +641,46 @@ td:hover .engine-tooltip,
   border-left: 1px solid rgb(var(--color-base-font-rgb), 0.9);
   padding: 0.4rem 0;
   width: 1px;
+}
+
+// The expanded menu uses document colors instead of the desktop popup theme.
+html body select.theme-select-popup {
+  position: fixed;
+  inset: auto;
+  box-sizing: border-box;
+  height: auto;
+  max-width: calc(100vw - 16px);
+  margin: 0;
+  padding: 4px !important;
+  border: 1px solid var(--ctp-surface-1);
+  border-radius: 6px;
+  background: var(--ctp-mantle);
+  color: var(--ctp-text);
+  box-shadow: 0 4px 16px var(--ctp-shadow);
+  font: inherit;
+  font-size: 0.9rem;
+  color-scheme: inherit;
+  outline: none;
+
+  option,
+  optgroup {
+    padding: 5px 8px;
+    background: var(--ctp-mantle);
+    color: var(--ctp-text);
+  }
+
+  option:checked {
+    background: var(--ctp-lavender)
+      linear-gradient(var(--ctp-lavender), var(--ctp-lavender));
+    color: var(--ctp-base);
+  }
+
+  option:hover {
+    background: var(--ctp-surface-0);
+    color: var(--ctp-text);
+  }
+
+  option:disabled {
+    color: var(--ctp-overlay-0);
+  }
 }
