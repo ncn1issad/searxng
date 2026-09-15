@@ -1,0 +1,148 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+#answers {
+  grid-area: answers;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 0;
+  margin: 1rem 0;
+  color: var(--ctp-text);
+
+  > .title {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .answer-card {
+    min-width: 0;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--ctp-surface-0);
+    border-radius: 8px;
+    background: var(--ctp-mantle);
+    overflow-wrap: anywhere;
+  }
+
+  .answer-primary-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.4;
+    white-space: pre-wrap;
+  }
+
+  .answer-url {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    margin-top: 0.75rem;
+    color: var(--ctp-subtext-0);
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+
+  a.answer-url:hover {
+    color: var(--ctp-blue);
+    text-decoration: underline;
+  }
+
+  summary {
+    min-height: 2.75rem;
+    box-sizing: border-box;
+    padding-block: 0.5rem;
+    cursor: pointer;
+    line-height: 1.5;
+
+    &::marker {
+      color: var(--ctp-lavender);
+    }
+  }
+
+  summary:focus-visible,
+  a:focus-visible {
+    outline: 2px solid var(--ctp-lavender);
+    outline-offset: 4px;
+    border-radius: 3px;
+  }
+
+  .answer-translations > summary {
+    .answer-primary-value {
+      display: inline;
+    }
+  }
+
+  .item-transliteration {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--ctp-subtext-0);
+    font-size: 0.9rem;
+  }
+
+  .translation-items {
+    margin: 0.75rem 0 0;
+  }
+
+  .translation-item {
+    padding-block: 1rem;
+    border-top: 1px solid var(--ctp-surface-0);
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+
+    dt {
+      font-weight: 600;
+    }
+
+    dd {
+      margin: 0;
+    }
+
+    ul {
+      margin: 0.4rem 0 0;
+      padding-inline-start: 1.25rem;
+      line-height: 1.6;
+    }
+  }
+
+  .answer-detail-label {
+    margin-top: 0.85rem;
+    color: var(--ctp-subtext-0);
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .translation-examples {
+    font-style: italic;
+  }
+
+  .translation-item .translation-synonyms {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding: 0;
+    list-style: none;
+
+    li {
+      padding: 0.15rem 0.6rem;
+      border-radius: 1rem;
+      background: var(--ctp-surface-0);
+      font-size: 0.85rem;
+    }
+  }
+
+  @media (width <= 430px) {
+    .answer-card {
+      padding: 0.85rem;
+    }
+
+    .answer-primary-value {
+      font-size: 1.25rem;
+    }
+  }
+}

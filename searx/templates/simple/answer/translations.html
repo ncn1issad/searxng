@@ -1,52 +1,35 @@
-<details class="answer-translations">
-  <summary>{{ answer.translations[0].text }}</summary>
-  <dl>
-    {%- for item in answer.translations -%}
-    <dt>{{ item.text }}</dt>
-    <dd>
-      {%- if item.transliteration -%}
-      <div class="item-transliteration">{{ item.transliteration }}</div>
-      {%- endif -%}
-
-      {%- if item.examples -%}
-      <div>{{ _('Examples') }}</div>
-      <ul>
-	{%- for i in item.examples -%}
-	<li>{{ i }}</li>
-	{%- endfor -%}
-      </ul>
-      {%- endif -%}
-
-      {%- if item.definitions -%}
-      <div>{{ _('Definitions') }}</div>
-      <ul>
-	{%- for i in item.definitions -%}
-	<li>{{ i }}</li>
-	{%- endfor -%}
-      </ul>
-      {%- endif -%}
-
-      {%- if item.synonyms -%}
-      <div>{{ _('Synonyms') }}</div>
-      <ul>
-	{%- for i in item.synonyms -%}
-	<li>{{ i }}</li>
-	{%- endfor -%}
-      </ul>
-      {%- endif -%}
-    </dd>
-    {%- endfor -%}
+{% set first = answer.translations[0] %}
+{% set has_details = answer.translations|length > 1 or first.examples or first.definitions or first.synonyms %}
+{% if has_details %}<details class="answer-translations">
+  <summary>
+{% else %}<div class="answer-translation-summary">{% endif %}
+    <span class="answer-primary-value" dir="auto">{{ first.text }}</span>
+    {% if first.transliteration %}<span class="item-transliteration" dir="auto">{{ first.transliteration }}</span>{% endif %}
+{% if has_details %}
+  </summary>
+  <dl class="translation-items">
+    {% for item in answer.translations %}
+    <div class="translation-item">
+      <dt dir="auto">{{ item.text }}</dt>
+      <dd>
+        {% if item.transliteration %}<div class="item-transliteration" dir="auto">{{ item.transliteration }}</div>{% endif %}
+        {% if item.definitions %}
+        <div class="answer-detail-label">{{ _('Definitions') }}</div>
+        <ul>{% for definition in item.definitions %}<li dir="auto">{{ definition }}</li>{% endfor %}</ul>
+        {% endif %}
+        {% if item.examples %}
+        <div class="answer-detail-label">{{ _('Examples') }}</div>
+        <ul class="translation-examples">{% for example in item.examples %}<li dir="auto">{{ example }}</li>{% endfor %}</ul>
+        {% endif %}
+        {% if item.synonyms %}
+        <div class="answer-detail-label">{{ _('Synonyms') }}</div>
+        <ul class="translation-synonyms">{% for synonym in item.synonyms %}<li dir="auto">{{ synonym }}</li>{% endfor %}</ul>
+        {% endif %}
+      </dd>
+    </div>
+    {% endfor %}
   </dl>
 </details>
-
-{%- if answer.url -%}
-<a href="{{ answer.url }}" class="answer-url"
-   {%- if results_on_new_tab %}
-   target="_blank" rel="noopener noreferrer"
-   {%- else -%}
-   rel="noreferrer"
-   {%- endif -%}
-   >{{ answer.engine }}</a>
-{%- else -%}
-<span class="answer-url">{{ answer.engine }}</span>
-{% endif -%}
+{% else %}</div>{% endif %}
+{% set answer_source = answer.engine %}
+{% include 'simple/answer/source.html' %}

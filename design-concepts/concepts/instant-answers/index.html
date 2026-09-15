@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="en" data-theme="mocha">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>SearXNG Instant Answers · Visual Design Concept</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <!-- Top Showcase Toolbar -->
+  <div class="concept-toolbar" role="region" aria-label="Concept controls">
+    <div class="concept-toolbar-inner">
+      <div class="concept-title-group">
+        <a class="concept-back-link" href="../../index.html" aria-label="Back to concept gallery">
+          <svg viewBox="0 0 24 24" width="14" height="14"><polyline points="15 18 9 12 15 6"/></svg>
+          <span>Gallery</span>
+        </a>
+        <span class="concept-badge">Instant Answer Cards</span>
+      </div>
+
+      <div class="concept-controls">
+        <div class="control-group" role="radiogroup" aria-label="Filter instant answers">
+          <label>Filter:</label>
+          <button type="button" class="control-btn active" data-scenario="all">All</button>
+          <button type="button" class="control-btn" data-scenario="units">Text &amp; Calc</button>
+          <button type="button" class="control-btn" data-scenario="translation">Translation</button>
+          <button type="button" class="control-btn" data-scenario="weather">Weather</button>
+        </div>
+
+        <div class="control-group" role="radiogroup" aria-label="Viewport simulator">
+          <label>Viewport:</label>
+          <button type="button" class="control-btn active" data-viewport="desktop">Desktop</button>
+          <button type="button" class="control-btn" data-viewport="mobile">Mobile (390px)</button>
+        </div>
+
+        <div class="control-group">
+          <label for="theme-select">Theme:</label>
+          <select class="control-select" id="theme-select" aria-label="Select Catppuccin theme">
+            <option value="mocha" selected>Mocha (Dark)</option>
+            <option value="macchiato">Macchiato</option>
+            <option value="frappe">Frappé</option>
+            <option value="latte">Latte (Light)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stage Container -->
+  <div class="stage-container">
+    <!-- SearXNG Sticky Header -->
+    <header class="site-header">
+      <div class="header-row">
+        <a class="brand" href="../../index.html" aria-label="SearXNG Home">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="13" cy="13" r="8.5"/><path d="m19.5 19.5 7 7"/></svg>
+          <span>searxng</span>
+        </a>
+
+        <form class="search-form" onsubmit="event.preventDefault();" role="search">
+          <input id="search-input" type="search" value="searxng instant answers" spellcheck="false" autocomplete="off" aria-label="Search query">
+          <button type="submit" class="search-button" aria-label="Search">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4.5 4.5"/></svg>
+          </button>
+        </form>
+
+        <nav class="utility-nav" aria-label="Fast query presets">
+          <div class="query-chip-bar">
+            <button type="button" class="query-chip" data-scenario="units" data-query="100 eur to ron">100 EUR in RON</button>
+            <button type="button" class="query-chip" data-scenario="units" data-query="42 km to miles">42 km in mi</button>
+            <button type="button" class="query-chip" data-scenario="units" data-query="sum(14, 28, 42, 56)">sum() math</button>
+            <button type="button" class="query-chip" data-scenario="translation" data-query="translate serendipity to romanian">translate</button>
+            <button type="button" class="query-chip" data-scenario="weather" data-query="weather bucharest">weather</button>
+          </div>
+        </nav>
+      </div>
+
+      <nav class="category-nav" aria-label="Categories">
+        <a class="active" href="#general" aria-current="page">general</a>
+        <a href="#images">images</a>
+        <a href="#videos">videos</a>
+        <a href="#news">news</a>
+        <a href="#map">map</a>
+        <a href="#music">music</a>
+        <a href="#it">it</a>
+        <a href="#science">science</a>
+        <a href="#files">files</a>
+        <a href="#social">social media</a>
+      </nav>
+    </header>
+
+    <!-- Main Results Shell -->
+    <main class="results-shell">
+      <div class="results-meta-strip">
+        <strong>Instant Answers</strong>
+        <span>·</span>
+        <span>Compact, restrained layout with Catppuccin styling</span>
+      </div>
+
+      <!-- #answers container matching searx/templates/simple/elements/answers.html -->
+      <div id="answers" role="region" aria-label="Instant answers">
+
+        <!-- 1. TEXT ANSWER: CURRENCY CONVERSION -->
+        <article class="answer-card" data-card-type="units">
+          <div class="card-header-strip">
+            <span class="card-type-tag">
+              <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              Currency Conversion
+            </span>
+            <a href="https://www.ecb.europa.eu" class="card-source-link" target="_blank" rel="noreferrer">
+              <span>ecb.europa.eu</span>
+              <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+
+          <div class="answer-legacy-body">
+            <div class="answer-primary-row">
+              <div class="answer-primary-value">497.65 RON</div>
+              <button type="button" class="copy-btn" data-copy-text="497.65 RON" aria-label="Copy result">
+                <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <div class="answer-secondary-context">
+              100 EUR = 497.65 Romanian Leu (1 EUR ≈ 4.9765 RON)
+            </div>
+          </div>
+
+          <div class="answer-footer">
+            <span class="answer-source-note">Updated daily · European Central Bank reference rate</span>
+            <span class="answer-context-pill">Foreign Exchange</span>
+          </div>
+        </article>
+
+        <!-- 2. TEXT ANSWER: UNIT CONVERTER -->
+        <article class="answer-card" data-card-type="units">
+          <div class="card-header-strip">
+            <span class="card-type-tag">
+              <svg viewBox="0 0 24 24"><line x1="2" y1="12" x2="22" y2="12"/><line x1="6" y1="8" x2="6" y2="16"/><line x1="12" y1="5" x2="12" y2="19"/><line x1="18" y1="8" x2="18" y2="16"/></svg>
+              Unit Converter
+            </span>
+            <span class="card-source-link">
+              <span>unit_converter</span>
+            </span>
+          </div>
+
+          <div class="answer-legacy-body">
+            <div class="answer-primary-row">
+              <div class="answer-primary-value">26.0976 mi</div>
+              <button type="button" class="copy-btn" data-copy-text="26.0976 miles" aria-label="Copy result">
+                <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <div class="answer-secondary-context">
+              42 kilometers = 26.0976 miles (1 km ≈ 0.621371 mi)
+            </div>
+          </div>
+
+          <div class="answer-footer">
+            <span class="answer-source-note">Length &amp; distance conversion · SI to Imperial</span>
+            <span class="answer-context-pill">Length</span>
+          </div>
+        </article>
+
+        <!-- 3. TEXT ANSWER: CALCULATION / MATH -->
+        <article class="answer-card" data-card-type="units">
+          <div class="card-header-strip">
+            <span class="card-type-tag">
+              <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="14.01"/><line x1="12" y1="14" x2="12" y2="14.01"/><line x1="8" y1="14" x2="8" y2="14.01"/><line x1="16" y1="18" x2="16" y2="18.01"/><line x1="12" y1="18" x2="12" y2="18.01"/><line x1="8" y1="18" x2="8" y2="18.01"/></svg>
+              Calculation
+            </span>
+            <span class="card-source-link">
+              <span>statistics answerer</span>
+            </span>
+          </div>
+
+          <div class="answer-legacy-body">
+            <div class="answer-primary-row">
+              <div class="answer-primary-value">140</div>
+              <button type="button" class="copy-btn" data-copy-text="140" aria-label="Copy result">
+                <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <div class="answer-secondary-context">
+              sum(14, 28, 42, 56) = 140 · mean = 35 · count = 4
+            </div>
+          </div>
+
+          <div class="answer-footer">
+            <span class="answer-source-note">SearXNG statistics answer module</span>
+            <span class="answer-context-pill">Math</span>
+          </div>
+        </article>
+
+        <!-- 4. TEXT ANSWER: TIME ZONE -->
+        <article class="answer-card" data-card-type="units">
+          <div class="card-header-strip">
+            <span class="card-type-tag">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              World Clock
+            </span>
+            <span class="card-source-link">
+              <span>time_zone plugin</span>
+            </span>
+          </div>
+
+          <div class="answer-legacy-body">
+            <div class="answer-primary-row">
+              <div class="answer-primary-value">21:30 JST</div>
+              <button type="button" class="copy-btn" data-copy-text="Tokyo, Japan: 21:30 JST" aria-label="Copy result">
+                <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <div class="answer-secondary-context">
+              Monday, September 14, 2026 · Tokyo, Japan (UTC+9)
+            </div>
+          </div>
+
+          <div class="answer-footer">
+            <span class="answer-source-note">+6 hours ahead of Bucharest (EEST)</span>
+            <span class="answer-context-pill">Asia/Tokyo</span>
+          </div>
+        </article>
+
+        <!-- 5. TRANSLATION ANSWER (translations.html) -->
+        <article class="answer-card" data-card-type="translation">
+          <div class="card-header-strip">
+            <span class="card-type-tag">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              Translation
+            </span>
+            <a href="https://www.deepl.com" class="card-source-link" target="_blank" rel="noreferrer">
+              <span>DeepL Translate</span>
+              <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+
+          <details class="answer-translations">
+            <summary>
+              <div class="translation-summary-body">
+                <div class="translation-source-row">
+                  <div class="translation-source-text">
+                    <span>English → Romanian</span>
+                    <strong>serendipity</strong>
+                  </div>
+                  <span class="translation-phonetic">/ˌsɛrənˈdɪpɪti/ · noun</span>
+                </div>
+                <div class="translation-result-row">
+                  <div class="translation-primary-text">serendipitate</div>
+                  <button type="button" class="copy-btn" data-copy-text="serendipitate" aria-label="Copy translation">
+                    <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    <span>Copy</span>
+                  </button>
+                </div>
+              </div>
+              <div class="translation-expand-toggle">
+                <span class="when-closed">Show synonyms, definitions &amp; examples</span>
+                <span class="when-open">Hide details</span>
+                <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
+            </summary>
+
+            <div class="translation-details-content">
+              <div class="translation-section">
+                <span class="translation-section-label">Synonyms &amp; Alternative Translations</span>
+                <div class="translation-synonyms-list">
+                  <span class="synonym-pill">coincidență fericită</span>
+                  <span class="synonym-pill">noroc neașteptat</span>
+                  <span class="synonym-pill">hazard fericit</span>
+                  <span class="synonym-pill">șansă providențială</span>
+                </div>
+              </div>
+
+              <div class="translation-section">
+                <span class="translation-section-label">Definitions</span>
+                <ul class="translation-definitions">
+                  <li>Apariția și dezvoltarea unor evenimente prin șansă într-un mod benefic și fericit.</li>
+                  <li>Descoperirea accidentală a unui lucru valoros fără a-l fi căutat în mod direct.</li>
+                </ul>
+              </div>
+
+              <div class="translation-section">
+                <span class="translation-section-label">Bilingual Usage Examples</span>
+                <ul class="translation-examples">
+                  <li class="translation-example-card">
+                    <span class="source-ex">"Finding that bookstore was pure serendipity."</span>
+                    <span class="target-ex">„Găsirea acelei librării a fost o pură serendipitate.”</span>
+                  </li>
+                  <li class="translation-example-card">
+                    <span class="source-ex">"A happy stroke of serendipity."</span>
+                    <span class="target-ex">„O fericită coincidență a sorții.”</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </details>
+
+          <div class="answer-footer">
+            <span class="answer-source-note">DeepL translation engine · dictionary definition mapping</span>
+            <span class="answer-context-pill">en → ro</span>
+          </div>
+        </article>
+
+        <!-- 6. WEATHER ANSWER (weather.html) -->
+        <article class="answer-card" data-card-type="weather">
+          <div class="card-header-strip">
+            <span class="card-type-tag">
+              <svg viewBox="0 0 24 24"><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"/><circle cx="12" cy="12" r="4"/></svg>
+              Weather
+            </span>
+            <a href="https://open-meteo.com" class="card-source-link" target="_blank" rel="noreferrer">
+              <span>Open-Meteo · yr.no symbols</span>
+              <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+
+          <details class="weather-details-card">
+            <summary>
+              <div class="weather-hero-section">
+                <div class="weather-location-bar">
+                  <span class="weather-location-name">
+                    <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    Bucharest, Romania
+                  </span>
+                  <span class="weather-condition-timestamp">Updated 14:00 EEST · Today</span>
+                </div>
+
+                <div class="weather-hero-row">
+                  <div class="weather-hero-visual">
+                    <!-- Crisp Sun + Cloud SVG in Catppuccin accents -->
+                    <svg class="weather-symbol-svg" viewBox="0 0 64 64" fill="none" aria-label="Partly cloudy icon">
+                      <circle cx="26" cy="24" r="11" fill="var(--ctp-yellow)" opacity="0.95"/>
+                      <path d="M46 44H22a10 10 0 0 1-1.8-19.8 14 14 0 0 1 27.2-2.8A9 9 0 0 1 46 44z" fill="var(--ctp-surface-2)" stroke="var(--ctp-surface-0)" stroke-width="1.5"/>
+                    </svg>
+                    <div class="weather-temp-hero">21°C</div>
+                  </div>
+
+                  <div class="weather-condition-meta">
+                    <div class="weather-condition-title">Partly cloudy</div>
+                    <div class="weather-condition-feels">Feels like 20°C · High: 23° · Low: 13°</div>
+                  </div>
+                </div>
+
+                <div class="weather-metrics-grid">
+                  <div class="weather-metric-tile">
+                    <svg viewBox="0 0 24 24"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/></svg>
+                    <span class="metric-label">Wind</span>
+                    <span class="metric-value">NE 14 km/h</span>
+                  </div>
+                  <div class="weather-metric-tile">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+                    <span class="metric-label">Humidity</span>
+                    <span class="metric-value">52%</span>
+                  </div>
+                  <div class="weather-metric-tile">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    <span class="metric-label">Pressure</span>
+                    <span class="metric-value">1018 hPa</span>
+                  </div>
+                  <div class="weather-metric-tile">
+                    <svg viewBox="0 0 24 24"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
+                    <span class="metric-label">Cloud Cover</span>
+                    <span class="metric-value">38%</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="weather-expand-toggle">
+                <span class="when-closed">Show 24-hour forecast &amp; multi-day trend</span>
+                <span class="when-open">Hide forecast</span>
+                <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
+            </summary>
+
+            <div class="weather-forecast-container">
+              <div class="forecast-track-heading">
+                <span>Hourly Forecast</span>
+                <span>Next 24 Hours</span>
+              </div>
+
+              <div class="forecast-scroll-track">
+                <div class="forecast-slot-card is-current">
+                  <span class="slot-time">14:00</span>
+                  <svg class="slot-icon-svg" viewBox="0 0 32 32" fill="none">
+                    <circle cx="12" cy="12" r="6" fill="var(--ctp-yellow)"/>
+                    <path d="M24 24H12a6 6 0 0 1-1-11.9 8 8 0 0 1 15.5-1.5A5 5 0 0 1 24 24z" fill="var(--ctp-surface-2)"/>
+                  </svg>
+                  <span class="slot-temp">21°</span>
+                  <span class="slot-subinfo">Partly cloudy</span>
+                </div>
+
+                <div class="forecast-slot-card">
+                  <span class="slot-time">17:00</span>
+                  <svg class="slot-icon-svg" viewBox="0 0 32 32" fill="none">
+                    <circle cx="16" cy="16" r="8" fill="var(--ctp-yellow)"/>
+                  </svg>
+                  <span class="slot-temp">22°</span>
+                  <span class="slot-subinfo">Sunny</span>
+                </div>
+
+                <div class="forecast-slot-card">
+                  <span class="slot-time">20:00</span>
+                  <svg class="slot-icon-svg" viewBox="0 0 32 32" fill="none">
+                    <circle cx="16" cy="16" r="8" fill="var(--ctp-peach)"/>
+                  </svg>
+                  <span class="slot-temp">18°</span>
+                  <span class="slot-subinfo">Fair</span>
+                </div>
+
+                <div class="forecast-slot-card">
+                  <span class="slot-time">23:00</span>
+                  <svg class="slot-icon-svg" viewBox="0 0 32 32" fill="none">
+                    <path d="M22 17.5A8 8 0 0 1 11 6.5 8 8 0 1 0 22 17.5z" fill="var(--ctp-lavender)"/>
+                  </svg>
+                  <span class="slot-temp">15°</span>
+                  <span class="slot-subinfo">Clear</span>
+                </div>
+
+                <div class="forecast-slot-card">
+                  <span class="slot-time">02:00</span>
+                  <svg class="slot-icon-svg" viewBox="0 0 32 32" fill="none">
+                    <path d="M22 17.5A8 8 0 0 1 11 6.5 8 8 0 1 0 22 17.5z" fill="var(--ctp-lavender)"/>
+                  </svg>
+                  <span class="slot-temp">13°</span>
+                  <span class="slot-subinfo">Clear</span>
+                </div>
+
+                <div class="forecast-slot-card">
+                  <span class="slot-time">05:00</span>
+                  <svg class="slot-icon-svg" viewBox="0 0 32 32" fill="none">
+                    <circle cx="12" cy="12" r="6" fill="var(--ctp-yellow)"/>
+                    <path d="M24 24H12a6 6 0 0 1-1-11.9 8 8 0 0 1 15.5-1.5A5 5 0 0 1 24 24z" fill="var(--ctp-surface-2)"/>
+                  </svg>
+                  <span class="slot-temp">13°</span>
+                  <span class="slot-subinfo">Fair</span>
+                </div>
+              </div>
+
+              <div class="forecast-track-heading" style="margin-top: 8px;">
+                <span>Extended Outlook</span>
+                <span>3 Days</span>
+              </div>
+
+              <table class="forecast-multiday-table">
+                <thead>
+                  <tr>
+                    <th>Day</th>
+                    <th>Condition</th>
+                    <th>Temp Range</th>
+                    <th>Wind &amp; Rain</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="day-cell">Today</td>
+                    <td class="condition-cell">
+                      <svg viewBox="0 0 24 24" fill="none"><circle cx="10" cy="10" r="5" fill="var(--ctp-yellow)"/><path d="M18 18H8a4 4 0 0 1-.8-7.9 6 6 0 0 1 11.6-1.1A3.5 3.5 0 0 1 18 18z" fill="var(--ctp-surface-2)"/></svg>
+                      <span>Partly cloudy</span>
+                    </td>
+                    <td class="temp-cell">13° / 23°</td>
+                    <td class="details-cell">NE 14 km/h · Precip 0%</td>
+                  </tr>
+                  <tr>
+                    <td class="day-cell">Tomorrow</td>
+                    <td class="condition-cell">
+                      <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="6" fill="var(--ctp-yellow)"/></svg>
+                      <span>Sunny</span>
+                    </td>
+                    <td class="temp-cell">14° / 25°</td>
+                    <td class="details-cell">E 12 km/h · Precip 0%</td>
+                  </tr>
+                  <tr>
+                    <td class="day-cell">Wednesday</td>
+                    <td class="condition-cell">
+                      <svg viewBox="0 0 24 24" fill="none"><path d="M18 16H8a4 4 0 0 1-.8-7.9 6 6 0 0 1 11.6-1.1A3.5 3.5 0 0 1 18 16z" fill="var(--ctp-surface-2)"/><line x1="9" y1="18" x2="7" y2="22" stroke="var(--ctp-blue)" stroke-width="2"/><line x1="14" y1="18" x2="12" y2="22" stroke="var(--ctp-blue)" stroke-width="2"/></svg>
+                      <span>Light rain showers</span>
+                    </td>
+                    <td class="temp-cell">12° / 19°</td>
+                    <td class="details-cell">W 20 km/h · Precip 65%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </details>
+
+          <div class="answer-footer">
+            <span class="answer-source-note">Open-Meteo API with Norwegian Met Institute (yr.no) symbology</span>
+            <span class="answer-context-pill">Bucharest, RO</span>
+          </div>
+        </article>
+
+      </div> <!-- /#answers -->
+
+      <!-- Organic Web Result Reference (To evaluate real vertical clearance) -->
+      <article class="web-result-context">
+        <div class="url-header">
+          <div class="source-icon">B</div>
+          <span>bnr.ro › cursul-de-schimb</span>
+        </div>
+        <h3><a href="#">Banca Națională a României - Cursul de schimb valutar</a></h3>
+        <p>Cursul oficial de schimb al leului în raport cu euro, dolarul american și principalele valute internaționale. Rate zilnice de referință și arhivă istorică completă a cursurilor valutare.</p>
+      </article>
+
+      <!-- Technical Production Specification & Blueprint -->
+      <section class="blueprint-drawer">
+        <div class="blueprint-header">
+          <h2>Production Implementation Blueprint</h2>
+          <span class="blueprint-tag">SearXNG Production Ready</span>
+        </div>
+
+        <p style="color: var(--ctp-subtext-0); margin-top: 0;">
+          This design concept operates directly on SearXNG's existing data structures without backend changes.
+          Below are the required modifications to activate this visual language in production:
+        </p>
+
+        <div class="blueprint-grid">
+          <div class="blueprint-card">
+            <h3>searx/templates/simple/elements/answers.html</h3>
+            <p>Add semantic <code>answer-card</code> wrapper and clean ARIA region attributes.</p>
+            <pre class="code-snippet"><code>&lt;div id="answers" role="region" aria-label="Instant answers"&gt;
+  {%- for answer in answers -%}
+    &lt;article class="answer-card"&gt;
+      {%- include ("simple/" + (answer.template or "answer/legacy.html")) -%}
+    &lt;/article&gt;
+  {%- endfor -%}
+&lt;/div&gt;</code></pre>
+          </div>
+
+          <div class="blueprint-card">
+            <h3>searx/templates/simple/answer/legacy.html</h3>
+            <p>Structure the plain text answer into a hero metric and supporting formula.</p>
+            <pre class="code-snippet"><code>&lt;div class="card-header-strip"&gt;
+  &lt;span class="card-type-tag"&gt;Instant Answer&lt;/span&gt;
+  {%- if answer.url -%}
+    &lt;a href="{{ answer.url }}" class="card-source-link"&gt;
+      {{ urlparse(answer.url).hostname }}
+    &lt;/a&gt;
+  {%- endif -%}
+&lt;/div&gt;
+&lt;div class="answer-legacy-body"&gt;
+  &lt;div class="answer-primary-value"&gt;{{ answer.answer }}&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+
+          <div class="blueprint-card">
+            <h3>searx/templates/simple/answer/translations.html</h3>
+            <p>Map translations to the hero row and transform <code>&lt;dl&gt;</code> children into pills and lists.</p>
+            <pre class="code-snippet"><code>&lt;details class="answer-translations"&gt;
+  &lt;summary&gt;
+    &lt;div class="translation-summary-body"&gt;
+      &lt;div class="translation-primary-text"&gt;
+        {{ answer.translations[0].text }}
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="translation-expand-toggle"&gt;Details&lt;/div&gt;
+  &lt;/summary&gt;
+  &lt;div class="translation-details-content"&gt;...&lt;/div&gt;
+&lt;/details&gt;</code></pre>
+          </div>
+
+          <div class="blueprint-card">
+            <h3>client/simple/src/less/search-redesign.less</h3>
+            <p>Add card envelope tokens, subtle 1px borders, and responsive grid layout.</p>
+            <pre class="code-snippet"><code>#answers {
+  grid-area: answers;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 780px;
+
+  .answer-card {
+    border: 1px solid var(--ctp-surface-0);
+    border-radius: 8px;
+    background: var(--ctp-mantle);
+  }
+}</code></pre>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+</body>
+</html>

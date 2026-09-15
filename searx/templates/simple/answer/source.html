@@ -1,0 +1,8 @@
+{%- if answer.url -%}
+  <a href="{{ answer.url }}" class="answer-url"
+     {% if results_on_new_tab %}target="_blank" rel="noopener noreferrer"{% else %}rel="noreferrer"{% endif %}>
+    {{ answer_source or urlparse(answer.url).hostname }}
+  </a>
+{%- elif answer_source -%}
+  <span class="answer-url">{{ answer_source }}</span>
+{%- endif -%}

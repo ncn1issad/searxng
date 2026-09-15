@@ -1,62 +1,43 @@
-{% macro show_weather_data(answer, data) %}
-  <table>
-    <colgroup>
-      <col span="1" class="thumbnail">
-      <col span="1" class="title">
-      <col span="1" class="measured">
-      <col span="1" class="title">
-      <col span="1" class="measured">
-    </colgroup>
-    <tbody>
-      <tr>
-        <td rowspan="4">
-          {%- if data.url %}<img class="symbol" src="{{ data.url }}" title="{{ data.summary }}">{% endif -%}
-        </td>
-      </tr>
-      <tr>
-        <td>{{ _("Temperature") }}:</td>
-        <td>{{ data.temperature.l10n(locale=data.location) }}</td>
-        <td>{{ _("Feels Like") }}:</td>
-        <td>{{ data.feels_like.l10n(locale=data.location) }}</td>
-      </tr>
-      <tr>
-        <td>{{ _("Wind") }}:</td>
-        <td>{{ data.wind_from.l10n(locale=data.location) }}: {{ data.wind_speed.l10n(locale=data.location) }}</td>
-        <td>{{ _("Pressure") }}:</td>
-        <td>{{ data.pressure.l10n(locale=data.location) }}</td>
-      </tr>
-      <tr>
-        <td>{{_("Humidity")}}:</td>
-        <td>{{ data.humidity.l10n(locale=data.location) }}</td>
-        <td></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+{% macro show_weather_data(data) %}
+  <div class="weather-hero">
+    {% if data.url %}<img class="weather-symbol" src="{{ data.url }}" alt="">{% endif %}
+    <span class="weather-temperature" dir="auto">{{ data.temperature.l10n(locale=data.location) }}</span>
+    <div class="weather-condition">
+      <div>{{ _(data.condition.capitalize()) }}</div>
+      {% if data.feels_like is not none %}<div class="weather-feels-like">{{ _('Feels Like') }} {{ data.feels_like.l10n(locale=data.location) }}</div>{% endif %}
+    </div>
+  </div>
+  {% if data.wind_speed is not none or data.humidity is not none or data.pressure is not none %}
+  <dl class="weather-metrics">
+    {% if data.wind_speed is not none %}
+    <div><dt>{{ _('Wind') }}</dt><dd dir="auto">{{ data.wind_from.l10n(locale=data.location) }} {{ data.wind_speed.l10n(locale=data.location) }}</dd></div>
+    {% endif %}
+    {% if data.humidity is not none %}
+    <div><dt>{{ _('Humidity') }}</dt><dd dir="auto">{{ data.humidity.l10n(locale=data.location) }}</dd></div>
+    {% endif %}
+    {% if data.pressure is not none %}
+    <div><dt>{{ _('Pressure') }}</dt><dd dir="auto">{{ data.pressure.l10n(locale=data.location) }}</dd></div>
+    {% endif %}
+  </dl>
+  {% endif %}
 {% endmacro %}
 
-<details class="weather">
-  <summary>
-    <div class="summary"> {{ answer.current.summary }}</div>
-    {{ show_weather_data(answer, answer.current) }}
-  </summary>
-  <div class="weather-forecast">
-    {%- if answer.forecasts -%}
-      <div class="answer-weather-forecasts">
-        {%- for forecast in answer.forecasts -%}
-            <div class="summary">{{ forecast.datetime.l10n(locale=answer.current.location,fmt="short") }} {{ forecast.summary }}</div>
-            {{ show_weather_data(answer, forecast) }}
-        {%- endfor -%}
-      </div>
-    {%- endif -%}
-  </div>
-</details>
-
-{%- if answer.url -%}
-    <a href="{{ answer.url }}" class="answer-url"
-        {%- if results_on_new_tab %}target="_blank" rel="noopener noreferrer"{%- else -%}rel="noreferrer"{%- endif -%}>
-        {{ answer.service }}
-    </a>
-{%- else -%}
-    <span class="answer-url">{{ answer.service }}</span>
-{% endif -%}
+<div class="weather">
+  <div class="weather-location" dir="auto">{{ answer.current.location }}</div>
+  {{ show_weather_data(answer.current) }}
+  {% if answer.forecasts %}
+  <details class="weather-forecast">
+    <summary>{{ _('Forecast') }}</summary>
+    <ul class="weather-forecast-list">
+      {% for forecast in answer.forecasts %}
+      <li>
+        {% if forecast.datetime %}<div class="weather-forecast-time" dir="auto">{{ forecast.datetime.l10n(locale=answer.current.location, fmt="short") }}</div>{% endif %}
+        {{ show_weather_data(forecast) }}
+      </li>
+      {% endfor %}
+    </ul>
+  </details>
+  {% endif %}
+</div>
+{% set answer_source = answer.service %}
+{% include 'simple/answer/source.html' %}

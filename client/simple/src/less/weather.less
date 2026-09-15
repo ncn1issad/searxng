@@ -1,44 +1,111 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 #answers .weather {
-  summary {
-    display: block;
-    list-style: none;
-  }
-
-  div.summary {
-    margin: 0;
-    padding: 0.5rem 1rem;
-    background-color: var(--color-header-background);
-    .rounded-corners-tiny;
-  }
-
-  table {
-    font-size: 0.9rem;
-    table-layout: fixed;
-    margin-top: 0.5rem;
+  .weather-location {
     margin-bottom: 0.5rem;
-    border-collapse: separate;
-    border-spacing: 0.1em 0;
+    font-weight: 600;
   }
 
-  td {
+  .weather-hero {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .weather-symbol {
+    width: 3.5rem;
+    height: 3.5rem;
+    object-fit: contain;
+  }
+
+  .weather-temperature {
+    font-size: 2.5rem;
+    font-weight: 600;
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .weather-condition {
+    flex: 1 1 8rem;
+    line-height: 1.5;
+  }
+
+  .weather-feels-like {
+    color: var(--ctp-subtext-0);
+    font-size: 0.85rem;
+  }
+
+  .weather-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 8rem), 1fr));
+    gap: 0.5rem;
+    margin: 1rem 0 0;
+
+    &:empty {
+      display: none;
+    }
+
+    > div {
+      padding: 0.6rem 0.75rem;
+      border-radius: 6px;
+      background: var(--ctp-base);
+    }
+
+    dt {
+      margin-bottom: 0.25rem;
+      color: var(--ctp-subtext-0);
+      font-size: 0.75rem;
+    }
+
+    dd {
+      margin: 0;
+      font-size: 0.85rem;
+      font-variant-numeric: tabular-nums;
+    }
+  }
+
+  .weather-forecast {
+    margin-top: 0.75rem;
+    border-top: 1px solid var(--ctp-surface-0);
+
+    > summary {
+      color: var(--ctp-subtext-0);
+      font-size: 0.85rem;
+    }
+  }
+
+  .weather-forecast-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+    gap: 1rem;
+    margin: 0.5rem 0 0;
     padding: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    list-style: none;
+
+    > li {
+      min-width: 0;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--ctp-surface-0);
+    }
+
+    .weather-temperature {
+      font-size: 1.5rem;
+    }
+
+    .weather-symbol {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+
+    .weather-metrics {
+      margin-top: 0.5rem;
+    }
   }
 
-  img.symbol {
-    width: 5rem;
-    margin: auto;
-    display: block;
-  }
-
-  .title {
-    // background-color: var(--color-result-keyvalue-even);
-  }
-
-  .measured {
-    // background-color: var(--color-result-keyvalue-odd);
+  .weather-forecast-time {
+    margin-bottom: 0.5rem;
+    color: var(--ctp-subtext-0);
+    font-size: 0.8rem;
   }
 }
